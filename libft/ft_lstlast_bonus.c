@@ -1,25 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/20 10:36:11 by lbordana         ###   ########.fr       */
+/*   Created: 2025/11/06 16:11:04 by lbordana          #+#    #+#             */
+/*   Updated: 2025/11/12 15:06:58 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdarg.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-typedef struct s_list
+t_list	*ft_lstlast(t_list *lst)
 {
-	int				nb;
-	struct s_list	*previous;
-	struct s_list	*next;
-}	t_list;
+	int	i;
 
-#endif
+	i = 0;
+	if (!lst)
+		return (0);
+	while (lst->next != NULL)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (lst);
+}
+
+/*Return the last node of a list*/

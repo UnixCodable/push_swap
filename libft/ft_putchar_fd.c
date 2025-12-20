@@ -1,25 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_putchar_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/20 10:36:11 by lbordana         ###   ########.fr       */
+/*   Created: 2025/11/06 01:41:20 by lbordanave        #+#    #+#             */
+/*   Updated: 2025/11/19 11:25:27 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdarg.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-typedef struct s_list
+void	ft_putchar_fd(char c, int fd)
 {
-	int				nb;
-	struct s_list	*previous;
-	struct s_list	*next;
-}	t_list;
+	if (!fd)
+		return ;
+	write(fd, &c, 1);
+}
 
-#endif
+/*Write a char into a text file*/

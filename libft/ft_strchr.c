@@ -1,25 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/20 10:36:11 by lbordana         ###   ########.fr       */
+/*   Created: 2025/10/29 23:53:58 by lbordana          #+#    #+#             */
+/*   Updated: 2025/11/12 14:58:22 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdarg.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-typedef struct s_list
+char	*ft_strchr(const char *s, int c)
 {
-	int				nb;
-	struct s_list	*previous;
-	struct s_list	*next;
-}	t_list;
+	int		i;
 
-#endif
+	i = 0;
+	while (s[i] != 0)
+	{
+		if (s[i] == (char) c)
+			return ((char *) s + i);
+		i++;
+	}
+	if (c == 0)
+		return ((char *) s + i);
+	return (0);
+}
+
+/*Search in two string the first occurence of a given decimal converted into
+ascii and send back the address of it*/

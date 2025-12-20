@@ -1,25 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/20 10:36:11 by lbordana         ###   ########.fr       */
+/*   Created: 2025/10/31 14:59:44 by lbordana          #+#    #+#             */
+/*   Updated: 2025/11/18 15:43:00 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PUSH_SWAP_H
-# define PUSH_SWAP_H
-# include <stdarg.h>
-# include "libft/libft.h"
+#include "libft.h"
 
-typedef struct s_list
+char	*ft_strdup(const char *s)
 {
-	int				nb;
-	struct s_list	*previous;
-	struct s_list	*next;
-}	t_list;
+	char	*dup;
+	int		i;
 
-#endif
+	i = 0;
+	while (s[i] != 0)
+		i++;
+	dup = malloc((i + 1) * sizeof(char));
+	if (!dup)
+		return (0);
+	i = 0;
+	while (s[i] != 0)
+	{
+		dup[i] = s[i];
+		i++;
+	}
+	dup[i] = 0;
+	return (dup);
+}
+
+/*Duplicate a string into a new one*/
