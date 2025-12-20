@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/20 15:22:30 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2025/12/20 15:23:37 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	error_handler(char *arg)
 {
 	int	i;
 
-	i = 1;
+	i = 0;
 	while (arg[i] != '\0')
 	{
 		if (arg[i] >= '0' && arg[i] <= '9')
