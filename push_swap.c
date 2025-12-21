@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/20 16:01:01 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/21 04:28:18 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,45 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-int	error_handler(char *arg)
+int	error_handler(char **args)
 {
-	int	i;
+	static int	opt_off = 0;
+	int			*i;
 
-	i = 0;
-	while (arg[i] != '\0')
+	while (*args != NULL)
 	{
-		if (arg[i] >= '0' && arg[i] <= '9')
-			i++;
-		else if (ft_strncmp(arg, "--simple", 8) == 0)
-			i += ft_strlen(arg) + 1;
-		else if (ft_strncmp(arg, "--medium", 8) == 0)
-			i += ft_strlen(arg) + 1;
-		else if (ft_strncmp(arg, "--complex", 9) == 0)
-			i += ft_strlen(arg) + 1;
-		else if (ft_strncmp(arg, "--adaptive", 10) == 0)
-			i += ft_strlen(arg) + 1;
-		else if (ft_strncmp(arg, "--bench", 7) == 0)
-			i += ft_strlen(arg) + 1;
+		i = 0;
+		while (args[] != NULL)
+			if (*args == saved)
+				return (write(2, "Error\n", 6), 0);
+		*args = saved;
+		if (!ft_strncmp(*args, ft_itoa(ft_atoi(*args)), ft_strlen(*args)))
+			args++;
+		else if (!ft_strncmp(*args, "--simple", 8) && (!opt_off++))
+			args++;
+		else if (!ft_strncmp(*args, "--medium", 8) && (!opt_off++))
+			args++;
+		else if (!ft_strncmp(*args, "--complex", 9) && (!opt_off++))
+			args++;
+		else if (!ft_strncmp(*args, "--adaptive", 10) && (!opt_off++))
+			args++;
+		else if (!ft_strncmp(*args, "--bench", 7))
+			args++;
 		else
-			return (write(2, "Error", 5), 0);
+			return (write(2, "Error\n", 6), 0);
 	}
-	printf("%s\n", arg);
 	return (1);
 }
 
-int	create_stack_a(int arg_count, char **args)
+int	create_stack_a(int args_count, char **args)
 {
-	int	i;
-
-	i = 1;
-	while (i != arg_count)
+	int i;
+	
+	args++;
+	if (error_handler(args) == 0)
+		return (0);
+	while (i != args_count)
 	{
-		if (error_handler(args[i]) == 0)
-			return (0);
 		i++;
 	}
 	return (0);
