@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/21 16:00:40 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/21 22:17:31 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,26 +16,26 @@
 
 int	error_handler(char **args)
 {
-	static int	opt_off = 0;
-	char		**saved;
+	static int	opt_off;
+	char		**voyager;
 
 	while (*args)
 	{
-		saved = args;
-		while (*saved++)
-			if (*saved && !ft_strncmp(*saved, *args, ft_strlen(*saved)))
+		voyager = args;
+		while (*voyager++)
+			if (*voyager && !ft_strncmp(*voyager, *args, -1))
 				return (write(2, "Error\n", 6), 0);
-		if (!ft_strncmp(*args, ft_itoa(ft_atoi(*args)), ft_strlen(*args)))
+		if (!ft_strncmp(*args, ft_itoa(ft_atoi(*args)), -1))
+		{
 			args++;
-		else if (!ft_strncmp(*args, "--simple", 8) && (!opt_off++))
+			opt_off += 2;
+		}
+		else if ((!ft_strncmp(*args, "--simple", -1)
+				|| !ft_strncmp(*args, "--medium", -1)
+				|| !ft_strncmp(*args, "--complex", -1)
+				|| !ft_strncmp(*args, "--adaptive", -1)) && (!opt_off++))
 			args++;
-		else if (!ft_strncmp(*args, "--medium", 8) && (!opt_off++))
-			args++;
-		else if (!ft_strncmp(*args, "--complex", 9) && (!opt_off++))
-			args++;
-		else if (!ft_strncmp(*args, "--adaptive", 10) && (!opt_off++))
-			args++;
-		else if (!ft_strncmp(*args, "--bench", 7))
+		else if (!ft_strncmp(*args, "--bench", -1) && opt_off < 2)
 			args++;
 		else
 			return (write(2, "Error\n", 6), 0);
