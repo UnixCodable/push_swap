@@ -6,11 +6,11 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/15 15:41:30 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/11 18:44:31 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/21 13:03:29 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "ft_printf.h"
+#include "libft.h"
 
 static void	ft_swap(char *str)
 {
