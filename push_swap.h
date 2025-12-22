@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/22 02:43:06 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/22 16:28:26 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 typedef struct s_num_list
 {
 	int					nb;
+	int					is_empty;
 	struct s_num_list	*previous;
 	struct s_num_list	*next;
 }	t_num_list;

@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/22 11:32:35 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/22 16:48:29 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,34 @@ double	compute_disorder(t_num_list *stack_a)
 	return (mistakes / total_pairs);
 }
 
-t_num_list	*list_converter(char **args)
+t_num_list	*create_stack_b(t_num_list *stack_a)
+{
+	t_num_list	*nbrs;
+	t_num_list	*prev;
+	t_num_list	*first;
+
+	if (!stack_a)
+	{
+		nbrs = NULL;
+		return (nbrs);
+	}
+	nbrs = ft_numlst_new(0);
+	first = nbrs;
+	prev = nbrs;
+	stack_a = stack_a->next;
+	while (stack_a)
+	{
+		nbrs->next = ft_numlst_new(0);
+		nbrs->is_empty = 1;
+		nbrs = nbrs->next;
+		nbrs->previous = prev;
+		prev = nbrs;
+		stack_a = stack_a->next;
+	}
+	return (first);
+}
+
+t_num_list	*create_stack_a(char **args)
 {
 	t_num_list	*nbrs;
 	t_num_list	*prev;
@@ -39,13 +66,14 @@ t_num_list	*list_converter(char **args)
 
 	while (ft_strncmp(ft_itoa(ft_atoi(*args)), *args, -1))
 		args++;
-	nbrs = ft_numlst_new(ft_atoi(*args));
+	nbrs = ft_numlst_new((int)ft_atoi(*args));
 	first = nbrs;
 	prev = nbrs;
 	while (*++args)
 	{
-		nbrs->next = ft_numlst_new(ft_atoi(*args));
+		nbrs->next = ft_numlst_new((int)ft_atoi(*args));
 		nbrs = nbrs->next;
+		nbrs->is_empty = 0;
 		nbrs->previous = prev;
 		prev = nbrs;
 	}
@@ -81,30 +109,18 @@ int	error_handler(char **args)
 	return (1);
 }
 
-int	create_stack_a(int args_count, char **args)
-{
-	t_num_list	*stack_a;
-	double		score;
-
-	args++;
-	(void) args_count;
-	if (error_handler(args) == 0)
-		return (0);
-	stack_a = list_converter(args);
-	score = compute_disorder(stack_a);
-	printf("%.2f\n", score);
-	return (1);
-}
-
 int	main(int ac, char **av)
 {
-	int	status;
+	t_num_list	*stack_a;
+	t_num_list	*stack_b;
+	double		score;
 
-	status = create_stack_a(ac, av);
-	if (!status)
-	{
-		write(2, "Error\n", 6);
-		return (0);
-	}
+	av++;
+	(void) ac;
+	if (error_handler(av) == 0)
+		return (write(2, "Error\n", 6), 0);
+	stack_a = create_stack_a(av);
+	stack_b = create_stack_b(stack_a);
+	score = compute_disorder(stack_a);
 	return (1);
 }
