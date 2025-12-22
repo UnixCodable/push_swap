@@ -1,27 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew_bonus.c                                  :+:      :+:    :+:   */
+/*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/11/06 16:11:04 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/22 02:32:56 by lbordanave       ###   ########.fr       */
+/*   Created: 2025/12/22 02:35:23 by lbordanave        #+#    #+#             */
+/*   Updated: 2025/12/22 02:38:33 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "push_swap.h"
 
-t_list	*ft_lstnew(void *content)
+t_num_list	*ft_numlst_new(int nbr)
 {
-	t_list	*lst;
+	t_num_list	*lst;
 
-	lst = malloc(sizeof(t_list));
+	lst = malloc(sizeof(t_num_list));
 	if (!lst)
 		return (NULL);
-	lst->content = content;
+	lst->nb = nbr;
 	lst->next = NULL;
+	lst->previous = NULL;
 	return (lst);
 }
-
-/*Create a new list*/
