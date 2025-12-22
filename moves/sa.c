@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:41 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/22 15:46:43 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2025/12/22 18:06:42 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	*move_sa(t_num_list *stack_a)
 {
 	int	save_nbr;
 
-	if (stack_a == NULL || stack_a->next == NULL)
+	if (stack_a->is_empty == 1 || stack_a->next->is_empty == 1)
 		return ;
 	save_nbr = stack_a->next->nb;
 	stack_a->next->nb = stack_a->nb;
@@ -25,4 +25,3 @@ void	*move_sa(t_num_list *stack_a)
 	printf("%d/n", stack_a->next->nb);
 	return ;
 }
-
