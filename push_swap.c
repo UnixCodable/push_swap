@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/22 03:47:16 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/22 11:32:35 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ int	create_stack_a(int args_count, char **args)
 		return (0);
 	stack_a = list_converter(args);
 	score = compute_disorder(stack_a);
-	printf("%.2f", score);
+	printf("%.2f\n", score);
 	return (1);
 }
 
