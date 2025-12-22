@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/22 16:28:26 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/22 18:11:30 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,5 +24,6 @@ typedef struct s_num_list
 }	t_num_list;
 
 t_num_list	*ft_numlst_new(int nbr);
+void		move_sa(t_num_list *stack_a);
 
 #endif

@@ -6,13 +6,13 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:41 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/22 18:11:57 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2025/12/22 18:31:43 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	*move_sa(t_num_list *stack_a)
+void	move_sa(t_num_list *stack_a)
 {
 	int	save_nbr;
 
