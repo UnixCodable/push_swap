@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   sa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:41 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/22 18:31:43 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2025/12/22 21:24:48 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,5 @@ void	move_sa(t_num_list *stack_a)
 	save_nbr = stack_a->next->nb;
 	stack_a->next->nb = stack_a->nb;
 	stack_a->nb = save_nbr;
-	printf("%d\n", stack_a->nb);
-	printf("%d\n", stack_a->next->nb);
 	return ;
 }

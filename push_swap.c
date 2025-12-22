@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/22 18:28:05 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/22 21:39:17 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,5 +122,36 @@ int	main(int ac, char **av)
 	stack_a = create_stack_a(av);
 	stack_b = create_stack_b(stack_a);
 	score = compute_disorder(stack_a);
+	while (stack_a->next != NULL)
+	{
+		printf("%d | ", stack_a->nb);
+		printf("%d\n", stack_b->nb);
+		stack_a = stack_a->next;
+		stack_b = stack_b->next;
+		if (stack_a->next == NULL)
+		{
+			printf("%d | ", stack_a->nb);
+			printf("%d\n", stack_b->nb);
+		}
+	}
+	while (stack_a->previous != NULL)
+	{
+		stack_a = stack_a->previous;
+		stack_b = stack_b->previous;
+	}
+	printf("\n-------\n\n");
+	move_ra(&stack_a);
+	while (stack_a->next != NULL)
+	{
+		printf("%d | ", stack_a->nb);
+		printf("%d\n", stack_b->nb);
+		stack_a = stack_a->next;
+		stack_b = stack_b->next;
+		if (stack_a->next == NULL)
+		{
+			printf("%d | ", stack_a->nb);
+			printf("%d\n", stack_b->nb);
+		}
+	}
 	return (1);
 }
