@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/23 00:45:58 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/23 03:06:06 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,11 @@ typedef struct s_data
 	int	rrr_count;
 	int	sa_count;
 	int	sb_count;
+	int	force_simple;
+	int	force_medium;
+	int	force_complex;
+	int	force_adaptive;
+	int	benchmark;
 }	t_data;
 
 t_num_list	*ft_numlst_new(int nbr);
