@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/22 21:38:50 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/23 00:45:58 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,19 @@ typedef struct s_num_list
 	struct s_num_list	*previous;
 	struct s_num_list	*next;
 }	t_num_list;
+
+typedef struct s_data
+{
+	int	pa_count;
+	int	pb_count;
+	int	ra_count;
+	int	rb_count;
+	int	rra_count;
+	int	rrb_count;
+	int	rrr_count;
+	int	sa_count;
+	int	sb_count;
+}	t_data;
 
 t_num_list	*ft_numlst_new(int nbr);
 void		move_sa(t_num_list *stack_a);
