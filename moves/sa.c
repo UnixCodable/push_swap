@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   sa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:41 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/23 19:15:01 by agathe           ###   ########.fr       */
+/*   Updated: 2025/12/23 21:23:23 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	move_sa(t_num_list **stack_a, struct s_data data)
+void	move_sa(t_num_list **stack_a, struct s_data *data)
 {
-	if ((*stack_a)->is_empty == 1 || (*stack_a)->next->is_empty == 1)
+	data->sa_count++;
+	if (!(*stack_a) || !(*stack_a)->next)
 		return ;
 	(*stack_a)->previous = (*stack_a)->next;
 	(*stack_a)->next = (*stack_a)->next->next;

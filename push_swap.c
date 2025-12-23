@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/23 20:00:20 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/24 00:39:27 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,12 +115,13 @@ int	main(int ac, char **av)
 	stack_a = create_stack_a(av, &data);
 	stack_b = NULL;
 	compute_disorder(stack_a, &data);
-	printf("Bench = %d\n", data.benchmark);
-	printf("Simple = %d\n", data.force_simple);
-	printf("Medium = %d\n", data.force_medium);
-	printf("Complex = %d\n", data.force_complex);
-	printf("Adaptive = %d\n", data.force_adaptive);
-	printf("Disorder = %.2f\n", data.disorder);
+	// printf("Bench = %d\n", data.benchmark);
+	// printf("Simple = %d\n", data.force_simple);
+	// printf("Medium = %d\n", data.force_medium);
+	// printf("Complex = %d\n", data.force_complex);
+	// printf("Adaptive = %d\n", data.force_adaptive);
+	// printf("Disorder = %.2f\n", data.disorder);
+	testing(&stack_a, &stack_b, &data);
 	(void) stack_b;
 	return (1);
 }

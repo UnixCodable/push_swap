@@ -3,18 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   sb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:43 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/23 19:14:37 by agathe           ###   ########.fr       */
+/*   Updated: 2025/12/23 21:23:39 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	move_sb(t_num_list **stack_b, struct s_data data)
+void	move_sb(t_num_list **stack_b, struct s_data *data)
 {
-	if ((*stack_b)->is_empty == 1 || (*stack_b)->next->is_empty == 1)
+	data->sb_count++;
+	if (!(*stack_b) || !(*stack_b)->next)
 		return ;
 	(*stack_b)->previous = (*stack_b)->next;
 	(*stack_b)->next = (*stack_b)->next->next;
