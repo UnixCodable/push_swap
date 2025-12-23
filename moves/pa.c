@@ -3,17 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   pa.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:20 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/23 20:23:33 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/23 20:36:40 by agathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data data)
+void	move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data)
 {
+    data->pa_count++;
 	if ((*stack_b)->is_empty == 1)
 		return ;
 	if ((*stack_a))

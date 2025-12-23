@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/23 20:07:37 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/23 20:33:23 by agathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ struct s_data
 	int		rrr_count;
 	int		sa_count;
 	int		sb_count;
+	int		ss_count;
 	int		total_count;
 	int		force_simple;
 	int		force_medium;
@@ -45,10 +46,10 @@ struct s_data
 };
 
 t_num_list	*ft_numlst_new(int nbr);
-void		move_sa(t_num_list **stack_a, struct s_data data);
-void		move_sb(t_num_list **stack_b, struct s_data data);
-void		move_ss(t_num_list **stack_a, t_num_list **stack_b, struct s_data data);
-void		move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data data);
+void		move_sa(t_num_list **stack_a, struct s_data *data);
+void		move_sb(t_num_list **stack_b, struct s_data *data);
+void		move_ss(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
+void		move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
 void		move_ra(t_num_list **stack_a);
 
 #endif
