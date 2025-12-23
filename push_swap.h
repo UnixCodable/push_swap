@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/23 03:06:06 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/23 14:38:38 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,26 +23,28 @@ typedef struct s_num_list
 	struct s_num_list	*next;
 }	t_num_list;
 
-typedef struct s_data
+struct s_data
 {
 	int	pa_count;
 	int	pb_count;
 	int	ra_count;
 	int	rb_count;
+	int	rr_count;
 	int	rra_count;
 	int	rrb_count;
 	int	rrr_count;
 	int	sa_count;
 	int	sb_count;
+	int	total_count;
 	int	force_simple;
 	int	force_medium;
 	int	force_complex;
 	int	force_adaptive;
 	int	benchmark;
-}	t_data;
+};
 
 t_num_list	*ft_numlst_new(int nbr);
-void		move_sa(t_num_list *stack_a);
+void		move_sa(t_num_list **stack_a);
 void		move_ra(t_num_list **stack_a);
 
 #endif

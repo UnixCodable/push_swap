@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/23 03:15:21 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/23 14:36:10 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,13 @@ t_num_list	*create_stack_b(t_num_list *stack_a)
 	return (first);
 }
 
-t_num_list	*create_stack_a(char **args)
+t_num_list	*create_stack_a(char **args, struct s_data *data)
 {
 	t_num_list	*nbrs;
 	t_num_list	*prev;
 	t_num_list	*first;
 
+	data->pa_count += 1;
 	while (ft_strncmp(ft_itoa(ft_atoi(*args)), *args, -1))
 		args++;
 	nbrs = ft_numlst_new((int)ft_atoi(*args));
@@ -80,19 +81,19 @@ t_num_list	*create_stack_a(char **args)
 	return (first);
 }
 
-int	opt_checker(char *arg, t_data *data)
-{
-	if (!ft_strncmp(*arg, "--simple", -1))
-		data->force_simple = 1;
-	else if (!ft_strncmp(*arg, "--medium", -1))
-		data->force_medium = 1;
-	else if (!ft_strncmp(*arg, "--complex", -1))
-		data->force_complex = 1;
-	else if (!ft_strncmp(*arg, "--adaptive", -1))
-		data->force_adaptive = 1;
-	else if (!ft_strncmp(*arg, "--bench", -1))
-		data->benchmark = 1;
-}
+// int	opt_checker(char *arg, t_data *data)
+// {
+// 	if (!ft_strncmp(*arg, "--simple", -1))
+// 		data->force_simple = 1;
+// 	else if (!ft_strncmp(*arg, "--medium", -1))
+// 		data->force_medium = 1;
+// 	else if (!ft_strncmp(*arg, "--complex", -1))
+// 		data->force_complex = 1;
+// 	else if (!ft_strncmp(*arg, "--adaptive", -1))
+// 		data->force_adaptive = 1;
+// 	else if (!ft_strncmp(*arg, "--bench", -1))
+// 		data->benchmark = 1;
+// }
 
 int	error_handler(char **args)
 {
@@ -125,17 +126,22 @@ int	error_handler(char **args)
 
 int	main(int ac, char **av)
 {
-	t_num_list	*stack_a;
-	t_num_list	*stack_b;
-	t_data		*data;
-	double		score;
+	t_num_list		*stack_a;
+	t_num_list		*stack_b;
+	struct s_data	data;
+	double			score;
 
-	av++;
 	(void) ac;
+	av++;
+	data = (struct s_data){0};
+	printf("%d", data.pa_count);
 	if (error_handler(av) == 0)
 		return (write(2, "Error\n", 6), 0);
-	stack_a = create_stack_a(av);
+	stack_a = create_stack_a(av, &data);
 	stack_b = create_stack_b(stack_a);
 	score = compute_disorder(stack_a);
+	printf("%d", data.pa_count);
+	(void) score;
+	(void) stack_b;
 	return (1);
 }
