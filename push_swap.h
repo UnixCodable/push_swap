@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/23 14:38:38 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/23 19:22:17 by agathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,10 @@ struct s_data
 };
 
 t_num_list	*ft_numlst_new(int nbr);
-void		move_sa(t_num_list **stack_a);
+void		move_sa(t_num_list **stack_a, struct s_data data);
+void		move_sb(t_num_list **stack_b, struct s_data data);
+void		move_ss(t_num_list **stack_a, t_num_list **stack_b, struct s_data data);
+void		move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data data);
 void		move_ra(t_num_list **stack_a);
 
 #endif
