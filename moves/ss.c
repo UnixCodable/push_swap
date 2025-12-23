@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pa.c                                               :+:      :+:    :+:   */
+/*   ss.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/22 15:13:20 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/23 19:52:13 by agathe           ###   ########.fr       */
+/*   Created: 2025/12/23 19:08:28 by agathe            #+#    #+#             */
+/*   Updated: 2025/12/23 19:18:57 by agathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void    move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data data)
+void    move_ss(t_num_list **stack_a, t_num_list stack_b, struct s_data data)
 {
-    if ((*stack_b)->is_empty == 1)
-		return ;
-    if ((*stack_b)->next)
-        (*stack_b)->next->previous = NULL;
-    (*stack_b)->next = (*stack_a);
-    (*stack_a)->previous = (*stack_b);
+    move_sa(&stack_a, data);
+    move_sb(&stack_b, data);
 }

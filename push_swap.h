@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/23 19:11:51 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/23 20:07:37 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ struct s_data
 };
 
 t_num_list	*ft_numlst_new(int nbr);
-void		move_sa(t_num_list **stack_a);
+void		move_sa(t_num_list **stack_a, struct s_data data);
+void		move_sb(t_num_list **stack_b, struct s_data data);
+void		move_ss(t_num_list **stack_a, t_num_list **stack_b, struct s_data data);
+void		move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data data);
 void		move_ra(t_num_list **stack_a);
 
 #endif

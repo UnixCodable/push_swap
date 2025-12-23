@@ -3,23 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   sb.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:43 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/22 15:36:41 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2025/12/23 19:14:37 by agathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-// #include "../push_swap.h"
+#include "../push_swap.h"
 
-// void	move_sb(t_num_list stack_b)
-// {
-// 	int	save_nbr;
-
-// 	if (stack_b == NULL || stack_b->next == NULL)
-// 		return ;
-// 	save_nbr = stack_b->next->nb;
-// 	stack_b->next->nb = stack_b->nb;
-// 	stack_b->nb = save_nbr;
-// 	return ;
-// }
+void	move_sb(t_num_list **stack_b, struct s_data data)
+{
+	if ((*stack_b)->is_empty == 1 || (*stack_b)->next->is_empty == 1)
+		return ;
+	(*stack_b)->previous = (*stack_b)->next;
+	(*stack_b)->next = (*stack_b)->next->next;
+	(*stack_b)->previous->previous = NULL;
+	(*stack_b)->previous->next = (*stack_b);
+	(*stack_b) = (*stack_b)->previous;
+}
