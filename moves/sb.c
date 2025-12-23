@@ -6,7 +6,7 @@
 /*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:43 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/23 20:35:38 by agathe           ###   ########.fr       */
+/*   Updated: 2025/12/24 00:49:38 by agathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	move_sb(t_num_list **stack_b, struct s_data *data)
 {
-    data->sb_count++;
-	if ((*stack_b)->is_empty == 1 || (*stack_b)->next->is_empty == 1)
+	data->sb_count++;
+	if (!(*stack_b) || !(*stack_b)->next)
 		return ;
 	(*stack_b)->previous = (*stack_b)->next;
 	(*stack_b)->next = (*stack_b)->next->next;
