@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/24 04:58:49 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/24 13:08:25 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 typedef struct s_num_list
 {
 	int					nb;
-	int					is_empty;
+	int					pos;
 	struct s_num_list	*previous;
 	struct s_num_list	*next;
 }	t_nlist;

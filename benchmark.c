@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   simple.c                                           :+:      :+:    :+:   */
+/*   benchmark.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/24 04:17:05 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/24 13:37:15 by lbordanave       ###   ########.fr       */
+/*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
+/*   Updated: 2025/12/24 13:49:07 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../push_swap.h"
+#include "push_swap.h"
 
-void	simple_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	create_frame(void)
 {
-	int	i;
+	return ;
+}
 
-	i = 0;
-	(void)st_b;
-	while (compute_disorder(*st_a, data) != 0.00)
-	{
-		if ((*st_a)->nb > (*st_a)->next->nb
-			&& (*st_a)->pos < (*st_a)->next->pos)
-		{
-			sa(st_a, data);
-			ra(st_a, data);
-			data->total_count += 2;
-		}
-		else
-		{
-			ra(st_a, data);
-			data->total_count += 1;
-		}
-		i++;
-	}
+void	compute_benchmark(struct s_data *data)
+{
 	return ;
 }
