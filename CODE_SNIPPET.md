@@ -1,40 +1,40 @@
 To test moves :
 
 ```c
-while (stack_a->next != NULL)
+while (st_a->next != NULL)
 {
-	printf("%d | ", stack_a->nb);
-	printf("%d\n", stack_b->nb);
-	stack_a = stack_a->next;
-	stack_b = stack_b->next;
-	if (stack_a->next == NULL)
+	printf("%d | ", st_a->nb);
+	printf("%d\n", st_b->nb);
+	st_a = st_a->next;
+	st_b = st_b->next;
+	if (st_a->next == NULL)
 	{
-		printf("%d | ", stack_a->nb);
-		printf("%d\n", stack_b->nb);
+		printf("%d | ", st_a->nb);
+		printf("%d\n", st_b->nb);
 	}
 }
-while (stack_a->previous != NULL)
+while (st_a->previous != NULL)
 {
-	stack_a = stack_a->previous;
-	stack_b = stack_b->previous;
+	st_a = st_a->previous;
+	st_b = st_b->previous;
 }
 printf("\n-------\n\n");
-move_sa(&stack_a);
-while (stack_a->next != NULL)
+sa(&st_a);
+while (st_a->next != NULL)
 {
-	printf("%d | ", stack_a->nb);
-	printf("%d\n", stack_b->nb);
-	stack_a = stack_a->next;
-	stack_b = stack_b->next;
-	if (stack_a->next == NULL)
+	printf("%d | ", st_a->nb);
+	printf("%d\n", st_b->nb);
+	st_a = st_a->next;
+	st_b = st_b->next;
+	if (st_a->next == NULL)
 	{
-		printf("%d | ", stack_a->nb);
-		printf("%d\n", stack_b->nb);
+		printf("%d | ", st_a->nb);
+		printf("%d\n", st_b->nb);
 	}
 }
-while (stack_a->previous != NULL)
+while (st_a->previous != NULL)
 {
-	stack_a = stack_a->previous;
-	stack_b = stack_b->previous;
+	st_a = st_a->previous;
+	st_b = st_b->previous;
 }
 ```

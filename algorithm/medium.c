@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rrr.c                                              :+:      :+:    :+:   */
+/*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/22 15:13:12 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/24 01:12:39 by agathe           ###   ########.fr       */
+/*   Created: 2025/12/24 04:17:40 by lbordanave        #+#    #+#             */
+/*   Updated: 2025/12/24 04:17:50 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void   		move_rrr(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data)
+void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-    data->rrr_count++;
-    move_rra(stack_a, data);
-    move_rrb(stack_b, data);
+	(void)st_a;
+	(void)st_b;
+	(void)data;
+	return ;
 }

@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ss.c                                               :+:      :+:    :+:   */
+/*   adaptive.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/23 19:08:28 by agathe            #+#    #+#             */
-/*   Updated: 2025/12/24 00:50:00 by agathe           ###   ########.fr       */
+/*   Created: 2025/12/24 04:18:07 by lbordanave        #+#    #+#             */
+/*   Updated: 2025/12/24 04:18:56 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	move_ss(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data)
+void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-    data->ss_count++;
-	move_sa(stack_a, data);
-	move_sb(stack_b, data);
+	(void)st_a;
+	(void)st_b;
+	(void)data;
+	return ;
 }

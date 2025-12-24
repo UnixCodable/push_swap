@@ -1,20 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   rr.c                                               :+:      :+:    :+:   */
+/*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/22 15:13:31 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/24 01:02:28 by agathe           ###   ########.fr       */
+/*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
+/*   Updated: 2025/12/24 04:18:02 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void    move_rr(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data)
+void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-    data->rr_count++;
-    move_ra(stack_a, data);
-    move_rb(stack_b, data);
+	(void)st_a;
+	(void)st_b;
+	(void)data;
+	return ;
 }

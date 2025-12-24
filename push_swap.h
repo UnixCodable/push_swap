@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/24 01:12:58 by agathe           ###   ########.fr       */
+/*   Updated: 2025/12/24 04:58:49 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct s_num_list
 	int					is_empty;
 	struct s_num_list	*previous;
 	struct s_num_list	*next;
-}	t_num_list;
+}	t_nlist;
 
 struct s_data
 {
@@ -45,18 +45,24 @@ struct s_data
 	double	disorder;
 };
 
-t_num_list	*ft_numlst_new(int nbr);
-void		move_sa(t_num_list **stack_a, struct s_data *data);
-void		move_sb(t_num_list **stack_b, struct s_data *data);
-void		move_ss(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
-void		move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
-void		move_pb(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
-void		testing(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
-void		move_ra(t_num_list **stack_a, struct s_data *data);
-void		move_rb(t_num_list **stack_b, struct s_data *data);
-void   		move_rr(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
-void		move_rra(t_num_list **stack_a, struct s_data *data);
-void		move_rrb(t_num_list **stack_b, struct s_data *data);
-void   		move_rrr(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
+t_nlist	*ft_numlst_new(int nbr);
+void	sa(t_nlist **st_a, struct s_data *data);
+void	sb(t_nlist **st_b, struct s_data *data);
+void	ss(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	pb(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	testing(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	ra(t_nlist **st_a, struct s_data *data);
+void	rb(t_nlist **st_b, struct s_data *data);
+void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	rra(t_nlist **st_a, struct s_data *data);
+void	rrb(t_nlist **st_b, struct s_data *data);
+void	rrr(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	simple_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+double	compute_disorder(t_nlist *st_a, struct s_data *data);
+void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 
 #endif

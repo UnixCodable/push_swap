@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/24 00:56:37 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/24 05:16:20 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,30 @@
 #include "libft/libft.h"
 #include <stdio.h>
 
-void	compute_disorder(t_num_list *stack_a, struct s_data *data)
+double	compute_disorder(t_nlist *st_a, struct s_data *data)
 {
 	double	mistakes;
 	double	total_pairs;
 
 	mistakes = 0.00;
 	total_pairs = 0.00;
-	while (stack_a->next)
+	while (st_a->next)
 	{
 		total_pairs += 1;
-		if (stack_a->nb > stack_a->next->nb)
+		if (st_a->nb > st_a->next->nb)
 			mistakes += 1;
-		stack_a = stack_a->next;
+		st_a = st_a->next;
 	}
-	data->disorder = mistakes / total_pairs;
+	if (data->total_count == 0)
+		data->disorder = mistakes / total_pairs;
+	return (mistakes / total_pairs);
 }
 
-t_num_list	*create_stack_a(char **args, struct s_data *data)
+t_nlist	*create_st_a(char **args, struct s_data *data)
 {
-	t_num_list	*nbrs;
-	t_num_list	*prev;
-	t_num_list	*first;
+	t_nlist	*nbrs;
+	t_nlist	*prev;
+	t_nlist	*first;
 
 	data->pa_count += 1;
 	while (ft_strncmp(ft_itoa(ft_atoi(*args)), *args, -1))
@@ -54,7 +56,7 @@ t_num_list	*create_stack_a(char **args, struct s_data *data)
 	return (first);
 }
 
-int	algorythm_checker(char *arg, struct s_data *data)
+int	strategy_checker(char *arg, struct s_data *data)
 {
 	if (!ft_strncmp(arg, "--simple", -1))
 		data->force_simple = 1;
@@ -65,10 +67,7 @@ int	algorythm_checker(char *arg, struct s_data *data)
 	else if (!ft_strncmp(arg, "--adaptive", -1))
 		data->force_adaptive = 1;
 	else
-	{
-		data->force_adaptive = 1;
 		return (0);
-	}
 	return (1);
 }
 
@@ -83,7 +82,7 @@ int	error_handler(char **args, struct s_data *data)
 		while (*voyager++)
 			if (*voyager && !ft_strncmp(*voyager, *args, -1))
 				return (0);
-		if (algorythm_checker(*args, data) && (!opt_off++))
+		if (strategy_checker(*args, data) && (!opt_off++))
 			args++;
 		else if (!ft_strncmp(*args, ft_itoa(ft_atoi(*args)), -1))
 		{
@@ -101,10 +100,24 @@ int	error_handler(char **args, struct s_data *data)
 	return (1);
 }
 
+void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+{
+	if (data->force_simple)
+		simple_alg(st_a, st_b, data);
+	else if (data->force_medium)
+		medium_alg(st_a, st_b, data);
+	else if (data->force_complex)
+		complex_alg(st_a, st_b, data);
+	else if (data->force_adaptive)
+		adaptive_alg(st_a, st_b, data);
+	else
+		adaptive_alg(st_a, st_b, data);
+}
+
 int	main(int ac, char **av)
 {
-	t_num_list		*stack_a;
-	t_num_list		*stack_b;
+	t_nlist			*st_a;
+	t_nlist			*st_b;
 	struct s_data	data;
 
 	(void) ac;
@@ -112,43 +125,13 @@ int	main(int ac, char **av)
 	data = (struct s_data){0};
 	if (error_handler(av, &data) == 0)
 		return (write(2, "Error\n", 6), 0);
-	stack_a = create_stack_a(av, &data);
-	stack_b = NULL;
-	compute_disorder(stack_a, &data);
-	// printf("Bench = %d\n", data.benchmark);
-	// printf("Simple = %d\n", data.force_simple);
-	// printf("Medium = %d\n", data.force_medium);
-	// printf("Complex = %d\n", data.force_complex);
-	// printf("Adaptive = %d\n", data.force_adaptive);
-	// printf("Disorder = %.2f\n", data.disorder);
-	testing(&stack_a, &stack_b, &data);
-	(void) stack_b;
+	st_a = create_st_a(av, &data);
+	st_b = NULL;
+	compute_disorder(st_a, &data);
+	testing(&st_a, &st_b, &data);
+	//exec_sort(&st_a, &st_b, &data);
+	(void) st_b;
 	return (1);
 }
 
-// t_num_list	*create_stack_b(t_num_list *stack_a)
-// {
-// 	t_num_list	*nbrs;
-// 	t_num_list	*prev;
-// 	t_num_list	*first;
-
-// 	if (!stack_a)
-// 	{
-// 		nbrs = NULL;
-// 		return (nbrs);
-// 	}
-// 	nbrs = ft_numlst_new(0);
-// 	first = nbrs;
-// 	prev = nbrs;
-// 	stack_a = stack_a->next;
-// 	while (stack_a)
-// 	{
-// 		nbrs->next = ft_numlst_new(0);
-// 		nbrs->is_empty = 1;
-// 		nbrs = nbrs->next;
-// 		nbrs->previous = prev;
-// 		prev = nbrs;
-// 		stack_a = stack_a->next;
-// 	}
-// 	return (first);
-// }
+// testing(&st_a, &st_b, &data);
