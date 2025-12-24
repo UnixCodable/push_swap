@@ -6,7 +6,7 @@
 /*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/24 00:50:46 by agathe           ###   ########.fr       */
+/*   Updated: 2025/12/24 01:12:58 by agathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,11 @@ void		move_ss(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
 void		move_pa(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
 void		move_pb(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
 void		testing(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
-void		move_ra(t_num_list **stack_a);
+void		move_ra(t_num_list **stack_a, struct s_data *data);
+void		move_rb(t_num_list **stack_b, struct s_data *data);
+void   		move_rr(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
+void		move_rra(t_num_list **stack_a, struct s_data *data);
+void		move_rrb(t_num_list **stack_b, struct s_data *data);
+void   		move_rrr(t_num_list **stack_a, t_num_list **stack_b, struct s_data *data);
 
 #endif
