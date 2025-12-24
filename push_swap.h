@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/24 13:08:25 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/24 14:26:18 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,5 +64,6 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 double	compute_disorder(t_nlist *st_a, struct s_data *data);
 void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	compute_benchmark(struct s_data *data);
 
 #endif

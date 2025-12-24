@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/24 13:22:16 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/24 14:26:44 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,6 +132,7 @@ int	main(int ac, char **av)
 	compute_disorder(st_a, &data);
 	testing(&st_a, &st_b, &data);
 	//exec_sort(&st_a, &st_b, &data);
+	compute_benchmark(&data);
 	(void) st_b;
 	return (1);
 }
