@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/25 03:50:13 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/25 08:36:09 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,5 +57,7 @@ void	compute_benchmark(struct s_data *data)
 	ft_printf("║        %d  ", data->total_count);
 	space_bound(ft_numlen(data->total_count), 9);
 	printf("║\t\t\t\t\t   ║ RA : %d", data->ra_count);
+	space_bound(ft_numlen(data->ra_count), 15);
+	printf("║");
 	return ;
 }
