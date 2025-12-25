@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 13:59:16 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/25 03:00:18 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/25 09:10:45 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,6 @@ void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
 int		ft_isnumber(char *str);
 int		ft_numlen(int nbr);
+int		ft_printf(const	char *str, ...);
 
 #endif
