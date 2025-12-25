@@ -1,42 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_isnumber.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/30 23:32:46 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/25 02:30:44 by lbordanave       ###   ########.fr       */
+/*   Created: 2025/12/25 02:41:29 by lbordanave        #+#    #+#             */
+/*   Updated: 2025/12/25 03:00:52 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_atoi(const char *nptr)
+int	ft_isnumber(char *str)
 {
 	int	i;
-	int	nbr;
-	int	is_negative;
 
 	i = 0;
-	nbr = 0;
-	is_negative = 0;
-	while (nptr[i] == 32 || (nptr[i] > 8 && nptr[i] < 14))
-		i++;
-	if (nptr[i] == 45 || nptr[i] == 43)
+	if (!str)
+		return (0);
+	while (str[i] != 0)
 	{
-		if (nptr[i] == 45)
-			is_negative = 1;
+		if (!(str[i] >= '0' && str[i] <= '9'))
+			return (0);
 		i++;
 	}
-	while (nptr[i] > 47 && nptr[i] < 58)
-	{
-		nbr = (nbr * 10) + (nptr[i] - 48);
-		i++;
-	}
-	if (is_negative == 1)
-		nbr *= (-1);
-	return (nbr);
+	return (1);
 }
-
-/*Convert an ascii into an integer*/

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/01 13:59:16 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/21 13:04:42 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/25 03:00:18 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,7 @@ void	ft_lstdelone(t_list *lst, void (*del)(void *));
 void	ft_lstclear(t_list **lst, void (*del)(void *));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 t_list	*ft_lstmap(t_list *lst, void *(*f)(void *), void (*del)(void *));
+int		ft_isnumber(char *str);
+int		ft_numlen(int nbr);
 
 #endif

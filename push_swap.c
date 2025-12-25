@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/24 14:26:44 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/25 02:53:52 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ t_nlist	*create_st_a(char **args, struct s_data *data)
 
 	i = 1;
 	data->pa_count += 1;
-	while (ft_strncmp(ft_itoa(ft_atoi(*args)), *args, -1))
+	while (!ft_isnumber(*args))
 		args++;
 	nbrs = ft_numlst_new((int)ft_atoi(*args));
 	first = nbrs;
@@ -86,7 +86,7 @@ int	error_handler(char **args, struct s_data *data)
 				return (0);
 		if (strategy_checker(*args, data) && (!opt_off++))
 			args++;
-		else if (!ft_strncmp(*args, ft_itoa(ft_atoi(*args)), -1))
+		else if (ft_isnumber(*args))
 		{
 			args++;
 			opt_off += 2;
