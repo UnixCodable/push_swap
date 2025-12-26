@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/25 02:53:52 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/26 17:17:02 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,12 +41,12 @@ t_nlist	*create_st_a(char **args, struct s_data *data)
 	int		i;
 
 	i = 1;
-	data->pa_count += 1;
 	while (!ft_isnumber(*args))
 		args++;
 	nbrs = ft_numlst_new((int)ft_atoi(*args));
 	first = nbrs;
 	prev = nbrs;
+	data->number_count++;
 	while (*++args)
 	{
 		nbrs->next = ft_numlst_new((int)ft_atoi(*args));
@@ -54,6 +54,7 @@ t_nlist	*create_st_a(char **args, struct s_data *data)
 		nbrs->pos = i++;
 		nbrs->previous = prev;
 		prev = nbrs;
+		data->number_count++;
 	}
 	return (first);
 }

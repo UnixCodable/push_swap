@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/26 10:06:24 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/26 17:13:27 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ struct s_data
 	int		force_medium;
 	int		force_complex;
 	int		force_adaptive;
+	int		number_count;
 	int		benchmark;
 	double	disorder;
 };
