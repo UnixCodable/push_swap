@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/26 03:38:08 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/26 10:35:51 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,23 +32,15 @@ void	pos_framing(void)
 	int	y;
 
 	y = 1;
-	x = 0;
-	ft_printf("\e[%d;%dH╔", x, y++);
-	while (y != 80)
-		ft_printf("\e[%d;%dH═", x, y++);
-	ft_printf("\e[%d;%dH╗", x++, y);
-	while (++x != 29)
-		ft_printf("\e[%d;%dH║\e[%d;%dH║", x, y, x, 1);
-	y = 1;
-	ft_printf("\e[%d;%dH╠\e[%d;%dH╠\e[%d;%dH╚", 9, y, 26, y, 29, y);
+	x = 1;
+	(void) x;
+	ft_printf(POS"╔"POS"╗"POS"╚"POS"╝", 0, 1, 0, 80, 23, 1, 23, 80);
 	while (++y != 80)
-		ft_printf("\e[%d;%dH═\e[%d;%dH═\e[%d;%dH═", 9, y, 26, y, 29, y);
-	ft_printf("\e[%d;%dH╣\e[%d;%dH╣\e[%d;%dH╝", 9, y, 26, y, 29, y);
-	y = 1;
-	x = 9;
-	while (++x != 26)
-		ft_printf("\e[%d;%dH║\e[%d;%dH║\e[%d;%dH\n", x, 25, x, 56, 29 ,80);
-	return ;
+		ft_printf(POS"═"POS"═"POS"═"POS"═", 0, y, 9, y, 21, y, 23, y);
+	while (++x != 23)
+		ft_printf(POS"║"POS"║", x, 1, x, 80, 21);
+	ft_printf(POS"╣"POS"╣"POS"╠"POS"╠", 9, 80, 21, 80, 9, 1, 21, 1);
+	ft_printf(POS"\n", 23, 80);
 }
 
 void	compute_benchmark(struct s_data *data)

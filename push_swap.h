@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/25 01:14:49 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/26 10:06:24 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 # define PUSH_SWAP_H
 # include <stdarg.h>
 # include "libft/libft.h"
+
+# define POS "\e[%d;%dH"
 
 typedef struct s_num_list
 {
