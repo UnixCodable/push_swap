@@ -6,7 +6,7 @@
 #    By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/10/27 14:44:11 by lbordana          #+#    #+#              #
-#    Updated: 2025/12/25 09:09:48 by lbordanave       ###   ########.fr        #
+#    Updated: 2025/12/26 03:21:13 by lbordanave       ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,11 +27,11 @@ BONUS = ft_lstnew_bonus.c ft_lstadd_front_bonus.c ft_lstsize_bonus.c \
 		ft_lstclear_bonus.c ft_lstiter_bonus.c ft_lstmap_bonus.c
 OBJDIR = mandatory_objects/
 BONUSDIR = bonus_objects/
-PINK_BCK = \033[7;1;35m
-GREEN_BCK = \033[7;1;32m
-RED_BCK = \033[7;1;91m
-NORMAL = \033[0m
-GREEN = \033[1;32m
+PINK_BCK = \e[7;1;35m
+GREEN_BCK = \e[7;1;32m
+RED_BCK = \e[7;1;91m
+NORMAL = \e[0m
+GREEN = \e[1;32m
 OFILES = $(CFILES:%.c=$(OBJDIR)%.o)
 BONUSFILES = $(BONUS:%.c=$(BONUSDIR)%.o)
 
@@ -48,12 +48,10 @@ bonus: $(BONUSFILES) $(BONUSDIR)
 $(OBJDIR)%.o: %.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
 	printf "\r$(PINK_BCK)Building objects files..."
-	sleep 0.05
 
 $(BONUSDIR)%.o: %.c | $(BONUSDIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
 	printf "\r$(PINK_BCK)Building objects files..."
-	sleep 0.05
 
 $(OBJDIR):
 	mkdir -p $@
@@ -64,11 +62,10 @@ $(BONUSDIR):
 	printf "\n$(PINK_BCK)Bonus objects folder created.\n\n"
 
 cleaning:
-	printf "\033[2J\033[H"
+	printf "\e[2J\e[H"
 	printf "\n$(NORMAL)--------------------------------------------------------------------------------\n"
 	printf "\n$(GREEN)TIPS : use $(PINK_BCK)'make test_libft'$(NORMAL)$(GREEN) to automatically launch two tester on the functions\n\n"
 	printf "$(NORMAL)--------------------------------------------------------------------------------\n\n"
-	sleep 2
 
 clean:
 	rm -rf $(OBJDIR) $(BONUSDIR)
