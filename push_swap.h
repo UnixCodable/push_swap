@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/26 17:13:27 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/26 18:55:57 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,6 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 double	compute_disorder(t_nlist *st_a, struct s_data *data);
 void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
-void	compute_benchmark(struct s_data *data);
+void	compute_benchmark(struct s_data *data, t_nlist **sorted);
 
 #endif

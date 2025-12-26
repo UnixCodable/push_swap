@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/26 17:17:02 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/26 18:55:49 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,7 +133,7 @@ int	main(int ac, char **av)
 	compute_disorder(st_a, &data);
 	testing(&st_a, &st_b, &data);
 	//exec_sort(&st_a, &st_b, &data);
-	compute_benchmark(&data);
+	compute_benchmark(&data, &st_a);
 	(void) st_b;
 	return (1);
 }
