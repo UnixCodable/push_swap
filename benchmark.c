@@ -6,7 +6,7 @@
 /*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/26 17:15:47 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/26 17:34:38 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ and lbordana, from 42 Mulhouse.", 22, 5);
 	ft_printf(POS"\n", 23, 80);
 }
 
-void	compute_benchmark(struct s_data *data)
+void	compute_benchmark(struct s_data *data, t_nlist **sorted)
 {
 	if (data->benchmark == 0)
 		return ;
