@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   pa.c                                               :+:      :+:    :+:   */
+/*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:20 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/24 04:01:05 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/27 00:15:41 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	data->pa_count++;
+	ft_printf("pa\n");
 	if (!(*st_b))
 		return ;
 	if ((*st_a))
@@ -38,6 +39,7 @@ void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 void	pb(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	data->pb_count++;
+	ft_printf("pb\n");
 	if (!(*st_a))
 		return ;
 	if ((*st_b))

@@ -3,20 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   swap.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:41 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/24 13:14:00 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/27 00:14:54 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sa(t_nlist **st_a, struct s_data *data)
+void	sa(t_nlist **st_a, struct s_data *data, int to_print)
 {
 	int	pos;
 
-	data->sa_count++;
+	if (to_print == 1)
+	{
+		ft_printf("sa\n");
+		data->sa_count++;
+	}
 	if (!(*st_a) || !(*st_a)->next)
 		return ;
 	pos = (*st_a)->pos;
@@ -31,11 +35,15 @@ void	sa(t_nlist **st_a, struct s_data *data)
 	(*st_a) = (*st_a)->previous;
 }
 
-void	sb(t_nlist **st_b, struct s_data *data)
+void	sb(t_nlist **st_b, struct s_data *data, int to_print)
 {
 	int	pos;
 
-	data->sb_count++;
+	if (to_print == 1)
+	{
+		ft_printf("sb\n");
+		data->sa_count++;
+	}
 	if (!(*st_b) || !(*st_b)->next)
 		return ;
 	pos = (*st_b)->pos;
@@ -53,6 +61,7 @@ void	sb(t_nlist **st_b, struct s_data *data)
 void	ss(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	data->ss_count++;
-	sa(st_a, data);
-	sb(st_b, data);
+	ft_printf("ss\n");
+	sa(st_a, data, 0);
+	sb(st_b, data, 0);
 }

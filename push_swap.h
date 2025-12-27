@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/26 18:55:57 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/27 00:16:29 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,17 +49,17 @@ struct s_data
 };
 
 t_nlist	*ft_numlst_new(int nbr);
-void	sa(t_nlist **st_a, struct s_data *data);
-void	sb(t_nlist **st_b, struct s_data *data);
+void	sa(t_nlist **st_a, struct s_data *data, int to_print);
+void	sb(t_nlist **st_b, struct s_data *data, int to_print);
 void	ss(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	pb(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	testing(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
-void	ra(t_nlist **st_a, struct s_data *data);
-void	rb(t_nlist **st_b, struct s_data *data);
+void	ra(t_nlist **st_a, struct s_data *data, int to_print);
+void	rb(t_nlist **st_b, struct s_data *data, int to_print);
 void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
-void	rra(t_nlist **st_a, struct s_data *data);
-void	rrb(t_nlist **st_b, struct s_data *data);
+void	rra(t_nlist **st_a, struct s_data *data, int to_print);
+void	rrb(t_nlist **st_b, struct s_data *data, int to_print);
 void	rrr(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	simple_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);

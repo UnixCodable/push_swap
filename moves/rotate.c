@@ -3,21 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:25 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/24 13:19:11 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/27 00:13:12 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ra(t_nlist **st_a, struct s_data *data)
+void	ra(t_nlist **st_a, struct s_data *data, int to_print)
 {
 	t_nlist	*voyager;
 
-	data->ra_count++;
 	voyager = *st_a;
+	if (to_print == 1)
+	{
+		ft_printf("ra\n");
+		data->ra_count++;
+	}
 	while (voyager->next != NULL)
 		voyager = voyager->next;
 	(*st_a)->previous = voyager;
@@ -28,12 +32,16 @@ void	ra(t_nlist **st_a, struct s_data *data)
 		(*st_a) = (*st_a)->previous;
 }
 
-void	rb(t_nlist **st_b, struct s_data *data)
+void	rb(t_nlist **st_b, struct s_data *data, int to_print)
 {
 	t_nlist	*voyager;
 
-	data->rb_count++;
 	voyager = *st_b;
+	if (to_print == 1)
+	{
+		ft_printf("rb\n");
+		data->rb_count++;
+	}
 	while (voyager->next != NULL)
 		voyager = voyager->next;
 	(*st_b)->previous = voyager;
@@ -47,6 +55,7 @@ void	rb(t_nlist **st_b, struct s_data *data)
 void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	data->rr_count++;
-	ra(st_a, data);
-	rb(st_b, data);
+	ft_printf("rr\n");
+	ra(st_a, data, 0);
+	rb(st_b, data, 0);
 }

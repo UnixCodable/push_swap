@@ -6,13 +6,13 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/26 20:55:53 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/27 00:45:08 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	last_numbers(t_nlist **sorted)
+void	first_numbers(t_nlist **sorted)
 {
 	t_nlist	*voyager;
 	int		x;
@@ -24,7 +24,7 @@ void	last_numbers(t_nlist **sorted)
 	{
 		y = 28;
 		ft_printf(POS, x, y);
-		while (y < 52 && voyager->next)
+		while (y < 52 && voyager)
 		{
 			y += ft_numlen(voyager->nb) + 1;
 			if (y < 55)
@@ -112,7 +112,7 @@ void	compute_benchmark(struct s_data *data, t_nlist **sorted)
 	if (data->benchmark == 0)
 		return ;
 	pos_framing();
-	last_numbers(sorted);
+	first_numbers(sorted);
 	data_place(data);
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:05 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/24 13:37:15 by lbordanave       ###   ########.fr       */
+/*   Updated: 2025/12/27 00:17:03 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,13 +23,13 @@ void	simple_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 		if ((*st_a)->nb > (*st_a)->next->nb
 			&& (*st_a)->pos < (*st_a)->next->pos)
 		{
-			sa(st_a, data);
-			ra(st_a, data);
+			sa(st_a, data, 1);
+			ra(st_a, data, 1);
 			data->total_count += 2;
 		}
 		else
 		{
-			ra(st_a, data);
+			ra(st_a, data, 1);
 			data->total_count += 1;
 		}
 		i++;
