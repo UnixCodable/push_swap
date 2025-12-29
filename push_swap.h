@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/27 18:40:12 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/28 18:53:59 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_num_list
 {
 	int					nb;
 	int					pos;
+	int					chunk;
 	struct s_num_list	*previous;
 	struct s_num_list	*next;
 }	t_nlist;

@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/27 17:03:30 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/28 13:49:50 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_nlist	*create_st_a(char **args, struct s_data *data)
 		nbrs->next = ft_numlst_new((int)ft_atoi(*args));
 		nbrs = nbrs->next;
 		nbrs->pos = i++;
+		nbrs->stop = 0;
 		nbrs->previous = prev;
 		prev = nbrs;
 		data->number_count++;
