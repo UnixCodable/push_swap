@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/29 09:17:51 by lbordana         ###   ########.fr       */
+/*   Updated: 2025/12/29 11:27:25 by lbordanave       ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ double	chunk_disorder(t_nlist *st_a, struct s_data *data, int chunk)
 void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	static int	pivot;
-	int			chunk;
 	int			front;
 	t_nlist		*voyager;
 	t_nlist		*checker;
@@ -43,7 +42,7 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 	voyager = *st_a;
 	checker = *st_a;
 	front = 0;
-	while (voyager->next != NULL)
+	while (voyager != NULL)
 	{
 		while (checker != NULL)
 		{
@@ -63,4 +62,18 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 		checker = *st_a;
 		front = 0;
 	}
+	if (voyager != NULL)
+		while ((*st_a)->nb != voyager->nb)
+			pb(st_a, st_b, data);
+	else if (*st_b)
+	{
+		while (*st_b)
+			pa(st_a, st_b, data);
+		return (complex_alg(st_a, st_b, data));
+	}
+	else
+	{
+		while
+	}
+
 }
