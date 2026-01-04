@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   adaptive.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: agathe <agathe@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:07 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/24 04:18:56 by lbordanave       ###   ########.fr       */
+/*   Updated: 2026/01/04 18:32:52 by agathe           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,11 @@
 
 void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-	(void)st_a;
-	(void)st_b;
-	(void)data;
+	if (compute_disorder(st_a, data) < 0,2)
+		simple_alg(st_a, st_b, data);
+	if (compute_disorder(st_a, data) >= 0,2 && compute_disorder(st_a, data) < 0.5)
+		medium_alg(st_a, st_b, data);
+	if (compute_disorder(st_a, data) >= 0,5)
+		complex_alg(st_a, st_b, data);
 	return ;
 }
