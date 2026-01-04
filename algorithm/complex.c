@@ -6,46 +6,47 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/04 04:12:20 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/04 11:14:35 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	find_nearest(t_nlist **st_b, int nbr)
-{
-	t_nlist	*voyager;
-	int		converted_nb;
-	int		nearest;
+// int	find_nearest(t_nlist **st_b, int nbr)
+// {
+// 	t_nlist	*voyager;
+// 	int		converted_nb;
+// 	int		nearest;
 
-	voyager = *st_b;
-	while (voyager != NULL)
-	{
-		converted_nb = voyager->nb - nbr;
-		if (converted_nb - nbr < nearest - nbr)
-	}
-	return (nearest);
-}
+// 	voyager = *st_b;
+// 	while (voyager != NULL)
+// 	{
+// 		if (voyager->nb - nbr < 0)
+// 			converted_nb = (voyager->nb - nbr) * (-1);
+// 		if (converted_nb - nbr < nearest - nbr)
+// 	}
+// 	return (nearest);
+// }
 
-int	best_pivot(t_nlist **st_b)
-{
-	t_nlist	*voyager;
-	int		diff;
-	int		sum;
-	int		nbrs;
+// int	best_pivot(t_nlist **st_b)
+// {
+// 	t_nlist	*voyager;
+// 	int		diff;
+// 	int		sum;
+// 	int		nbrs;
 
-	voyager = *st_b;
-	sum = 0;
-	nbrs = 0;
-	while (voyager != NULL)
-	{
-		sum += voyager->nb;
-		nbrs++;
-		voyager = voyager->next;
-	}
-	diff = sum / nbrs;
-	return (find_nearest(st_b, diff));
-}
+// 	voyager = *st_b;
+// 	sum = 0;
+// 	nbrs = 0;
+// 	while (voyager != NULL)
+// 	{
+// 		sum += voyager->nb;
+// 		nbrs++;
+// 		voyager = voyager->next;
+// 	}
+// 	diff = sum / nbrs;
+// 	return (find_nearest(st_b, diff));
+// }
 
 int	min_finder(t_nlist **st_a)
 {
@@ -67,7 +68,7 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	static int	grow;
 	int			actual_chunk;
-	int			exec;
+	// int			exec;
 	t_nlist		*pivot;
 
 	grow++;
@@ -86,11 +87,7 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 				sa(st_a, data, 1);
 		}
 		while ((*st_a) && (*st_a)->chunk == actual_chunk)
-		{
 			pb(st_a, st_b, data);
-			if ((*st_b)->next)
-				rb(st_b, data, 1);
-		}
 	}
 	pivot = *st_b;
 	while (pivot && pivot->next != NULL)
