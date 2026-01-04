@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:20 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/27 00:15:41 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/04 02:29:11 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	data->pa_count++;
+	data->total_count++;
 	ft_printf("pa\n");
 	if (!(*st_b))
 		return ;
@@ -39,6 +40,7 @@ void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 void	pb(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	data->pb_count++;
+	data->total_count++;
 	ft_printf("pb\n");
 	if (!(*st_a))
 		return ;

@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:25 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/27 00:13:12 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/04 02:29:43 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,10 @@ void	ra(t_nlist **st_a, struct s_data *data, int to_print)
 	{
 		ft_printf("ra\n");
 		data->ra_count++;
+		data->total_count++;
 	}
+	if (!(*st_a)->next)
+		return ;
 	while (voyager->next != NULL)
 		voyager = voyager->next;
 	(*st_a)->previous = voyager;
@@ -41,7 +44,10 @@ void	rb(t_nlist **st_b, struct s_data *data, int to_print)
 	{
 		ft_printf("rb\n");
 		data->rb_count++;
+		data->total_count++;
 	}
+	if (!(*st_b)->next)
+		return ;
 	while (voyager->next != NULL)
 		voyager = voyager->next;
 	(*st_b)->previous = voyager;
@@ -55,6 +61,7 @@ void	rb(t_nlist **st_b, struct s_data *data, int to_print)
 void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	data->rr_count++;
+	data->total_count++;
 	ft_printf("rr\n");
 	ra(st_a, data, 0);
 	rb(st_b, data, 0);

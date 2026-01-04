@@ -3,77 +3,115 @@
 /*                                                        :::      ::::::::   */
 /*   complex.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/29 11:27:25 by lbordanave       ###   ########.fr       */
+/*   Updated: 2026/01/04 04:12:20 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-double	chunk_disorder(t_nlist *st_a, struct s_data *data, int chunk)
+int	find_nearest(t_nlist **st_b, int nbr)
 {
-	double	mistakes;
-	double	total_pairs;
+	t_nlist	*voyager;
+	int		converted_nb;
+	int		nearest;
 
-	mistakes = 0.00;
-	total_pairs = 0.00;
-	while (st_a->next)
+	voyager = *st_b;
+	while (voyager != NULL)
 	{
-		if (st_a->chunk == chunk && st_a->next->chunk == chunk)
-		{
-			total_pairs += 1;
-			if (st_a->nb > st_a->next->nb)
-				mistakes += 1;
-		}
-		st_a = st_a->next;
+		converted_nb = voyager->nb - nbr;
+		if (converted_nb - nbr < nearest - nbr)
 	}
-	return (mistakes / total_pairs);
+	return (nearest);
+}
+
+int	best_pivot(t_nlist **st_b)
+{
+	t_nlist	*voyager;
+	int		diff;
+	int		sum;
+	int		nbrs;
+
+	voyager = *st_b;
+	sum = 0;
+	nbrs = 0;
+	while (voyager != NULL)
+	{
+		sum += voyager->nb;
+		nbrs++;
+		voyager = voyager->next;
+	}
+	diff = sum / nbrs;
+	return (find_nearest(st_b, diff));
+}
+
+int	min_finder(t_nlist **st_a)
+{
+	t_nlist	*voyager;
+	int		min;
+
+	voyager = *st_a;
+	min = voyager->nb;
+	while (voyager != NULL && voyager->chunk != -1)
+	{
+		voyager = voyager->next;
+		if (voyager && voyager->nb < min && voyager->chunk != -1)
+			min = voyager->nb;
+	}
+	return (min);
 }
 
 void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-	static int	pivot;
-	int			front;
-	t_nlist		*voyager;
-	t_nlist		*checker;
+	static int	grow;
+	int			actual_chunk;
+	int			exec;
+	t_nlist		*pivot;
 
-	voyager = *st_a;
-	checker = *st_a;
-	front = 0;
-	while (voyager != NULL)
+	grow++;
+	actual_chunk = (*st_a)->chunk;
+	if (!(*st_b) && actual_chunk != -1)
 	{
-		while (checker != NULL)
+		while ((*st_a)->chunk != -1 && ((*st_a)->nb == min_finder(st_a)
+				|| (*st_a)->next->nb == min_finder(st_a)))
 		{
-			if (!front)
-				if (checker->nb > voyager->nb)
-					break ;
-			else if (front)
-				if (checker->nb < voyager->nb)
-					break ;
-			else if (checker->nb == voyager->nb)
-				front = 1;
-			checker = checker->next;
+			if ((*st_a)->nb == min_finder(st_a))
+			{
+				(*st_a)->chunk = -1;
+				ra(st_a, data, 1);
+			}
+			else
+				sa(st_a, data, 1);
 		}
-		if (checker == NULL)
-			break ;
-		voyager = voyager->next;
-		checker = *st_a;
-		front = 0;
-	}
-	if (voyager != NULL)
-		while ((*st_a)->nb != voyager->nb)
+		while ((*st_a) && (*st_a)->chunk == actual_chunk)
+		{
 			pb(st_a, st_b, data);
-	else if (*st_b)
+			if ((*st_b)->next)
+				rb(st_b, data, 1);
+		}
+	}
+	pivot = *st_b;
+	while (pivot && pivot->next != NULL)
+		pivot = pivot->next;
+	while (*st_b)
 	{
-		while (*st_b)
+		if ((*st_b)->nb == pivot->nb)
+		{
+			(*st_b)->chunk = grow;
 			pa(st_a, st_b, data);
-		return (complex_alg(st_a, st_b, data));
+			break ;
+		}
+		else if ((*st_b)->nb > pivot->nb)
+		{
+			(*st_b)->chunk = grow;
+			pa(st_a, st_b, data);
+		}
+		else if ((*st_b)->nb < pivot->nb)
+			rb(st_b, data, 1);
 	}
-	else
-	{
-		while
-	}
-
+	if (compute_disorder(*st_a, data) != 0.00 || (*st_b) != NULL)
+		complex_alg(st_a, st_b, data);
+	return ;
 }
