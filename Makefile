@@ -6,7 +6,7 @@
 #    By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2026/01/05 23:39:05 by lbordana         ###   ########.fr        #
+#    Updated: 2026/01/05 23:52:54 by lbordana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
-FILES = push_swap.c lst_utils.c benchmark.c testing_unit.c push.c swap.c rotate.c reverse_rotate.c simple.c medium.c complex.c adaptive.c
+FILES = push_swap.c lst_utils.c benchmark.c push.c swap.c rotate.c reverse_rotate.c simple.c medium.c complex.c adaptive.c
 LIBFT = libft/libft.a
 OBJDIR = objects/
 OFILES = $(FILES:%.c=$(OBJDIR)%.o)
