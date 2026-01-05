@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 02:35:23 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/24 06:03:09 by lbordanave       ###   ########.fr       */
+/*   Updated: 2026/01/05 18:56:31 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,17 +25,11 @@ t_nlist	*ft_numlst_new(int nbr)
 	return (lst);
 }
 
-// int	ft_numlst_size(t_nlist *lst)
-// {
-// 	int	i;
-
-// 	i = 0;
-// 	if (!lst)
-// 		return (0);
-// 	while (lst != NULL)
-// 	{
-// 		lst = lst->next;
-// 		i++;
-// 	}
-// 	return (i);
-// }
+void	ft_lst_print(t_nlist *lst)
+{
+	while (lst)
+	{
+		ft_printf("%d ", (lst)->nb);
+		lst = (lst)->next;
+	}
+}

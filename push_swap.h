@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/28 18:53:59 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:46:16 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ struct s_data
 	int		force_medium;
 	int		force_complex;
 	int		force_adaptive;
+	int		low_disorder;
+	int		med_disorder;
 	int		number_count;
 	int		benchmark;
 	double	disorder;
@@ -69,5 +71,6 @@ void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 double	compute_disorder(t_nlist *st_a, struct s_data *data);
 void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	compute_benchmark(struct s_data *data, t_nlist **sorted);
+void	ft_lst_print(t_nlist *lst);
 
 #endif

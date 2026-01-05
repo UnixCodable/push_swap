@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:33 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/04 02:29:31 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:39:56 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	rra(t_nlist **st_a, struct s_data *data, int to_print)
 	t_nlist	*voyager;
 
 	voyager = (*st_a);
-	if (to_print == 1)
+	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("rra\n");
 		data->rra_count++;
@@ -37,7 +37,7 @@ void	rrb(t_nlist **st_b, struct s_data *data, int to_print)
 	t_nlist	*voyager;
 
 	voyager = (*st_b);
-	if (to_print == 1)
+	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("rrb\n");
 		data->rrb_count++;
@@ -54,9 +54,12 @@ void	rrb(t_nlist **st_b, struct s_data *data, int to_print)
 
 void	rrr(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-	data->rrr_count++;
-	data->total_count++;
-	ft_printf("rrr\n");
+	if (!data->low_disorder && !data->med_disorder)
+	{
+		data->rrr_count++;
+		data->total_count++;
+		ft_printf("rrr\n");
+	}
 	rra(st_a, data, 0);
 	rrb(st_b, data, 0);
 }

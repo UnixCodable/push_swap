@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/05 15:51:16 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 21:09:30 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,11 +123,18 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	static int	grow;
 	int			actual_chunk;
+	double		disorder;
 	t_nlist		*pivot;
 	t_nlist		*voyager;
 
 	grow++;
 	actual_chunk = (*st_a)->chunk;
+	if (data->low_disorder)
+		disorder = 0.19;
+	else if (data->med_disorder)
+		disorder = 0.39;
+	else
+		disorder = 0.00;
 	if (!(*st_b) && actual_chunk != -1)
 	{
 		while ((*st_a)->chunk != -1 && ((*st_a)->nb == min_finder(st_a)
@@ -177,10 +184,21 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 			(*st_b)->chunk = grow;
 			pa(st_a, st_b, data);
 		}
+		else if ((*st_b)->nb == min_finder(st_b))
+		{
+			(*st_b)->chunk = -1;
+			pa(st_a, st_b, data);
+			ra(st_a, data, 1);
+		}
 		else if ((*st_b)->nb < pivot->nb && (*st_b)->next)
 			rb(st_b, data, 1);
 	}
-	if (compute_disorder(*st_a, data) != 0.00 || (*st_b) != NULL)
+	if (compute_disorder(*st_a, data) > disorder || (*st_b) != NULL)
 		complex_alg(st_a, st_b, data);
+	else if (disorder > 0.00)
+	{
+		data->disorder = compute_disorder(*st_a, data);
+		ft_lst_print(*st_a);
+	}
 	return ;
 }

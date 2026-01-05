@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/05 02:25:17 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 19:34:40 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,10 @@ int	strategy_checker(char *arg, struct s_data *data)
 		data->force_medium = 1;
 	else if (!ft_strncmp(arg, "--complex", -1))
 		data->force_complex = 1;
+	else if (!ft_strncmp(arg, "--low-disorder", -1))
+		data->low_disorder = 1;
+	else if (!ft_strncmp(arg, "--medium-disorder", -1))
+		data->med_disorder = 1;
 	else if (!ft_strncmp(arg, "--adaptive", -1))
 		data->force_adaptive = 1;
 	else
@@ -110,7 +114,7 @@ void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 		simple_alg(st_a, st_b, data);
 	else if (data->force_medium)
 		medium_alg(st_a, st_b, data);
-	else if (data->force_complex)
+	else if (data->force_complex || data->low_disorder || data->med_disorder)
 		complex_alg(st_a, st_b, data);
 	else if (data->force_adaptive)
 		adaptive_alg(st_a, st_b, data);

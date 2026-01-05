@@ -6,7 +6,7 @@
 #    By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2026/01/05 01:21:51 by lbordana         ###   ########.fr        #
+#    Updated: 2026/01/05 19:59:50 by lbordana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,20 @@ clean:
 	rm -rf objects/
 	@make clean -C libft > /dev/null
 
+shuf_low_500: $(NAME)
+	-./push_swap --low-disorder $$(shuf -i 0-1000 -n 500)
+
+shuf_low_100: $(NAME)
+	-./push_swap --low-disorder $$(shuf -i 0-1000 -n 100)
+
+shuf_med_500: $(NAME)
+	-./push_swap --medium-disorder $$(shuf -i 0-1000 -n 500)
+
+shuf_med_100: $(NAME)
+	-./push_swap --medium-disorder $$(shuf -i 0-1000 -n 100)
+
 fclean:
+
 	rm -rf objects/
 	rm -rf push_swap
 	@make fclean -C libft > /dev/null
