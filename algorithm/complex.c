@@ -6,47 +6,102 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/04 17:16:03 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 15:51:16 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-// int	find_nearest(t_nlist **st_b, int nbr)
-// {
-// 	t_nlist	*voyager;
-// 	int		converted_nb;
-// 	int		nearest;
+t_nlist	*find_nearest(t_nlist **st_b, int nbr, int chunk)
+{
+	t_nlist	*voyager;
+	int		converted_nb;
+	t_nlist	*nearest;
 
-// 	voyager = *st_b;
-// 	while (voyager != NULL)
-// 	{
-// 		if (voyager->nb - nbr < 0)
-// 			converted_nb = (voyager->nb - nbr) * (-1);
-// 		if (converted_nb - nbr < nearest - nbr)
-// 	}
-// 	return (nearest);
-// }
+	voyager = *st_b;
+	converted_nb = INT_MAX;
+	while (voyager != NULL && voyager->chunk == chunk)
+	{
+		if (voyager->nb - nbr < 0 && (voyager->nb - nbr) * (-1) < converted_nb)
+		{
+			converted_nb = (voyager->nb - nbr) * (-1);
+			nearest = voyager;
+		}
+		else if (voyager->nb - nbr >= 0 && (voyager->nb - nbr) < converted_nb)
+		{
+			converted_nb = (voyager->nb - nbr);
+			nearest = voyager;
+		}
+		voyager = voyager->next;
+	}
+	return (nearest);
+}
 
-// int	best_pivot(t_nlist **st_b)
-// {
-// 	t_nlist	*voyager;
-// 	int		diff;
-// 	int		sum;
-// 	int		nbrs;
+t_nlist	*best_pivot(t_nlist **st_b, int chunk)
+{
+	t_nlist	*voyager;
+	int		diff;
+	int		sum;
+	int		nbrs;
 
-// 	voyager = *st_b;
-// 	sum = 0;
-// 	nbrs = 0;
-// 	while (voyager != NULL)
-// 	{
-// 		sum += voyager->nb;
-// 		nbrs++;
-// 		voyager = voyager->next;
-// 	}
-// 	diff = sum / nbrs;
-// 	return (find_nearest(st_b, diff));
-// }
+	voyager = *st_b;
+	sum = 0;
+	nbrs = 0;
+	if ((*st_b)->chunk != chunk)
+		return (NULL);
+	while (voyager != NULL && voyager->chunk == chunk)
+	{
+		sum += voyager->nb;
+		nbrs++;
+		voyager = voyager->next;
+	}
+	diff = sum / nbrs;
+	return (find_nearest(st_b, diff, chunk));
+}
+
+int	check_other_chunk(t_nlist **stack)
+{
+	int		chunk;
+	t_nlist	*voyager;
+
+	chunk = (*stack)->chunk;
+	voyager = *stack;
+	while (voyager != NULL)
+	{
+		if (voyager->chunk != chunk)
+			return (0);
+		voyager = voyager->next;
+	}
+	return (1);
+}
+
+int	chunk_checker_max(t_nlist **st_b, int max_value)
+{
+	t_nlist	*voyager;
+
+	voyager = *st_b;
+	while (voyager)
+	{
+		if (voyager->nb >= max_value)
+			return (0);
+		voyager = voyager->next;
+	}
+	return (1);
+}
+
+int	chunk_checker_min(t_nlist **st_a, int actual_chunk, int min_value)
+{
+	t_nlist	*voyager;
+
+	voyager = *st_a;
+	while (voyager && voyager->chunk == actual_chunk)
+	{
+		if (voyager->nb < min_value)
+			return (0);
+		voyager = voyager->next;
+	}
+	return (1);
+}
 
 int	min_finder(t_nlist **st_a)
 {
@@ -68,44 +123,61 @@ void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	static int	grow;
 	int			actual_chunk;
-	// int			exec;
 	t_nlist		*pivot;
+	t_nlist		*voyager;
 
 	grow++;
 	actual_chunk = (*st_a)->chunk;
 	if (!(*st_b) && actual_chunk != -1)
 	{
 		while ((*st_a)->chunk != -1 && ((*st_a)->nb == min_finder(st_a)
-				|| (*st_a)->next->nb == min_finder(st_a)))
+				|| (*st_a)->next->nb == min_finder(st_a)
+				|| (*st_a)->next->next->nb == min_finder(st_a)))
 		{
-			if ((*st_a)->nb == min_finder(st_a))
+			if ((*st_a)->nb != min_finder(st_a) && (*st_a)->next->nb != min_finder(st_a))
 			{
-				(*st_a)->chunk = -1;
 				ra(st_a, data, 1);
-			}
-			else
 				sa(st_a, data, 1);
+				rra(st_a, data, 1);
+			}
+			if ((*st_a)->nb != min_finder(st_a))
+				sa(st_a, data, 1);
+			(*st_a)->chunk = -1;
+			ra(st_a, data, 1);
 		}
-		while ((*st_a) && (*st_a)->chunk == actual_chunk)
-			pb(st_a, st_b, data);
+		pivot = best_pivot(st_a, actual_chunk);
+		while (pivot && (*st_a) && (*st_a)->chunk == actual_chunk)
+		{
+			if (chunk_checker_min(st_a, actual_chunk, pivot->nb) == 1)
+				break ;
+			else if ((*st_a)->nb < pivot->nb)
+				pb(st_a, st_b, data);
+			else if ((*st_a)->nb >= pivot->nb && (*st_a)->next)
+				ra(st_a, data, 1);
+		}
+		if (check_other_chunk(st_a) == 0)
+		{
+			voyager = *st_a;
+			while (voyager != NULL && voyager->chunk != -1)
+				voyager = voyager->next;
+			while (voyager != NULL && voyager->chunk == -1)
+				voyager = voyager->next;
+			while (voyager && (*st_a)->nb != voyager->nb)
+				rra(st_a, data, 1);
+		}
 	}
-	pivot = *st_b;
-	while (pivot && pivot->next != NULL)
-		pivot = pivot->next;
+	if (*st_b)
+		pivot = best_pivot(st_b, (*st_b)->chunk);
 	while (*st_b)
 	{
-		if ((*st_b)->nb == pivot->nb)
-		{
-			(*st_b)->chunk = grow;
-			pa(st_a, st_b, data);
+		if (chunk_checker_max(st_b, pivot->nb) == 1)
 			break ;
-		}
-		else if ((*st_b)->nb > pivot->nb)
+		else if ((*st_b)->nb >= pivot->nb)
 		{
 			(*st_b)->chunk = grow;
 			pa(st_a, st_b, data);
 		}
-		else if ((*st_b)->nb < pivot->nb)
+		else if ((*st_b)->nb < pivot->nb && (*st_b)->next)
 			rb(st_b, data, 1);
 	}
 	if (compute_disorder(*st_a, data) != 0.00 || (*st_b) != NULL)
