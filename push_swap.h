@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/05 18:46:16 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:41:47 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ void	sb(t_nlist **st_b, struct s_data *data, int to_print);
 void	ss(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	pb(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
-void	testing(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	ra(t_nlist **st_a, struct s_data *data, int to_print);
 void	rb(t_nlist **st_b, struct s_data *data, int to_print);
 void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data);

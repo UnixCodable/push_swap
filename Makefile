@@ -6,7 +6,7 @@
 #    By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2026/01/05 19:59:50 by lbordana         ###   ########.fr        #
+#    Updated: 2026/01/05 23:39:05 by lbordana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -56,8 +56,13 @@ shuf_med_500: $(NAME)
 shuf_med_100: $(NAME)
 	-./push_swap --medium-disorder $$(shuf -i 0-1000 -n 100)
 
-fclean:
+git_clean:
+	git rm -rf objects/
+	git rm -rf push_swap
+	git rm -rf libft/mandatory_objects/
+	git rm -rf libft/libft.a
 
+fclean:
 	rm -rf objects/
 	rm -rf push_swap
 	@make fclean -C libft > /dev/null
