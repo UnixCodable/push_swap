@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/05 23:41:47 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/06 00:50:02 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,8 +68,13 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 double	compute_disorder(t_nlist *st_a, struct s_data *data);
-void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	compute_benchmark(struct s_data *data, t_nlist **sorted);
 void	ft_lst_print(t_nlist *lst);
+int		min_finder(t_nlist **st_a);
+int		chunk_checker_min(t_nlist **st_a, int actual_chunk, int min_value);
+int		chunk_checker_max(t_nlist **st_b, int max_value);
+int		check_other_chunk(t_nlist **stack);
+t_nlist	*best_pivot(t_nlist **st_b, int chunk);
+t_nlist	*find_nearest(t_nlist **st_b, int nbr, int chunk);
 
 #endif
