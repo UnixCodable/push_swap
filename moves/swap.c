@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:41 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/27 00:14:54 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:38:18 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,11 @@ void	sa(t_nlist **st_a, struct s_data *data, int to_print)
 {
 	int	pos;
 
-	if (to_print == 1)
+	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("sa\n");
 		data->sa_count++;
+		data->total_count++;
 	}
 	if (!(*st_a) || !(*st_a)->next)
 		return ;
@@ -39,10 +40,11 @@ void	sb(t_nlist **st_b, struct s_data *data, int to_print)
 {
 	int	pos;
 
-	if (to_print == 1)
+	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("sb\n");
-		data->sa_count++;
+		data->sb_count++;
+		data->total_count++;
 	}
 	if (!(*st_b) || !(*st_b)->next)
 		return ;
@@ -60,8 +62,12 @@ void	sb(t_nlist **st_b, struct s_data *data, int to_print)
 
 void	ss(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-	data->ss_count++;
-	ft_printf("ss\n");
+	if (!data->low_disorder && !data->med_disorder)
+	{
+		data->ss_count++;
+		data->total_count++;
+		ft_printf("ss\n");
+	}
 	sa(st_a, data, 0);
 	sb(st_b, data, 0);
 }

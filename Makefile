@@ -3,18 +3,19 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+         #
+#    By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2025/12/25 09:09:01 by lbordanave       ###   ########.fr        #
+#    Updated: 2026/01/06 00:51:12 by lbordana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 .SILENT:
 NAME = push_swap
 CC = cc
-CFLAGS = -Wall -Wextra -Werror
-FILES = push_swap.c lst_utils.c benchmark.c testing_unit.c push.c swap.c rotate.c reverse_rotate.c simple.c medium.c complex.c adaptive.c 
+CFLAGS = -Wall -Wextra -Werror -g3
+FILES = push_swap.c lst_utils.c benchmark.c push.c swap.c rotate.c\
+		reverse_rotate.c simple.c medium.c complex.c adaptive.c utils.c
 LIBFT = libft/libft.a
 OBJDIR = objects/
 OFILES = $(FILES:%.c=$(OBJDIR)%.o)
@@ -27,7 +28,7 @@ $(NAME): $(OBJDIR) $(OFILES) $(LIBFT)
 
 $(OBJDIR)%.o: algorithm/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
-	
+
 $(OBJDIR)%.o: moves/%.c | $(OBJDIR)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
@@ -43,6 +44,24 @@ $(OBJDIR):
 clean:
 	rm -rf objects/
 	@make clean -C libft > /dev/null
+
+shuf_low_500: $(NAME)
+	-./push_swap --low-disorder $$(shuf -i 0-1000 -n 500)
+
+shuf_low_100: $(NAME)
+	-./push_swap --low-disorder $$(shuf -i 0-1000 -n 100)
+
+shuf_med_500: $(NAME)
+	-./push_swap --medium-disorder $$(shuf -i 0-1000 -n 500)
+
+shuf_med_100: $(NAME)
+	-./push_swap --medium-disorder $$(shuf -i 0-1000 -n 100)
+
+git_clean:
+	git rm -rf objects/
+	git rm -rf push_swap
+	git rm -rf libft/mandatory_objects/
+	git rm -rf libft/libft.a
 
 fclean:
 	rm -rf objects/

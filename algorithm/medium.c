@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:40 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/04 17:07:09 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/06 15:20:40 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,7 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 	static int	L_min;
 	static int	L_max;
 	static int	L;
-	// static int	p;
+‹medium_alg*›	// static int	p;
 
 	(void) (*st_b);
 	(void) data;
@@ -91,24 +91,27 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 		}
 		i--;
 	}
-	while (compute_disorder((*st_b), data) != 1)
+	while (compute_disorder((*st_b), data) != 0)
 	{
-		if ((*st_a)->nb < (*st_a)->next->nb && (*st_a)->pos < (*st_a)->next->pos)
-		{
-			ft_printf("test\n");
-			rb(st_b, data, 1);
-		}
+		if ((*st_b)->nb < (*st_b)->next->nb)
+			rrb(st_b, data, 1);
 		else
 		{
-			ft_printf("TEST\n");
 			sb(st_b, data, 1);
-			rb(st_b, data, 1);
+			if (compute_disorder((*st_b), data) != 0)
+				rrb(st_b, data, 1);
 		}
 	}
 	while ((*st_b))
 	{
 		pa(st_a, st_b, data);
 		ra(st_a, data, 1);
+	}
+	while ((*st_a))
+	{
+		ft_printf("%d-", (*st_a)->nb);
+		(*st_a) = (*st_a)->next;
+
 	}
 	return ;
 }

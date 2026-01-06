@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:20 by aeuvrard          #+#    #+#             */
-/*   Updated: 2025/12/27 00:15:41 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 18:40:54 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,12 @@
 
 void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-	data->pa_count++;
-	ft_printf("pa\n");
+	if (!data->low_disorder && !data->med_disorder)
+	{
+		data->pa_count++;
+		data->total_count++;
+		ft_printf("pa\n");
+	}
 	if (!(*st_b))
 		return ;
 	if ((*st_a))
@@ -38,8 +42,12 @@ void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 
 void	pb(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-	data->pb_count++;
-	ft_printf("pb\n");
+	if (!data->low_disorder && !data->med_disorder)
+	{
+		data->pb_count++;
+		data->total_count++;
+		ft_printf("pb\n");
+	}
 	if (!(*st_a))
 		return ;
 	if ((*st_b))

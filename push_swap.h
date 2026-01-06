@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/27 00:16:29 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/06 00:50:02 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_num_list
 {
 	int					nb;
 	int					pos;
+	int					chunk;
 	struct s_num_list	*previous;
 	struct s_num_list	*next;
 }	t_nlist;
@@ -43,6 +44,8 @@ struct s_data
 	int		force_medium;
 	int		force_complex;
 	int		force_adaptive;
+	int		low_disorder;
+	int		med_disorder;
 	int		number_count;
 	int		benchmark;
 	double	disorder;
@@ -54,7 +57,6 @@ void	sb(t_nlist **st_b, struct s_data *data, int to_print);
 void	ss(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	pb(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
-void	testing(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	ra(t_nlist **st_a, struct s_data *data, int to_print);
 void	rb(t_nlist **st_b, struct s_data *data, int to_print);
 void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
@@ -66,7 +68,13 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 double	compute_disorder(t_nlist *st_a, struct s_data *data);
-void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	compute_benchmark(struct s_data *data, t_nlist **sorted);
+void	ft_lst_print(t_nlist *lst);
+int		min_finder(t_nlist **st_a);
+int		chunk_checker_min(t_nlist **st_a, int actual_chunk, int min_value);
+int		chunk_checker_max(t_nlist **st_b, int max_value);
+int		check_other_chunk(t_nlist **stack);
+t_nlist	*best_pivot(t_nlist **st_b, int chunk);
+t_nlist	*find_nearest(t_nlist **st_b, int nbr, int chunk);
 
 #endif

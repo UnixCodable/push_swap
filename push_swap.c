@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2025/12/26 21:55:36 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/05 23:52:39 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ t_nlist	*create_st_a(char **args, struct s_data *data)
 		nbrs->next = ft_numlst_new((int)ft_atoi(*args));
 		nbrs = nbrs->next;
 		nbrs->pos = i++;
+		nbrs->chunk = 0;
 		nbrs->previous = prev;
 		prev = nbrs;
 		data->number_count++;
@@ -67,6 +68,10 @@ int	strategy_checker(char *arg, struct s_data *data)
 		data->force_medium = 1;
 	else if (!ft_strncmp(arg, "--complex", -1))
 		data->force_complex = 1;
+	else if (!ft_strncmp(arg, "--low-disorder", -1))
+		data->low_disorder = 1;
+	else if (!ft_strncmp(arg, "--medium-disorder", -1))
+		data->med_disorder = 1;
 	else if (!ft_strncmp(arg, "--adaptive", -1))
 		data->force_adaptive = 1;
 	else
@@ -103,20 +108,6 @@ int	error_handler(char **args, struct s_data *data)
 	return (1);
 }
 
-void	exec_sort(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
-{
-	if (data->force_simple)
-		simple_alg(st_a, st_b, data);
-	else if (data->force_medium)
-		medium_alg(st_a, st_b, data);
-	else if (data->force_complex)
-		complex_alg(st_a, st_b, data);
-	else if (data->force_adaptive)
-		adaptive_alg(st_a, st_b, data);
-	else
-		adaptive_alg(st_a, st_b, data);
-}
-
 int	main(int ac, char **av)
 {
 	t_nlist			*st_a;
@@ -131,10 +122,17 @@ int	main(int ac, char **av)
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
 	compute_disorder(st_a, &data);
-	//testing(&st_a, &st_b, &data);
-	exec_sort(&st_a, &st_b, &data);
+	if (data.force_simple)
+		simple_alg(&st_a, &st_b, &data);
+	else if (data.force_medium)
+		medium_alg(&st_a, &st_b, &data);
+	else if (data.force_complex || data.low_disorder || data.med_disorder)
+		complex_alg(&st_a, &st_b, &data);
+	else if (data.force_adaptive)
+		adaptive_alg(&st_a, &st_b, &data);
+	else
+		adaptive_alg(&st_a, &st_b, &data);
 	compute_benchmark(&data, &st_a);
-	(void) st_b;
 	return (1);
 }
 
