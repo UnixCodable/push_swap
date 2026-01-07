@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/07 14:47:33 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/07 23:12:31 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	error_handler(char **args, struct s_data *data)
 		else
 			return (0);
 	}
-	return (1);
+	return (opt_off);
 }
 
 int	main(int ac, char **av)
@@ -114,10 +114,10 @@ int	main(int ac, char **av)
 	t_nlist			*st_b;
 	struct s_data	data;
 
-	(void) ac;
 	av++;
+	(void) ac;
 	data = (struct s_data){0};
-	if (error_handler(av, &data) == 0)
+	if (error_handler(av, &data) < 4)
 		return (write(2, "Error\n", 6), 0);
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
@@ -128,8 +128,6 @@ int	main(int ac, char **av)
 		medium_alg(&st_a, &st_b, &data);
 	else if (data.force_complex || data.low_disorder || data.med_disorder)
 		complex_alg(&st_a, &st_b, &data);
-	else if (data.force_adaptive)
-		adaptive_alg(&st_a, &st_b, &data);
 	else
 		adaptive_alg(&st_a, &st_b, &data);
 	compute_benchmark(&data, &st_a);
