@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/07 02:36:30 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/06 00:42:42 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,11 @@ void	stack_sorting(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
 	static int	grow;
 	t_nlist		*pivot;
-	t_nlist		*voyager;
 
 	grow++;
 	if (*st_b)
 		pivot = best_pivot(st_b, (*st_b)->chunk);
-	while ((*st_b)->chunk == pivot->chunk)
+	while (*st_b)
 	{
 		if (chunk_checker_max(st_b, pivot->nb) == 1)
 			break ;
@@ -39,26 +38,14 @@ void	stack_sorting(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 		else if ((*st_b)->nb < pivot->nb && (*st_b)->next)
 			rb(st_b, data, 1);
 	}
-	if (check_other_chunk(st_a) == 0)
-	{
-		voyager = *st_b;
-		while (voyager != NULL && voyager->chunk == (*st_b)->chunk)
-			voyager = voyager->next;
-		while (voyager != NULL && voyager->chunk != (*st_b)->chunk)
-			voyager = voyager->next;
-		while (voyager && (*st_b)->nb != voyager->nb)
-			rrb(st_b, data, 1);
-	}
 }
 
 void	send_and_clean(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 	int actual_chunk)
 {
-	static	int	grow;
 	t_nlist	*pivot;
-	// t_nlist	*voyager;
+	t_nlist	*voyager;
 
-	grow++;
 	pivot = best_pivot(st_a, actual_chunk);
 	while (pivot && (*st_a) && (*st_a)->chunk == actual_chunk)
 	{
@@ -67,22 +54,18 @@ void	send_and_clean(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 		else if ((*st_a)->nb < pivot->nb)
 			pb(st_a, st_b, data);
 		else if ((*st_a)->nb >= pivot->nb && (*st_a)->next)
-		{
-			(*st_a)->chunk = grow;
-			pb(st_a, st_b, data);
-			rb(st_b, data, 1);
-		}
+			ra(st_a, data, 1);
 	}
-	// if (check_other_chunk(st_a) == 0)
-	// {
-	// 	voyager = *st_a;
-	// 	while (voyager != NULL && voyager->chunk != -1)
-	// 		voyager = voyager->next;
-	// 	while (voyager != NULL && voyager->chunk == -1)
-	// 		voyager = voyager->next;
-	// 	while (voyager && (*st_a)->nb != voyager->nb)
-	// 		rra(st_a, data, 1);
-	// }
+	if (check_other_chunk(st_a) == 0)
+	{
+		voyager = *st_a;
+		while (voyager != NULL && voyager->chunk != -1)
+			voyager = voyager->next;
+		while (voyager != NULL && voyager->chunk == -1)
+			voyager = voyager->next;
+		while (voyager && (*st_a)->nb != voyager->nb)
+			rra(st_a, data, 1);
+	}
 }
 
 void	sort_me(t_nlist **st_a, struct s_data *data)
