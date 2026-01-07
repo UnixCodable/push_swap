@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/06 00:50:02 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:47:09 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,5 +76,7 @@ int		chunk_checker_max(t_nlist **st_b, int max_value);
 int		check_other_chunk(t_nlist **stack);
 t_nlist	*best_pivot(t_nlist **st_b, int chunk);
 t_nlist	*find_nearest(t_nlist **st_b, int nbr, int chunk);
+int		chunk_checker_max_strict(t_nlist **st_b, int max_value);
+void	ft_nlstclear(t_nlist **lst);
 
 #endif

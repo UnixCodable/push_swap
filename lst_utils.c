@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 02:35:23 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/05 18:56:31 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:53:37 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,19 @@ void	ft_lst_print(t_nlist *lst)
 	{
 		ft_printf("%d ", (lst)->nb);
 		lst = (lst)->next;
+	}
+}
+
+void	ft_nlstclear(t_nlist **lst)
+{
+	t_nlist	*next_temp;
+
+	if (!lst)
+		return ;
+	while ((*lst) != NULL)
+	{
+		next_temp = (*lst)->next;
+		free(*lst);
+		(*lst) = next_temp;
 	}
 }

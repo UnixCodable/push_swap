@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 00:13:20 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/06 00:14:22 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/07 13:50:23 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,20 @@ int	chunk_checker_max(t_nlist **st_b, int max_value)
 	while (voyager)
 	{
 		if (voyager->nb >= max_value)
+			return (0);
+		voyager = voyager->next;
+	}
+	return (1);
+}
+
+int	chunk_checker_max_strict(t_nlist **st_b, int max_value)
+{
+	t_nlist	*voyager;
+
+	voyager = *st_b;
+	while (voyager)
+	{
+		if (voyager->nb > max_value)
 			return (0);
 		voyager = voyager->next;
 	}

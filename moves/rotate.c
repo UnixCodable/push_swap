@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:25 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/05 18:39:05 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/07 15:55:10 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,3 +69,5 @@ void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 	ra(st_a, data, 0);
 	rb(st_b, data, 0);
 }
+
+// N = 

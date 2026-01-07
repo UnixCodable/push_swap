@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/05 23:52:39 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/07 14:47:33 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,6 +133,7 @@ int	main(int ac, char **av)
 	else
 		adaptive_alg(&st_a, &st_b, &data);
 	compute_benchmark(&data, &st_a);
+	ft_nlstclear(&st_a);
 	return (1);
 }
 
