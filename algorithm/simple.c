@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:05 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/07 19:35:44 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/07 22:58:18 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ void	simple_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 		}
 		if ((*st_b) && (*st_a)->nb < (*st_b)->nb)
 			continue ;
-		ft_printf("%d\n", counting_steps(st_a, st_b));
 		if (counting_steps(st_a, st_b) == 1)
 			while ((*st_a)->nb != min_finder(st_a))
 				ra(st_a, data, 1);
