@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/07 14:47:09 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/08 13:10:38 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,19 @@ struct s_data
 	double	disorder;
 };
 
+struct s_medium
+{
+	int			min;
+	int			max;
+	int			n_chunk;
+	int			l_min;
+	int			l_max;
+	int			l;
+	int	p;
+	int 		chunk;
+};
+
+
 t_nlist	*ft_numlst_new(int nbr);
 void	sa(t_nlist **st_a, struct s_data *data, int to_print);
 void	sb(t_nlist **st_b, struct s_data *data, int to_print);
@@ -64,7 +77,7 @@ void	rra(t_nlist **st_a, struct s_data *data, int to_print);
 void	rrb(t_nlist **st_b, struct s_data *data, int to_print);
 void	rrr(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	simple_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
-void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_medium *medium);
 void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
 double	compute_disorder(t_nlist *st_a, struct s_data *data);
@@ -77,6 +90,7 @@ int		check_other_chunk(t_nlist **stack);
 t_nlist	*best_pivot(t_nlist **st_b, int chunk);
 t_nlist	*find_nearest(t_nlist **st_b, int nbr, int chunk);
 int		chunk_checker_max_strict(t_nlist **st_b, int max_value);
+int		chunk_checker_min_strict(t_nlist **st_a, int min_value);
 void	ft_nlstclear(t_nlist **lst);
 
 #endif

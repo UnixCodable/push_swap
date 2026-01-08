@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 00:13:20 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/07 13:50:23 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/08 12:16:19 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,20 @@ int	chunk_checker_min(t_nlist **st_a, int actual_chunk, int min_value)
 
 	voyager = *st_a;
 	while (voyager && voyager->chunk == actual_chunk)
+	{
+		if (voyager->nb < min_value)
+			return (0);
+		voyager = voyager->next;
+	}
+	return (1);
+}
+
+int	chunk_checker_min_strict(t_nlist **st_a, int min_value)
+{
+	t_nlist	*voyager;
+
+	voyager = *st_a;
+	while (voyager)
 	{
 		if (voyager->nb < min_value)
 			return (0);

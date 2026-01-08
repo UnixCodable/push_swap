@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/07 23:12:31 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/08 13:11:48 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,6 +113,7 @@ int	main(int ac, char **av)
 	t_nlist			*st_a;
 	t_nlist			*st_b;
 	struct s_data	data;
+	struct s_medium	medium;
 
 	av++;
 	(void) ac;
@@ -121,11 +122,12 @@ int	main(int ac, char **av)
 		return (write(2, "Error\n", 6), 0);
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
+	medium.p = 0;
 	compute_disorder(st_a, &data);
 	if (data.force_simple)
 		simple_alg(&st_a, &st_b, &data);
 	else if (data.force_medium)
-		medium_alg(&st_a, &st_b, &data);
+		medium_alg(&st_a, &st_b, &data, &medium);
 	else if (data.force_complex || data.low_disorder || data.med_disorder)
 		complex_alg(&st_a, &st_b, &data);
 	else

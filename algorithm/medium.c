@@ -6,122 +6,182 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:40 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/07 10:02:58 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/08 14:37:05 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	chunk(int *L_min, int *L_max, int *L, int *i, int *max, int *min, int *p)
+int	counting_steps_medium(t_nlist **st_a, t_nlist **st_b)
 {
-	if (*p == 0)
+	int		steps_front;
+	int		steps_back;
+	t_nlist	*voyager;
+
+	voyager = *st_a;
+	steps_back = 0;
+	steps_front = 0;
+	while (voyager && voyager->nb > voyager->next->nb)
 	{
-		*L = (*max - *min + 1) / *i;
-		*L_max = *min + *L;
-		*L_min = *L_max - *L;
-		ft_printf("L_min = %d\n", *L_min);
-		ft_printf("L_max = %d\n\n", *L_max);
-		while (*L_max <= *max)
-		{
-			*L_min = *L_max + 1;
-			*L_max = *L_min + *L;
-			ft_printf("L_min = %d\n", *L_min);
-			ft_printf("L_max = %d\n\n", *L_max);
-		}
-		*p = 1;
+		voyager = voyager->next;
+		steps_back++;
 	}
-	else
+	while (voyager && (*st_b)->nb > voyager->nb)
 	{
-		*L_max = *L_min - 1;
-		*L_min = *L_max - *L;
-		ft_printf("L_min = %d\n", *L_min);
-		ft_printf("L_max = %d\n\n", *L_max);
+		voyager = voyager->next;
+		steps_back++;
+	}
+	while (voyager != NULL)
+	{
+		voyager = voyager->next;
+		steps_front++;
+	}
+	if (steps_back >= steps_front)
+		return (1);
+	return (0);
+}
+
+void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_medium *medium)
+{
+	while ((*st_b) && (*st_b)->next != NULL)
+	{
+		if (chunk_checker_min_strict(st_b, (*st_b)->nb) == 1)
+			rb(st_b, data, 1);
+		else
+			pa(st_a, st_b, data);
+	}
+	while (*st_a)
+	{
+		while ((*st_a)->nb < (*st_b)->nb && (*st_a)->chunk == medium->chunk)
+			rb(st_b, data, 1);
+		if ((*st_a)->chunk == medium->chunk)
+			pb(st_a, st_b, data);
+		if ((*st_a)->chunk != medium->chunk)
+		{
+			while (compute_disorder(*st_b, data) != 1)
+			{
+				if (!(*st_b)->next)
+					break ;
+				rb(st_a, data, 1);
+			}
+			break ;
+		}
+		if ((*st_a) && (*st_b)->nb < (*st_a)->nb)
+			continue ;
+		if (counting_steps_medium(st_b, st_a) == 1)
+			while ((*st_b)->nb != min_finder(st_a))
+				rb(st_b, data, 1);
+		else
+			while ((*st_b)->nb > (*st_a)->nb)
+			{
+				if ((*st_a)->nb < (*st_b)->nb && min_finder(st_b) == (*st_b)->nb)
+					break ;
+				rrb(st_b, data, 1);
+			}
 	}
 	return ;
 }
 
-void	number_chunk(struct s_data *data, int *i)
+void	limit_chunk(struct s_medium *medium)
 {
-	while (*i * *i <= data->number_count)
+	if (medium->p == 0)
 	{
-		if (*i * *i == data->number_count)
+		medium->l = (medium->max - medium->min + 1) / medium->n_chunk;
+		medium->l_max = medium->min + medium->l;
+		medium->l_min = medium->l_max - medium->l;
+		// ft_printf("L = %d\n", medium->l);
+		// ft_printf("L_min = %d\n", medium->l_min);
+		// ft_printf("L_max = %d\n\n", medium->l_max);
+		while (medium->l_max < medium->max)
+		{
+			medium->l_min = medium->l_max + 1;
+			medium->l_max = medium->l_min + medium->l;
+			ft_printf("L_min = %d\n", medium->l_min);
+			ft_printf("L_max = %d\n\n", medium->l_max);
+		}
+		medium->p = 1;
+		medium->chunk = 1;
+	}
+	else
+	{
+		medium->l_max = medium->l_min - 1;
+		medium->l_min = medium->l_max - medium->l;
+		medium->chunk += 1;
+		// ft_printf("L_min = %d\n", medium->l_min);
+		// ft_printf("L_max = %d\n\n", medium->l_max);
+	}
+	return ;
+}
+
+void	number_chunk(struct s_data *data, struct s_medium *medium)
+{
+	while (medium->n_chunk * medium->n_chunk <= data->number_count)
+	{
+		if (medium->n_chunk * medium->n_chunk == data->number_count)
 			break ;
-		*i += 1;
+		medium->n_chunk += 1;
 	}
 }
 
-void	calcul_min_max(t_nlist *st_a, int *min, int *max)
+void	calcul_min_max(t_nlist *st_a, struct s_medium *medium)
 {
-	*min = st_a->nb;
-	*max = st_a->nb;
+	medium->min = st_a->nb;
+	medium->max = st_a->nb;
 	while (st_a)
 	{
-		if (st_a->nb < *min)
-			*min = st_a->nb;
-		if (st_a->nb > *max)
-			*max = st_a->nb;
+		if (st_a->nb < medium->min)
+			medium->min = st_a->nb;
+		if (st_a->nb > medium->max)
+			medium->max = st_a->nb;
 		st_a = st_a->next;
 	}
 }
 
-void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_medium *medium)
 {
-	static int	min;
-	static int	max;
-	static int	i;
-	static int	L_min;
-	static int	L_max;
-	static int	L;
-	static int	p;
+	int	i;
 
-	if (p == 0)
+	// ft_printf("P = %d\n", medium->p);
+	if (medium->p == 0)
 	{
-		calcul_min_max(*st_a, &min, &max);
-		number_chunk(data, &i);
-		ft_printf("L = %d\n", L);
-		ft_printf("i = %d\n", i);
-		ft_printf("min = %d\n", min);
-		ft_printf("max = %d\n", max);
+		calcul_min_max(*st_a, medium);
+		number_chunk(data, medium);
+		// ft_printf("Nombre chunks = %d\n", medium->n_chunk);
+		// ft_printf("min = %d\n", medium->min);
+		// ft_printf("max = %d\n", medium->max);
 	}
-	chunk(&L_min, &L_max, &L, &i, &max, &min, &p);
-	if (L_min < min)
+	limit_chunk(medium);
+	if (medium->l_min < medium->min)
 		return ;
 	i = data->number_count;
 	while (i != 0)
 	{
-		if ((*st_a)->nb >= L_min && (*st_a)->nb <= L_max)
-			pb(st_a, st_b, data);
-		else
+		if ((*st_a)->nb >= medium->l_min && (*st_a)->nb <= medium->l_max)
 		{
-			ra(st_a, data, 1);
+			(*st_a)->chunk = medium->chunk;
+			pb(st_a, st_b, data);
 		}
+		else
+			ra(st_a, data, 1);
 		i--;
 	}
-	while (compute_disorder((*st_b), data) != 1)
-	{
-		if ((*st_b)->nb > (*st_b)->next->nb)
-			rrb(st_b, data, 1);
-		else
-		{
-			sb(st_b, data, 1);
-			if (compute_disorder((*st_b), data) != 1)
-				rrb(st_b, data, 1);
-		}
-	}
+	while (compute_disorder((*st_b), data) != 0)
+		simple_alg_chunk(st_a, st_b, data, medium);
 	while ((*st_b))
 	{
+		(*st_b)->chunk = -1;
 		pa(st_a, st_b, data);
-		// ra(st_a, data, 1);
+		ft_printf("ICI\n");
 	}
-	ft_printf("P = %d\n", p);
+	// ft_printf("P = %d\n", medium->p);
 	if (compute_disorder((*st_a), data) != 0)
-		medium_alg(st_a, st_b, data);
+		medium_alg(st_a, st_b, data, medium);
 	while ((*st_a))
 	{
-		ft_printf("%d-", (*st_a)->nb);
+		// ft_printf("%d-", (*st_a)->nb);
 		(*st_a) = (*st_a)->next;
 	}
-	ft_printf("\n");
-	ft_printf("Nombre de couts : %d\n", data->total_count);
+	// ft_printf("\n");
+	// ft_printf("Nombre de couts : %d\n", data->total_count);
 	return ;
 }
