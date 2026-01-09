@@ -6,13 +6,12 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/08 13:11:48 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/09 14:05:53 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
-#include <stdio.h>
 
 double	compute_disorder(t_nlist *st_a, struct s_data *data)
 {
