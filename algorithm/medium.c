@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:40 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/10 17:25:09 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/10 17:58:00 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_me
 	}
 	if (check_other_chunk(st_a) == 0)
 		while ((*st_a)->chunk != -1)
-			rra(st_a, data, 1);
+			ra(st_a, data, 1);
 	while ((*st_b)->next && compute_disorder((*st_b), data) != 1)
 		simple_alg_chunk(st_a, st_b, data);
 	while ((*st_b))
