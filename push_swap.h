@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/09 16:13:10 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/10 17:09:27 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ struct s_medium
 	int			l_min;
 	int			l_max;
 	int			l;
-	int	p;
-	int 		chunk;
+	int			p;
+	int			chunk;
 };
 
 
