@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 L_min = 5
 L_max = 8
 
@@ -110486,3 +110487,5 @@ pa
 pb
 pa
 pb
+=======
+>>>>>>> algorithm_complex
