@@ -3,14 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2026/01/09 14:05:53 by aeuvrard         ###   ########.fr       */
-=======
-/*   Updated: 2026/01/08 11:51:24 by lbordana         ###   ########.fr       */
->>>>>>> algorithm_complex
+/*   Updated: 2026/01/10 14:31:02 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
