@@ -5,45 +5,15 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/12/24 04:17:40 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/10 20:41:35 by aeuvrard         ###   ########.fr       */
+/*   Created: 2026/01/11 18:44:01 by aeuvrard          #+#    #+#             */
+/*   Updated: 2026/01/11 20:39:17 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include <stdio.h>
 
-void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
-{
-	while ((*st_b) && (*st_b)->next != NULL && (*st_b)->chunk != -1)
-	{
-		if (chunk_checker_min_strict(st_b, (*st_b)->nb) == 1)
-			rb(st_b, data, 1);
-		else
-			pa(st_a, st_b, data);
-	}
-	while ((*st_a)->chunk == (*st_b)->chunk)
-	{
-		while ((*st_b)->nb > (*st_a)->nb)
-			rb(st_b, data, 1);
-		pb(st_a, st_b, data);
-		if ((*st_a) && (*st_a)->nb < (*st_b)->nb)
-			continue ;
-		while (!(chunk_checker_max_strict(st_b, (*st_b)->nb)))
-			rb(st_b, data, 1);
-	}
-	while (compute_disorder(*st_b, data) != 1)
-	{
-		if (!(*st_b)->next)
-			break ;
-		if ((*st_b)->chunk != -1)
-			(*st_b)->chunk = -1;
-		rb(st_b, data, 1);
-	}
-	return ;
-}
-
-int	counting_best_path(t_nlist **st_a, struct s_medium *medium)
+int	best_path_a(t_nlist **st_a)
 {
 	int		voyager_front;
 	int		voyager_back;
@@ -52,14 +22,14 @@ int	counting_best_path(t_nlist **st_a, struct s_medium *medium)
 	voyager = (*st_a);
 	voyager_front = 0;
 	voyager_back = 0;
-	while (!(voyager->nb >= medium->l_min && voyager->nb <= medium->l_max))
+	while (voyager->chunk % 2 == 0)
 	{
 		voyager_front++;
 		voyager = voyager->next;
 	}
 	while (voyager->next != NULL)
 		voyager = voyager->next;
-	while (!(voyager->nb >= medium->l_min && voyager->nb <= medium->l_max))
+	while (voyager->chunk % 2 == 0)
 	{
 		voyager = voyager->previous;
 		voyager_back++;
@@ -69,105 +39,207 @@ int	counting_best_path(t_nlist **st_a, struct s_medium *medium)
 	return (0);
 }
 
-int	interval_checker(t_nlist **st_a, struct s_medium *medium)
+int	impaire_chunk(t_nlist **st_a, t_nlist **st_b, int i)
 {
 	t_nlist	*voyager;
 
-	voyager = (*st_a);
-	while (voyager)
+	if (i == 1)
 	{
-		if (voyager->nb >= medium->l_min && voyager->nb <= medium->l_max)
-			return (1);
-		voyager = voyager->next;
+		voyager = (*st_a);
+		while (voyager->next != NULL)
+		{
+			if (voyager->chunk % 2 != 0)
+				return (1);
+			voyager = voyager->next;
+		}
+	}
+	if (i == 2)
+	{
+		voyager = (*st_b);
+		while (voyager)
+		{
+			if (voyager->chunk == (*st_a)->chunk)
+				return (1);
+			voyager = voyager->next;
+		}
 	}
 	return (0);
 }
 
-void	limit_chunk(struct s_medium *medium)
+int	best_path_b(t_nlist **st_a, t_nlist **st_b)
 {
-	if (medium->p == 0)
+	int		voyager_front;
+	int		voyager_back;
+	t_nlist	*voyager;
+
+	voyager = (*st_b);
+	voyager_front = 0;
+	voyager_back = 0;
+	while (voyager-> chunk != (*st_a)->chunk)
 	{
-		medium->l = (medium->max - medium->min + 1) / medium->n_chunk;
-		medium->l_max = medium->min + medium->l;
-		medium->l_min = medium->l_max - medium->l;
-		while (medium->l_max < medium->max)
-		{
-			medium->l_min = medium->l_max + 1;
-			medium->l_max = medium->l_min + medium->l;
-		}
-		medium->p = 1;
-		medium->chunk = 1;
+		voyager_front++;
+		voyager = voyager->next;
 	}
-	else
+	while (voyager->next != NULL)
+		voyager = voyager->next;
+	while (voyager-> chunk != (*st_a)->chunk)
 	{
-		medium->l_max = medium->l_min - 1;
-		medium->l_min = medium->l_max - medium->l;
-		medium->chunk += 1;
+		voyager = voyager->previous;
+		voyager_back++;
 	}
-	return ;
+	if (voyager_front < voyager_back)
+		return (1);
+	return (0);
 }
 
-void	number_chunk(struct s_data *data, struct s_medium *medium)
+void	push_impaire(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
+	/*s'il n'y a rien dans B ou qu'il n'y a qu'un seul nb dans b*/
+	if (!(*st_b) || ((*st_b)->next == NULL && (*st_a)->chunk % 2 != 0))
+		pb(st_a, st_b, data);
+	/*chunk de A est impaire */
+	while ((*st_a)->chunk % 2 != 0)
+	{
+		/*s'il y un chunk dans B qui correspond au chunk de A*/
+		if (impaire_chunk(st_a, st_b, 2) == 1)
+		{
+			if (best_path_b(st_a, st_b) == 1)
+				while ((*st_a)->chunk != (*st_b)->chunk)
+					rb(st_b, data, 1);
+			else
+				while ((*st_a)->chunk != (*st_b)->chunk)
+					rrb(st_b, data, 1);
+		}
+		pb(st_a, st_b, data);
+	}
+}
+
+void	place_chunk(t_nlist **st_b)
+{
+	
+}
+
+void	organize_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
+			struct s_medium *medium)
+{
+	(void) medium;
+	(void) data;
+	(void) (*st_b);
+
+	 /* tant qu'il y a des chunks impaires dans A*/
+	while (impaire_chunk(st_a, st_b, 1) == 1)
+	{
+		/*Tant le chunk de A est paire*/
+		while ((*st_a)->chunk % 2 == 0)
+		{
+			/*le prochain avec un chunk impaire est plus proche par front*/
+			if (best_path_a(st_a) == 1)
+				ra(st_a, data, 1);
+			else
+				rra(st_a, data, 1);
+		}
+		push_impaire(st_a, st_b, data);
+		place_chunk(st_b);
+	}
+}
+
+void	give_chunk(t_nlist **st_a, struct s_medium *medium)
+{
+	t_nlist	*voyager;
+
+	voyager = (*st_a);
+	while (medium->l_max < medium->max)
+	{
+		medium->l_min = medium->l_max + 1;
+		medium->l_max = medium->l_min + medium->l;
+		medium->chunk += 1;
+		voyager = (*st_a);
+		while (voyager->next != NULL)
+		{
+			if (voyager->nb >= medium->l_min && voyager->nb <= medium->l_max)
+				voyager->chunk = medium->chunk;
+			voyager = voyager->next;
+		}
+		voyager->chunk = medium->chunk;
+	}
+}
+
+void	create_chunk(t_nlist **st_a, struct s_medium *medium)
+{
+	t_nlist	*voyager;
+
+	voyager = (*st_a);
+	medium->l = (medium->max - medium->min + 1) / medium->n_chunk;
+	medium->l_max = medium->min + medium->l;
+	medium->l_min = medium->l_max - medium->l;
+	medium->chunk = 1;
+	while (voyager->next != NULL)
+	{
+		if (voyager->nb >= medium->l_min && voyager->nb <= medium->l_max)
+			voyager->chunk = medium->chunk;
+		voyager = voyager->next;
+	}
+	give_chunk(st_a, medium);
+}
+
+void	chunk(t_nlist **st_a, struct s_data *data, struct s_medium *medium)
+{
+	t_nlist	*voyager;
+
+	voyager = (*st_a);
+	medium->min = (*st_a)->nb;
+	medium->max = (*st_a)->nb;
+	while (voyager->next != NULL)
+	{
+		if (voyager->nb < medium->min)
+			medium->min = voyager->nb;
+		if (voyager->nb > medium->max)
+			medium->max = voyager->nb;
+		voyager = voyager->next;
+	}
 	while (medium->n_chunk * medium->n_chunk <= data->number_count)
 	{
 		if (medium->n_chunk * medium->n_chunk == data->number_count)
 			break ;
 		medium->n_chunk += 1;
 	}
+	create_chunk(st_a, medium);
 }
 
-void	calcul_min_max(t_nlist *st_a, struct s_medium *medium)
+void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
+			struct s_medium *medium)
 {
-	medium->min = st_a->nb;
-	medium->max = st_a->nb;
-	while (st_a)
-	{
-		if (st_a->nb < medium->min)
-			medium->min = st_a->nb;
-		if (st_a->nb > medium->max)
-			medium->max = st_a->nb;
-		st_a = st_a->next;
-	}
-}
+	t_nlist	*voyager;
 
-void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_medium *medium)
-{
-	if (medium->p == 0)
+
+	(void) (*st_b);
+	chunk(st_a, data, medium);
+	voyager = (*st_a);
+	ft_printf("Stack A\n");
+	while (voyager != NULL)
 	{
-		calcul_min_max(*st_a, medium);
-		number_chunk(data, medium);
+		ft_printf("%d  -> ", voyager->nb);
+		ft_printf("chunk = %d\n", voyager->chunk);
+		voyager = voyager->next;
 	}
-	limit_chunk(medium);
-	if (medium->l_min < medium->min)
-		return ;
-	while (interval_checker(st_a, medium) == 1)
+	organize_chunk(st_a, st_b, data, medium);
+	ft_printf("\n");
+	ft_printf("Stack A\n");
+	while ((*st_a)->next != NULL)
 	{
-		if ((*st_a)->nb >= medium->l_min && (*st_a)->nb <= medium->l_max)
-		{
-			(*st_a)->chunk = medium->chunk;
-			pb(st_a, st_b, data);
-		}
-		else
-		{
-			if (counting_best_path(st_a, medium) == 1)
-				while (!((*st_a)->nb >= medium->l_min
-						&& (*st_a)->nb <= medium->l_max))
-					ra(st_a, data, 1);
-			else
-				while (!((*st_a)->nb >= medium->l_min
-						&& (*st_a)->nb <= medium->l_max))
-					rra(st_a, data, 1);
-		}
+		ft_printf("%d  -> ", (*st_a)->nb);
+		ft_printf("chunk = %d\n", (*st_a)->chunk);
+		(*st_a) = (*st_a)->next;
 	}
-	// if (check_other_chunk(st_a) == 0)
-	// 	while ((*st_a)->chunk != -1)
-	// 		ra(st_a, data, 1);
-	while ((*st_b)->next && compute_disorder((*st_b), data) != 1)
-		simple_alg_chunk(st_a, st_b, data);
-	if ((*st_a))
-		medium_alg(st_a, st_b, data, medium);
-	while ((*st_b))
-		pa(st_a, st_b, data);
-	return ;
+	ft_printf("%d  -> ", (*st_a)->nb);
+	ft_printf("chunk = %d\n\n", (*st_a)->chunk);
+	ft_printf("\nStack B\n");
+	while ((*st_b)->next != NULL)
+	{
+		ft_printf("%d  -> ", (*st_b)->nb);
+		ft_printf("chunk = %d\n", (*st_b)->chunk);
+		(*st_b) = (*st_b)->next;
+	}
+	ft_printf("%d  -> ", (*st_b)->nb);
+	ft_printf("chunk = %d\n\n", (*st_b)->chunk);
 }
