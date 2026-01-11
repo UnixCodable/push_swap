@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:40 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/10 20:20:53 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/10 19:25:48 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,21 @@
 
 void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-	while ((*st_b) && (*st_b)->next != NULL && (*st_b)->chunk != -1)
+	while ((*st_b) && (*st_b)->next != NULL)
 	{
 		if (chunk_checker_min_strict(st_b, (*st_b)->nb) == 1)
-		{
 			rb(st_b, data, 1);
-			ft_printf("ICI\n");
-		}
 		else
 			pa(st_a, st_b, data);
 	}
-	while ((*st_a)->chunk == (*st_b)->chunk || (*st_b)->chunk == -1)
+	while ((*st_a)->chunk == (*st_b)->chunk)
 	{
-		while ((*st_b)->nb > (*st_a)->nb || (*st_b)->chunk == -1)
+		while ((*st_b)->nb > (*st_a)->nb)
 			rb(st_b, data, 1);
 		pb(st_a, st_b, data);
-		if ((*st_a) && (*st_a)->nb < (*st_b)->nb && (*st_b)->chunk != -1)
+		if ((*st_a) && (*st_a)->nb < (*st_b)->nb)
 			continue ;
-		while ((*st_b)->chunk == -1 || !(chunk_checker_max_strict(st_b, (*st_b)->nb)))
+		while (!(chunk_checker_max_strict(st_b, (*st_b)->nb)))
 			rb(st_b, data, 1);
 	}
 	while (compute_disorder(*st_b, data) != 1)
@@ -195,15 +192,12 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_me
 	}
 	while ((*st_b)->next && compute_disorder((*st_b), data) != 1)
 		simple_alg_chunk(st_a, st_b, data);
-	while ((*st_b) && (*st_b)->chunk != -1)
+	while ((*st_b))
 	{
-		(*st_b)->chunk = -1;
-		rb(st_b, data, 1);
+		pa(st_a, st_b, data);
+		(*st_a)->chunk = -1;
 	}
-	if ((*st_a))
+	if (compute_disorder((*st_a), data) != 0)
 		medium_alg(st_a, st_b, data, medium);
-	else
-		while (*st_b)
-			pa(st_a, st_b, data);
 	return ;
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 00:13:20 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/10 16:31:54 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:40:39 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,6 +96,8 @@ int	chunk_checker_max_strict(t_nlist **st_b, int max_value)
 	voyager = *st_b;
 	while (voyager)
 	{
+		if (voyager->chunk == -1)
+			return (0);
 		if (voyager->nb > max_value)
 			return (0);
 		voyager = voyager->next;
