@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:40 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/10 17:58:00 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/10 20:41:35 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 {
-	while ((*st_b) && (*st_b)->next != NULL)
+	while ((*st_b) && (*st_b)->next != NULL && (*st_b)->chunk != -1)
 	{
 		if (chunk_checker_min_strict(st_b, (*st_b)->nb) == 1)
 			rb(st_b, data, 1);
@@ -36,6 +36,8 @@ void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 	{
 		if (!(*st_b)->next)
 			break ;
+		if ((*st_b)->chunk != -1)
+			(*st_b)->chunk = -1;
 		rb(st_b, data, 1);
 	}
 	return ;
@@ -158,17 +160,14 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_me
 					rra(st_a, data, 1);
 		}
 	}
-	if (check_other_chunk(st_a) == 0)
-		while ((*st_a)->chunk != -1)
-			ra(st_a, data, 1);
+	// if (check_other_chunk(st_a) == 0)
+	// 	while ((*st_a)->chunk != -1)
+	// 		ra(st_a, data, 1);
 	while ((*st_b)->next && compute_disorder((*st_b), data) != 1)
 		simple_alg_chunk(st_a, st_b, data);
-	while ((*st_b))
-	{
-		pa(st_a, st_b, data);
-		(*st_a)->chunk = -1;
-	}
-	if (compute_disorder((*st_a), data) != 0)
+	if ((*st_a))
 		medium_alg(st_a, st_b, data, medium);
+	while ((*st_b))
+		pa(st_a, st_b, data);
 	return ;
 }
