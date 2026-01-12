@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 00:13:20 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/08 12:16:19 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/12 21:11:56 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,14 +89,14 @@ int	chunk_checker_max(t_nlist **st_b, int max_value)
 	return (1);
 }
 
-int	chunk_checker_max_strict(t_nlist **st_b, int max_value)
+int	chunk_checker_max_strict(t_nlist **st_b, int actual_chunk, int max_value)
 {
 	t_nlist	*voyager;
 
 	voyager = *st_b;
 	while (voyager)
 	{
-		if (voyager->nb > max_value)
+		if (voyager->nb > max_value && voyager->chunk == actual_chunk)
 			return (0);
 		voyager = voyager->next;
 	}
@@ -117,14 +117,14 @@ int	chunk_checker_min(t_nlist **st_a, int actual_chunk, int min_value)
 	return (1);
 }
 
-int	chunk_checker_min_strict(t_nlist **st_a, int min_value)
+int	chunk_checker_min_strict(t_nlist **stack, int actual_chunk, int min_value)
 {
 	t_nlist	*voyager;
 
-	voyager = *st_a;
+	voyager = *stack;
 	while (voyager)
 	{
-		if (voyager->nb < min_value)
+		if (voyager->nb < min_value && voyager->chunk == actual_chunk)
 			return (0);
 		voyager = voyager->next;
 	}

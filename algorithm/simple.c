@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:05 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/07 22:58:18 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/12 20:04:20 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	simple_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 	(void)st_b;
 	while ((*st_a)->next != NULL)
 	{
-		if (chunk_checker_max_strict(st_a, (*st_a)->nb) == 1)
+		if (chunk_checker_max_strict(st_a, 0, (*st_a)->nb) == 1)
 			ra(st_a, data, 1);
 		else
 			pb(st_a, st_b, data);
