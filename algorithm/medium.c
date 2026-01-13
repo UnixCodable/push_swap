@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   medium.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:37:24 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 15:02:44 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:26:14 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,6 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 {
 	(void) (*st_b);
 	chunk(st_a, data, medium);
-
 	organize_chunk(st_a, st_b, data, medium);
 	simple_alg_chunk(st_a, st_b, data, medium->n_chunk);
 	// ft_printf("\n");

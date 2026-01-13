@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/13 13:56:18 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/13 18:10:43 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,9 +80,10 @@ int	strategy_checker(char *arg, struct s_data *data)
 
 int	error_handler(char **args, struct s_data *data)
 {
-	static int	opt_off;
-	char		**voyager;
+	int		opt_off;
+	char	**voyager;
 
+	opt_off = 0;
 	while (*args)
 	{
 		voyager = args;
@@ -91,16 +92,10 @@ int	error_handler(char **args, struct s_data *data)
 				return (0);
 		if (strategy_checker(*args, data) && (!opt_off++))
 			args++;
-		else if (ft_isnumber(*args))
-		{
-			args++;
+		else if (ft_isnumber(*args) && args++)
 			opt_off += 2;
-		}
-		else if (!ft_strncmp(*args, "--bench", -1) && opt_off < 2)
-		{
+		else if (!ft_strncmp(*args, "--bench", -1) && opt_off < 2 && args++)
 			data->benchmark = 1;
-			args++;
-		}
 		else
 			return (0);
 	}
@@ -115,14 +110,14 @@ int	main(int ac, char **av)
 	struct s_medium	medium;
 
 	av++;
-	(void) ac;
 	data = (struct s_data){0};
 	medium = (struct s_medium){0};
-	if (error_handler(av, &data) < 4)
+	if (error_handler(av, &data) < 2)
 		return (write(2, "Error\n", 6), 0);
+	else if (error_handler(av, &data) < 4)
+		return (ft_printf_err("%d\n", ft_atoi(av[ac - 2])), 0);
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
-	medium.p = 0;
 	compute_disorder(st_a, &data);
 	if (data.force_simple)
 		simple_alg(&st_a, &st_b, &data);
