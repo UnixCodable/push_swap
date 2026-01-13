@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:10:37 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 15:02:21 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/13 17:18:07 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,10 +23,10 @@ void	give_chunk(t_nlist **st_a, struct s_medium *medium)
 		medium->l_min = medium->l_max + 1;
 		medium->l_max = medium->l_min + medium->l;
 		medium->chunk += 1;
-		ft_printf("\nl_min = %d\n", medium->l_min);
-		ft_printf("\nl_max = %d\n", medium->l_max);
-		ft_printf("\nlargeur = %d\n", medium->l);
-		ft_printf("\nnombre de chunk  = %d\n", medium->n_chunk);
+		// ft_printf("\nl_min = %d\n", medium->l_min);
+		// ft_printf("\nl_max = %d\n", medium->l_max);
+		// ft_printf("\nlargeur = %d\n", medium->l);
+		// ft_printf("\nnombre de chunk  = %d\n", medium->n_chunk);
 		voyager = (*st_a);
 		while (voyager)
 		{
@@ -46,9 +46,9 @@ void	create_chunk(t_nlist **st_a, struct s_medium *medium)
 	medium->l_max = medium->min + medium->l;
 	medium->l_min = medium->l_max - medium->l;
 	medium->chunk = 1;
-	ft_printf("\nl_min = %d\n", medium->l_min);
-	ft_printf("\nl_max = %d\n", medium->l_max);
-	ft_printf("\nlargeur = %d\n", medium->l);
+	// ft_printf("\nl_min = %d\n", medium->l_min);
+	// ft_printf("\nl_max = %d\n", medium->l_max);
+	// ft_printf("\nlargeur = %d\n", medium->l);
 	while (voyager != NULL)
 	{
 		if (voyager->nb >= medium->l_min && voyager->nb <= medium->l_max)
@@ -73,15 +73,15 @@ void	chunk(t_nlist **st_a, struct s_data *data, struct s_medium *medium)
 			medium->max = voyager->nb;
 		voyager = voyager->next;
 	}
-	ft_printf("\nmin = %d\n", medium->min);
-	ft_printf("\nmax = %d\n", medium->max);
+	// ft_printf("\nmin = %d\n", medium->min);
+	// ft_printf("\nmax = %d\n", medium->max);
 	while (medium->n_chunk * medium->n_chunk <= data->number_count)
 	{
 		if (medium->n_chunk * medium->n_chunk == data->number_count)
 			break ;
 		medium->n_chunk += 1;
 	}
-	ft_printf("\nnombre de chunk  = %d\n", medium->n_chunk);
+	// ft_printf("\nnombre de chunk  = %d\n", medium->n_chunk);
 	create_chunk(st_a, medium);
 }
 
