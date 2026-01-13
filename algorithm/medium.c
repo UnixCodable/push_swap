@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:37:24 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 03:36:29 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/13 11:37:03 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,8 @@ void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, int i
 		while ((*st_a) && (*st_b) && (*st_b)->nb < (*st_a)->nb && voyager->next != NULL)
 			rrb(st_b, data, 1);
 	}
+	while (chunk_checker_max_strict(st_b, i, (*st_b)->chunk) != 1 && voyager->next != NULL)
+		rrb(st_b, data, 1);
 	while ((*st_b) && (*st_b)->chunk == i)
 	{
 		(*st_b)->chunk = -1;
