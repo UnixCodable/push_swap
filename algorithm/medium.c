@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:37:24 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 11:37:03 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/13 13:27:38 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,57 +183,4 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 	chunk(st_a, data, medium);
 	organize_chunk(st_a, st_b, data, medium);
 	simple_alg_chunk(st_a, st_b, data, medium->n_chunk);
-	// ft_printf("\n");
-	// ft_printf("Stack A\n");
-	// while ((*st_a) != NULL)
-	// {
-	// 	ft_printf("%d  -> ", (*st_a)->nb);
-	// 	ft_printf("chunk = %d\n", (*st_a)->chunk);
-	// 	(*st_a) = (*st_a)->next;
-	// }
-	// ft_printf("\n");
-	// ft_printf("Stack B\n");
-	// while ((*st_b) != NULL)
-	// {
-	// 	ft_printf("%d  -> ", (*st_b)->nb);
-	// 	ft_printf("chunk = %d\n", (*st_b)->chunk);
-	// 	(*st_b) = (*st_b)->next;
-	// }
-	// ft_printf("operations : %d\n", data->total_count);
 }
-
-// void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, int i)
-// {
-// 	t_nlist *saved;
-
-// 	while ((*st_b) && (*st_b)->next != NULL && (*st_b)->chunk == i)
-// 	{
-// 		if (chunk_checker_min(st_b, i, (*st_b)->nb) == 1)
-// 			rb(st_b, data, 1);
-// 		else
-// 			pa(st_a, st_b, data);
-// 	}
-// 	rrb(st_b, data, 1);
-// 	saved = *st_b;
-// 	while ((*st_a)->chunk == (*st_b)->chunk)
-// 	{
-// 		while ((*st_b)->nb > (*st_a)->nb)
-// 			rb(st_b, data, 1);
-// 		pb(st_a, st_b, data);
-// 		if ((*st_a) && (*st_a)->nb < (*st_b)->nb)
-// 			continue ;
-// 		while (*st_b != saved)
-// 			rrb(st_b, data, 1);
-// 	}
-// 	while (chunk_checker_max_strict(st_b, i) != 1)
-// 	{
-// 		if (!(*st_b)->next)
-// 			break ;
-// 		rrb(st_b, data, 1);
-// 	}
-// 	while ((*st_b)->chunk == i)
-// 		pa(st_a, st_b, data);
-// 	if (i > 0)
-// 		simple_alg_chunk(st_a, st_b, data, i--);
-// 	return ;
-// }
