@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+         #
+#    By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2026/01/06 00:51:12 by lbordana         ###   ########.fr        #
+#    Updated: 2026/01/13 13:28:43 by aeuvrard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,7 +15,8 @@ NAME = push_swap
 CC = cc
 CFLAGS = -Wall -Wextra -Werror -g3
 FILES = push_swap.c lst_utils.c benchmark.c push.c swap.c rotate.c\
-		reverse_rotate.c simple.c medium.c complex.c adaptive.c utils.c
+		reverse_rotate.c simple.c medium.c complex.c adaptive.c utils_medium.c\
+		utils_complex.c
 LIBFT = libft/libft.a
 OBJDIR = objects/
 OFILES = $(FILES:%.c=$(OBJDIR)%.o)
