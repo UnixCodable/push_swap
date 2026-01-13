@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/10 14:31:02 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/13 00:26:18 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,6 +117,7 @@ int	main(int ac, char **av)
 	av++;
 	(void) ac;
 	data = (struct s_data){0};
+	medium = (struct s_medium){0};
 	if (error_handler(av, &data) < 4)
 		return (write(2, "Error\n", 6), 0);
 	st_a = create_st_a(av, &data);

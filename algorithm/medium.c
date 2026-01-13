@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:37:24 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/12 21:11:13 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/13 03:36:29 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,15 +114,20 @@ void	organize_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 			else if ((*st_a)->chunk == (i + 1))
 			{
 				pb(st_a, st_b, data);
-				if (!(*st_a) || (*st_a)->chunk == i || (*st_a)->chunk == i + 1)
-					rb(st_b, data, 1);
-				else
-					rr(st_a, st_b, data);
+				if (chunk_present(st_a, i) == 1)
+				{
+					if (!(*st_a) || (*st_a)->chunk == i || (*st_a)->chunk == i + 1)
+						rb(st_b, data, 1);
+					else
+						rr(st_a, st_b, data);
+				}
 			}
 			else
 				ra(st_a, data, 1);
 		}
 		voyager = *st_b;
+		while (voyager && voyager->chunk != i)
+			voyager = voyager->next;
 		while (voyager && voyager->chunk != i + 1)
 			voyager = voyager->next;
 		if (voyager == NULL)
@@ -146,8 +151,6 @@ void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, int i
 	}
 	if ((*st_b)->next)
 		rrb(st_b, data, 1);
-	// ft_printf("number = %d & chunk = %d\n", (*st_b)->nb, (*st_b)->chunk);
-	// ft_printf("number2 = %d & chunk2 = %d", (*st_b)->next->nb, (*st_b)->next->chunk);
 	voyager = *st_b;
 	while (voyager->next != NULL)
 		voyager = voyager->next;
@@ -156,19 +159,11 @@ void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, int i
 		while ((*st_b)->nb > (*st_a)->nb)
 			rb(st_b, data, 1);
 		pb(st_a, st_b, data);
-		// if ((*st_a) && (*st_a)->nb < (*st_b)->nb)
-		// 	continue ;
-		while (chunk_checker_max_strict(st_b, i, (*st_b)->nb) != 1 && voyager->next != NULL)
-		{
+		if ((*st_a) && (*st_a)->nb < (*st_b)->nb)
+			continue ;
+		while ((*st_a) && (*st_b) && (*st_b)->nb < (*st_a)->nb && voyager->next != NULL)
 			rrb(st_b, data, 1);
-		}
 	}
-	// while (chunk_checker_max_strict(st_b, i, (*st_b)->nb) != 1)
-	// {
-	// 	if (!(*st_b)->next)
-	// 		break ;
-	// 	rrb(st_b, data, 1);
-	// }
 	while ((*st_b) && (*st_b)->chunk == i)
 	{
 		(*st_b)->chunk = -1;
