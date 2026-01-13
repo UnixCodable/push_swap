@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:37:24 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 13:16:29 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/13 15:02:44 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,10 @@ void	organize_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 			else if ((*st_a)->chunk == (i + 1))
 			{
 				pb(st_a, st_b, data);
-				if (chunk_present(st_a, i) == 1)
-				{
-					if (!(*st_a) || (*st_a)->chunk == i || (*st_a)->chunk == i + 1)
-						rb(st_b, data, 1);
-					else
-						rr(st_a, st_b, data);
-				}
+				if (!(*st_a) || (*st_a)->chunk == i || (*st_a)->chunk == i + 1)
+					rb(st_b, data, 1);
+				else
+					rr(st_a, st_b, data);
 			}
 			else
 				ra(st_a, data, 1);
@@ -101,6 +98,7 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 {
 	(void) (*st_b);
 	chunk(st_a, data, medium);
+
 	organize_chunk(st_a, st_b, data, medium);
 	simple_alg_chunk(st_a, st_b, data, medium->n_chunk);
 	// ft_printf("\n");

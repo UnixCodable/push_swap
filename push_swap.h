@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/13 13:26:01 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/13 13:54:58 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ int		check_other_chunk(t_nlist **stack);
 t_nlist	*best_pivot(t_nlist **st_b, int chunk);
 int		chunk_checker_max(t_nlist **st_b, int max_value);
 void	ft_lst_print(t_nlist *lst);
-void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);
+void	adaptive_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_medium *medium);
 double	compute_disorder(t_nlist *st_a, struct s_data *data);
 void	compute_benchmark(struct s_data *data, t_nlist **sorted);
 t_nlist	*find_nearest(t_nlist **st_b, int nbr, int chunk);

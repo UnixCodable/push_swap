@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   benchmark.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/04 15:05:26 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/13 13:58:14 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	strategy_definition(struct s_data *data)
 	else if (data->force_complex == 1)
 		ft_printf_err(POS"[Strategy] :"POS"Complex / O(n log n)", 17, 3, 18, 3);
 	else if (data->disorder < 0.2)
-		ft_printf_err(POS"[Strategy] :"POS"Adaptive / O(n)", 17, 3, 18, 3);
+		ft_printf_err(POS"[Strategy] :"POS"Adaptive / O(n²)", 17, 3, 18, 3);
 	else if (data->disorder >= 0.2 && data->disorder < 0.5)
 		ft_printf_err(POS"[Strategy] :"POS"Adaptive / O(n√n)", 17, 3, 18, 3);
 	else

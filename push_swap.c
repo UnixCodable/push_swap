@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/13 00:26:18 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/13 13:56:18 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -131,7 +131,7 @@ int	main(int ac, char **av)
 	else if (data.force_complex || data.low_disorder || data.med_disorder)
 		complex_alg(&st_a, &st_b, &data);
 	else
-		adaptive_alg(&st_a, &st_b, &data);
+		adaptive_alg(&st_a, &st_b, &data, &medium);
 	compute_benchmark(&data, &st_a);
 	ft_nlstclear(&st_a);
 	return (1);
