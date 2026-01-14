@@ -6,13 +6,13 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:20 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/05 18:40:54 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	pa(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	if (!data->low_disorder && !data->med_disorder)
 	{
@@ -40,7 +40,7 @@ void	pa(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 	}
 }
 
-void	pb(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	pb(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	if (!data->low_disorder && !data->med_disorder)
 	{

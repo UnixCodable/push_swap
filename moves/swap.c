@@ -6,13 +6,13 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:41 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/05 18:38:18 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	sa(t_nlist **st_a, struct s_data *data, int to_print)
+void	sa(t_n **st_a, struct s_d *data, int to_print)
 {
 	int	pos;
 
@@ -36,7 +36,7 @@ void	sa(t_nlist **st_a, struct s_data *data, int to_print)
 	(*st_a) = (*st_a)->previous;
 }
 
-void	sb(t_nlist **st_b, struct s_data *data, int to_print)
+void	sb(t_n **st_b, struct s_d *data, int to_print)
 {
 	int	pos;
 
@@ -60,7 +60,7 @@ void	sb(t_nlist **st_b, struct s_data *data, int to_print)
 	(*st_b) = (*st_b)->previous;
 }
 
-void	ss(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	ss(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	if (!data->low_disorder && !data->med_disorder)
 	{

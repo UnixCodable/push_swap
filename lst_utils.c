@@ -6,17 +6,17 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 02:35:23 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/07 14:53:37 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_nlist	*ft_numlst_new(int nbr)
+t_n	*ft_numlst_new(int nbr)
 {
-	t_nlist	*lst;
+	t_n	*lst;
 
-	lst = malloc(sizeof(t_nlist));
+	lst = malloc(sizeof(t_n));
 	if (!lst)
 		return (NULL);
 	lst->nb = nbr;
@@ -25,7 +25,7 @@ t_nlist	*ft_numlst_new(int nbr)
 	return (lst);
 }
 
-void	ft_lst_print(t_nlist *lst)
+void	ft_lst_print(t_n *lst)
 {
 	while (lst)
 	{
@@ -34,9 +34,9 @@ void	ft_lst_print(t_nlist *lst)
 	}
 }
 
-void	ft_nlstclear(t_nlist **lst)
+void	ft_nlstclear(t_n **lst)
 {
-	t_nlist	*next_temp;
+	t_n	*next_temp;
 
 	if (!lst)
 		return ;
@@ -46,4 +46,31 @@ void	ft_nlstclear(t_nlist **lst)
 		free(*lst);
 		(*lst) = next_temp;
 	}
+}
+
+t_n	*create_st_a(char **args, struct s_d *data)
+{
+	t_n	*nbrs;
+	t_n	*prev;
+	t_n	*first;
+	int		i;
+
+	i = 1;
+	while (!ft_isnumber(*args))
+		args++;
+	nbrs = ft_numlst_new((int)ft_atoi(*args));
+	first = nbrs;
+	prev = nbrs;
+	data->number_count++;
+	while (*++args)
+	{
+		nbrs->next = ft_numlst_new((int)ft_atoi(*args));
+		nbrs = nbrs->next;
+		nbrs->pos = i++;
+		nbrs->chunk = 0;
+		nbrs->previous = prev;
+		prev = nbrs;
+		data->number_count++;
+	}
+	return (first);
 }

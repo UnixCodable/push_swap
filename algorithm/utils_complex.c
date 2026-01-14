@@ -1,22 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_complexe.c                                   :+:      :+:    :+:   */
+/*   utils_complex.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/06 00:13:20 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/13 13:21:29 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-t_nlist	*find_nearest(t_nlist **st_b, int nbr, int chunk)
+t_n	*find_nearest(t_n **st_b, int nbr, int chunk)
 {
-	t_nlist	*voyager;
+	t_n	*voyager;
 	int		converted_nb;
-	t_nlist	*nearest;
+	t_n	*nearest;
 
 	voyager = *st_b;
 	converted_nb = INT_MAX;
@@ -37,9 +37,9 @@ t_nlist	*find_nearest(t_nlist **st_b, int nbr, int chunk)
 	return (nearest);
 }
 
-t_nlist	*best_pivot(t_nlist **st_b, int chunk)
+t_n	*best_pivot(t_n **st_b, int chunk)
 {
-	t_nlist	*voyager;
+	t_n	*voyager;
 	int		diff;
 	int		sum;
 	int		nbrs;
@@ -59,10 +59,10 @@ t_nlist	*best_pivot(t_nlist **st_b, int chunk)
 	return (find_nearest(st_b, diff, chunk));
 }
 
-int	check_other_chunk(t_nlist **stack)
+int	check_other_chunk(t_n **stack)
 {
 	int		chunk;
-	t_nlist	*voyager;
+	t_n	*voyager;
 
 	chunk = (*stack)->chunk;
 	voyager = *stack;
@@ -75,9 +75,9 @@ int	check_other_chunk(t_nlist **stack)
 	return (1);
 }
 
-int	chunk_checker_max(t_nlist **st_b, int max_value)
+int	chunk_checker_max(t_n **st_b, int max_value)
 {
-	t_nlist	*voyager;
+	t_n	*voyager;
 
 	voyager = *st_b;
 	while (voyager)
@@ -89,9 +89,9 @@ int	chunk_checker_max(t_nlist **st_b, int max_value)
 	return (1);
 }
 
-int	chunk_checker_min(t_nlist **st_a, int actual_chunk, int min_value)
+int	chunk_checker_min(t_n **st_a, int actual_chunk, int min_value)
 {
-	t_nlist	*voyager;
+	t_n	*voyager;
 
 	voyager = *st_a;
 	while (voyager && voyager->chunk == actual_chunk)
@@ -103,9 +103,9 @@ int	chunk_checker_min(t_nlist **st_a, int actual_chunk, int min_value)
 	return (1);
 }
 
-int	min_finder(t_nlist **st_a)
+int	min_finder(t_n **st_a)
 {
-	t_nlist	*voyager;
+	t_n	*voyager;
 	int		min;
 
 	voyager = *st_a;

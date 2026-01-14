@@ -6,16 +6,16 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/07 23:55:35 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	stack_sorting(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	stack_sorting(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	static int	grow;
-	t_nlist		*pivot;
+	t_n		*pivot;
 
 	grow++;
 	if (*st_b)
@@ -40,11 +40,11 @@ void	stack_sorting(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 	}
 }
 
-void	send_and_clean(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
+void	send_and_clean(t_n **st_a, t_n **st_b, struct s_d *data,
 	int actual_chunk)
 {
-	t_nlist	*pivot;
-	t_nlist	*voyager;
+	t_n	*pivot;
+	t_n	*voyager;
 
 	pivot = best_pivot(st_a, actual_chunk);
 	while (pivot && (*st_a) && (*st_a)->chunk == actual_chunk)
@@ -68,7 +68,7 @@ void	send_and_clean(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 	}
 }
 
-void	sort_me(t_nlist **st_a, struct s_data *data)
+void	sort_me(t_n **st_a, struct s_d *data)
 {
 	while ((*st_a)->chunk != -1 && ((*st_a)->nb == min_finder(st_a)
 			|| (*st_a)->next->nb == min_finder(st_a)
@@ -88,7 +88,7 @@ void	sort_me(t_nlist **st_a, struct s_data *data)
 	}
 }
 
-void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	complex_alg(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	int			actual_chunk;
 	double		disorder;

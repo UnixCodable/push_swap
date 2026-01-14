@@ -1,28 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   medium.c                                           :+:      :+:    :+:   */
+/*   med.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:37:24 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/14 14:24:24 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include <stdio.h>
 
-void	organize_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
-			struct s_medium *medium)
+void	organize_chunk(t_n **st_a, t_n **st_b, struct s_d *data,
+			struct s_m *med)
 {
 	long int	i;
-	t_nlist 	*voyager;
+	t_n 	*voyager;
 
 	(void) (*st_a);
 	(void) (*st_b);
 	(void) data;
-	(void) medium;
+	(void) med;
 	i = 1;
 	while ((*st_a) != NULL)
 	{
@@ -55,9 +55,9 @@ void	organize_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 	}
 }
 
-void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, long int i)
+void	simple_alg_chunk(t_n **st_a, t_n **st_b, struct s_d *data, long int i)
 {
-	t_nlist	*voyager;
+	t_n	*voyager;
 
 	while ((*st_b) && (*st_b)->next != NULL && (*st_b)->chunk == i)
 	{
@@ -93,13 +93,13 @@ void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, long 
 	return ;
 }
 
-void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
-			struct s_medium *medium)
+void	med_alg(t_n **st_a, t_n **st_b, struct s_d *data,
+			struct s_m *med)
 {
 	(void) (*st_b);
-	chunk(st_a, data, medium);
-	organize_chunk(st_a, st_b, data, medium);
-	simple_alg_chunk(st_a, st_b, data, medium->n_chunk);
+	chunk(st_a, data, med);
+	organize_chunk(st_a, st_b, data, med);
+	simple_alg_chunk(st_a, st_b, data, med->n_chunk);
 	// ft_printf("\n");
 	// ft_printf("Stack A\n");
 	// while ((*st_a) != NULL)

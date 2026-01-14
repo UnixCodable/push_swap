@@ -6,14 +6,14 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/14 16:31:07 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:26:08 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 #include "libft/libft.h"
 
-double	compute_disorder(t_nlist *st_a, struct s_data *data)
+double	compute_disorder(t_n *st_a, struct s_d *data)
 {
 	double	mistakes;
 	double	total_pairs;
@@ -32,44 +32,17 @@ double	compute_disorder(t_nlist *st_a, struct s_data *data)
 	return (mistakes / total_pairs);
 }
 
-t_nlist	*create_st_a(char **args, struct s_data *data)
-{
-	t_nlist	*nbrs;
-	t_nlist	*prev;
-	t_nlist	*first;
-	int		i;
-
-	i = 1;
-	while (!ft_isnumber(*args))
-		args++;
-	nbrs = ft_numlst_new((int)ft_atoi(*args));
-	first = nbrs;
-	prev = nbrs;
-	data->number_count++;
-	while (*++args)
-	{
-		nbrs->next = ft_numlst_new((int)ft_atoi(*args));
-		nbrs = nbrs->next;
-		nbrs->pos = i++;
-		nbrs->chunk = 0;
-		nbrs->previous = prev;
-		prev = nbrs;
-		data->number_count++;
-	}
-	return (first);
-}
-
-int	strategy_checker(char *arg, struct s_data *data)
+int	strategy_checker(char *arg, struct s_d *data)
 {
 	if (!ft_strncmp(arg, "--simple", -1))
 		data->force_simple = 1;
 	else if (!ft_strncmp(arg, "--medium", -1))
-		data->force_medium = 1;
+		data->force_med = 1;
 	else if (!ft_strncmp(arg, "--complex", -1))
 		data->force_complex = 1;
 	else if (!ft_strncmp(arg, "--low-disorder", -1))
 		data->low_disorder = 1;
-	else if (!ft_strncmp(arg, "--medium-disorder", -1))
+	else if (!ft_strncmp(arg, "--med-disorder", -1))
 		data->med_disorder = 1;
 	else if (!ft_strncmp(arg, "--adaptive", -1))
 		data->force_adaptive = 1;
@@ -78,7 +51,7 @@ int	strategy_checker(char *arg, struct s_data *data)
 	return (1);
 }
 
-int	error_handler(char **args, struct s_data *data)
+int	error_handler(char **args, struct s_d *data)
 {
 	int		opt_off;
 	char	**voyager;
@@ -102,17 +75,29 @@ int	error_handler(char **args, struct s_data *data)
 	return (opt_off + 2);
 }
 
+void	init_sort(t_n **st_a, t_n **st_b, struct s_d *data, struct s_m *med)
+{
+	if (data->force_simple)
+		simple_alg(st_a, st_b, data);
+	else if (data->force_med)
+		med_alg(st_a, st_b, data, med);
+	else if (data->force_complex || data->low_disorder || data->med_disorder)
+		complex_alg(st_a, st_b, data);
+	else
+		adaptive_alg(st_a, st_b, data, med);
+}
+
 int	main(int ac, char **av)
 {
-	t_nlist			*st_a;
-	t_nlist			*st_b;
-	struct s_data	data;
-	struct s_medium	medium;
+	t_n			*st_a;
+	t_n			*st_b;
+	struct s_d	data;
+	struct s_m	med;
 
 	av++;
 	(void)ac;
-	data = (struct s_data){0};
-	medium = (struct s_medium){0};
+	data = (struct s_d){0};
+	med = (struct s_m){0};
 	if (error_handler(av, &data) < 2)
 		return (write(2, "Error\n", 6), 0);
 	else if (error_handler(av, &data) < 6)
@@ -120,14 +105,7 @@ int	main(int ac, char **av)
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
 	compute_disorder(st_a, &data);
-	if (data.force_simple)
-		simple_alg(&st_a, &st_b, &data);
-	else if (data.force_medium)
-		medium_alg(&st_a, &st_b, &data, &medium);
-	else if (data.force_complex || data.low_disorder || data.med_disorder)
-		complex_alg(&st_a, &st_b, &data);
-	else
-		adaptive_alg(&st_a, &st_b, &data, &medium);
+	init_sort(&st_a, &st_b, &data, &med);
 	compute_benchmark(&data, &st_a);
 	ft_nlstclear(&st_a);
 	return (1);
