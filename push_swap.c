@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/14 18:26:08 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,14 @@ int	strategy_checker(char *arg, struct s_d *data)
 int	error_handler(char **args, struct s_d *data)
 {
 	int		opt_off;
-	char	**voyager;
+	char	**j;
 
 	opt_off = 0;
 	while (*args)
 	{
-		voyager = args;
-		while (*voyager++)
-			if (*voyager && !ft_strncmp(*voyager, *args, -1))
+		j = args;
+		while (*j++)
+			if (*j && !ft_strncmp(*j, *args, -1))
 				return (0);
 		if (strategy_checker(*args, data) && (!opt_off++))
 			args++;

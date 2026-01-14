@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/14 18:24:14 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:19:47 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ struct s_m
 };
 
 
-t_n	*ft_numlst_new(int nbr);
+t_n		*ft_numlst_new(int nbr);
 void	sa(t_n **st_a, struct s_d *data, int to_print);
 void	sb(t_n **st_b, struct s_d *data, int to_print);
 void	ss(t_n **st_a, t_n **st_b, struct s_d *data);
@@ -88,14 +88,14 @@ void	complex_alg(t_n **st_a, t_n **st_b, struct s_d *data);
 int		min_finder(t_n **st_a);
 int		chunk_checker_min(t_n **st_a, int actual_chunk, int min_value);
 int		check_other_chunk(t_n **stack);
-t_n	*best_pivot(t_n **st_b, int chunk);
+t_n		*best_pivot(t_n **st_b, int chunk);
 int		chunk_checker_max(t_n **st_b, int max_value);
 void	ft_lst_print(t_n *lst);
 void	adaptive_alg(t_n **st_a, t_n **st_b, struct s_d *data, struct s_m *med);
 double	compute_disorder(t_n *st_a, struct s_d *data);
 void	compute_benchmark(struct s_d *data, t_n **sorted);
-t_n	*find_nearest(t_n **st_b, int nbr, int chunk);
+t_n		*find_nearest(t_n **st_b, int nbr, int chunk);
 void	ft_nlstclear(t_n **lst);
-t_n	*create_st_a(char **args, struct s_d *data);
+t_n		*create_st_a(char **args, struct s_d *data);
 
 #endif

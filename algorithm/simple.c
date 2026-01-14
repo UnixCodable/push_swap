@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:05 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,24 +16,24 @@ int	counting_steps(t_n **st_a, t_n **st_b)
 {
 	int		steps_front;
 	int		steps_back;
-	t_n	*voyager;
+	t_n	*j;
 
-	voyager = *st_a;
+	j = *st_a;
 	steps_back = 0;
 	steps_front = 0;
-	while (voyager && voyager->nb > voyager->next->nb)
+	while (j && j->nb > j->next->nb)
 	{
-		voyager = voyager->next;
+		j = j->next;
 		steps_back++;
 	}
-	while (voyager && (*st_b)->nb > voyager->nb)
+	while (j && (*st_b)->nb > j->nb)
 	{
-		voyager = voyager->next;
+		j = j->next;
 		steps_back++;
 	}
-	while (voyager != NULL)
+	while (j != NULL)
 	{
-		voyager = voyager->next;
+		j = j->next;
 		steps_front++;
 	}
 	if (steps_back >= steps_front)

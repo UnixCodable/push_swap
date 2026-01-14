@@ -13,11 +13,10 @@
 #include "../push_swap.h"
 #include <stdio.h>
 
-void	organize_chunk(t_n **st_a, t_n **st_b, struct s_d *data,
-			struct s_m *med)
+void	organize_chunk(t_n **st_a, t_n **st_b, struct s_d *data, struct s_m *med)
 {
 	long int	i;
-	t_n 	*voyager;
+	t_n			*j;
 
 	(void) (*st_a);
 	(void) (*st_b);
@@ -26,7 +25,6 @@ void	organize_chunk(t_n **st_a, t_n **st_b, struct s_d *data,
 	i = 1;
 	while ((*st_a) != NULL)
 	{
-		/*Tant qu'il y a un chunk = i*/
 		while (chunk_present(st_a, i) == 1 || chunk_present(st_a, i + 1) == 1)
 		{
 			if ((*st_a)->chunk == i)
@@ -42,14 +40,14 @@ void	organize_chunk(t_n **st_a, t_n **st_b, struct s_d *data,
 			else
 				ra(st_a, data, 1);
 		}
-		voyager = *st_b;
-		while (voyager && voyager->chunk != i)
-			voyager = voyager->next;
-		while (voyager && voyager->chunk != i + 1)
-			voyager = voyager->next;
-		if (voyager == NULL)
+		j = *st_b;
+		while (j && j->chunk != i)
+			j = j->next;
+		while (j && j->chunk != i + 1)
+			j = j->next;
+		if (j == NULL)
 			break ;
-		while ((*st_b)->nb != voyager->nb)
+		while ((*st_b)->nb != j->nb)
 			rrb(st_b, data, 1);
 		i += 2;
 	}
@@ -57,7 +55,7 @@ void	organize_chunk(t_n **st_a, t_n **st_b, struct s_d *data,
 
 void	simple_alg_chunk(t_n **st_a, t_n **st_b, struct s_d *data, long int i)
 {
-	t_n	*voyager;
+	t_n	*j;
 
 	while ((*st_b) && (*st_b)->next != NULL && (*st_b)->chunk == i)
 	{
@@ -68,9 +66,9 @@ void	simple_alg_chunk(t_n **st_a, t_n **st_b, struct s_d *data, long int i)
 	}
 	if ((*st_b)->next)
 		rrb(st_b, data, 1);
-	voyager = *st_b;
-	while (voyager->next != NULL)
-		voyager = voyager->next;
+	j = *st_b;
+	while (j->next != NULL)
+		j = j->next;
 	while (((*st_a) && (*st_a)->chunk == (*st_b)->chunk) || ((*st_a) && (*st_a)->chunk != -1))
 	{
 		while ((*st_b)->nb > (*st_a)->nb)
@@ -78,10 +76,10 @@ void	simple_alg_chunk(t_n **st_a, t_n **st_b, struct s_d *data, long int i)
 		pb(st_a, st_b, data);
 		if ((*st_a) && (*st_a)->nb < (*st_b)->nb)
 			continue ;
-		while ((*st_a) && (*st_b) && (*st_b)->nb < (*st_a)->nb && voyager->next != NULL)
+		while ((*st_a) && (*st_b) && (*st_b)->nb < (*st_a)->nb && j->next)
 			rrb(st_b, data, 1);
 	}
-	while (chunk_checker_max_strict(st_b, i, (*st_b)->chunk) != 1 && voyager->next != NULL)
+	while (chunk_checker_max_strict(st_b, i, (*st_b)->chunk) != 1 && j->next)
 		rrb(st_b, data, 1);
 	while ((*st_b) && (*st_b)->chunk == i)
 	{
@@ -93,28 +91,9 @@ void	simple_alg_chunk(t_n **st_a, t_n **st_b, struct s_d *data, long int i)
 	return ;
 }
 
-void	med_alg(t_n **st_a, t_n **st_b, struct s_d *data,
-			struct s_m *med)
+void	med_alg(t_n **st_a, t_n **st_b, struct s_d *data, struct s_m *med)
 {
-	(void) (*st_b);
 	chunk(st_a, data, med);
 	organize_chunk(st_a, st_b, data, med);
 	simple_alg_chunk(st_a, st_b, data, med->n_chunk);
-	// ft_printf("\n");
-	// ft_printf("Stack A\n");
-	// while ((*st_a) != NULL)
-	// {
-	// 	ft_printf("%d  -> ", (*st_a)->nb);
-	// 	ft_printf("chunk = %d\n", (*st_a)->chunk);
-	// 	(*st_a) = (*st_a)->next;
-	// }
-	// ft_printf("\n");
-	// ft_printf("Stack B\n");
-	// while ((*st_b) != NULL)
-	// {
-	// 	ft_printf("%d  -> ", (*st_b)->nb);
-	// 	ft_printf("chunk = %d\n", (*st_b)->chunk);
-	// 	(*st_b) = (*st_b)->next;
-	// }
-	// ft_printf("operations : %d\n", data->total_count);
 }

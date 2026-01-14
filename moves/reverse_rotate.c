@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:33 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,41 +14,41 @@
 
 void	rra(t_n **st_a, struct s_d *data, int to_print)
 {
-	t_n	*voyager;
+	t_n	*j;
 
-	voyager = (*st_a);
+	j = (*st_a);
 	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("rra\n");
 		data->rra_count++;
 		data->total_count++;
 	}
-	while (voyager->next != NULL)
-		voyager = voyager->next;
-	(*st_a)->previous = voyager;
-	voyager->next = (*st_a);
-	voyager->previous->next = NULL;
-	voyager->previous = NULL;
+	while (j->next != NULL)
+		j = j->next;
+	(*st_a)->previous = j;
+	j->next = (*st_a);
+	j->previous->next = NULL;
+	j->previous = NULL;
 	(*st_a) = (*st_a)->previous;
 }
 
 void	rrb(t_n **st_b, struct s_d *data, int to_print)
 {
-	t_n	*voyager;
+	t_n	*j;
 
-	voyager = (*st_b);
+	j = (*st_b);
 	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("rrb\n");
 		data->rrb_count++;
 		data->total_count++;
 	}
-	while (voyager->next != NULL)
-		voyager = voyager->next;
-	(*st_b)->previous = voyager;
-	voyager->next = (*st_b);
-	voyager->previous->next = NULL;
-	voyager->previous = NULL;
+	while (j->next != NULL)
+		j = j->next;
+	(*st_b)->previous = j;
+	j->next = (*st_b);
+	j->previous->next = NULL;
+	j->previous = NULL;
 	(*st_b) = (*st_b)->previous;
 }
 

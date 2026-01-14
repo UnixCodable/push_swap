@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/14 18:24:14 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,26 +14,26 @@
 
 void	first_numbers(t_n **sorted)
 {
-	t_n	*voyager;
+	t_n	*j;
 	int		x;
 	int		y;
 
 	x = 11;
-	voyager = *sorted;
+	j = *sorted;
 	while (x != 20)
 	{
 		y = 28;
 		ft_printf_err(POS, x, y);
-		while (y < 52 && voyager)
+		while (y < 52 && j)
 		{
-			y += ft_numlen(voyager->nb) + 1;
+			y += ft_numlen(j->nb) + 1;
 			if (y < 55)
 			{
-				if (voyager->nb >= 0)
-					ft_printf_err("%d-", voyager->nb);
+				if (j->nb >= 0)
+					ft_printf_err("%d-", j->nb);
 				else
-					ft_printf_err("(%d)-", voyager->nb);
-				voyager = voyager->next;
+					ft_printf_err("(%d)-", j->nb);
+				j = j->next;
 			}
 		}
 		x++;

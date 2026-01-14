@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:25 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 void	ra(t_n **st_a, struct s_d *data, int to_print)
 {
-	t_n	*voyager;
+	t_n	*j;
 
-	voyager = *st_a;
+	j = *st_a;
 	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("ra\n");
@@ -25,21 +25,21 @@ void	ra(t_n **st_a, struct s_d *data, int to_print)
 	}
 	if (!(*st_a)->next)
 		return ;
-	while (voyager->next != NULL)
-		voyager = voyager->next;
-	(*st_a)->previous = voyager;
+	while (j->next != NULL)
+		j = j->next;
+	(*st_a)->previous = j;
 	(*st_a)->next->previous = NULL;
 	(*st_a)->next = NULL;
-	voyager->next = *st_a;
+	j->next = *st_a;
 	while ((*st_a)->previous != NULL)
 		(*st_a) = (*st_a)->previous;
 }
 
 void	rb(t_n **st_b, struct s_d *data, int to_print)
 {
-	t_n	*voyager;
+	t_n	*j;
 
-	voyager = *st_b;
+	j = *st_b;
 	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("rb\n");
@@ -48,12 +48,12 @@ void	rb(t_n **st_b, struct s_d *data, int to_print)
 	}
 	if (!(*st_b)->next)
 		return ;
-	while (voyager->next != NULL)
-		voyager = voyager->next;
-	(*st_b)->previous = voyager;
+	while (j->next != NULL)
+		j = j->next;
+	(*st_b)->previous = j;
 	(*st_b)->next->previous = NULL;
 	(*st_b)->next = NULL;
-	voyager->next = *st_b;
+	j->next = *st_b;
 	while ((*st_b)->previous != NULL)
 		(*st_b) = (*st_b)->previous;
 }

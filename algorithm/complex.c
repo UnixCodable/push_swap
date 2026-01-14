@@ -6,16 +6,38 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:18:01 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:21:31 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
+t_n	*best_pivot(t_n **st_b, int chunk)
+{
+	t_n	*j;
+	int	diff;
+	int	sum;
+	int	nbrs;
+
+	j = *st_b;
+	sum = 0;
+	nbrs = 0;
+	if ((*st_b)->chunk != chunk)
+		return (NULL);
+	while (j != NULL && j->chunk == chunk)
+	{
+		sum += j->nb;
+		nbrs++;
+		j = j->next;
+	}
+	diff = sum / nbrs;
+	return (find_nearest(st_b, diff, chunk));
+}
+
 void	stack_sorting(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	static int	grow;
-	t_n		*pivot;
+	t_n			*pivot;
 
 	grow++;
 	if (*st_b)
@@ -44,7 +66,7 @@ void	send_and_clean(t_n **st_a, t_n **st_b, struct s_d *data,
 	int actual_chunk)
 {
 	t_n	*pivot;
-	t_n	*voyager;
+	t_n	*j;
 
 	pivot = best_pivot(st_a, actual_chunk);
 	while (pivot && (*st_a) && (*st_a)->chunk == actual_chunk)
@@ -58,12 +80,12 @@ void	send_and_clean(t_n **st_a, t_n **st_b, struct s_d *data,
 	}
 	if (check_other_chunk(st_a) == 0)
 	{
-		voyager = *st_a;
-		while (voyager != NULL && voyager->chunk != -1)
-			voyager = voyager->next;
-		while (voyager != NULL && voyager->chunk == -1)
-			voyager = voyager->next;
-		while (voyager && (*st_a)->nb != voyager->nb)
+		j = *st_a;
+		while (j != NULL && j->chunk != -1)
+			j = j->next;
+		while (j != NULL && j->chunk == -1)
+			j = j->next;
+		while (j && (*st_a)->nb != j->nb)
 			rra(st_a, data, 1);
 	}
 }
