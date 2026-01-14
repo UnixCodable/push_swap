@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/13 13:54:58 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/14 16:04:00 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ struct s_data
 
 struct s_medium
 {
-	int			min;
-	int			max;
-	int			n_chunk;
-	int			l_min;
-	int			l_max;
-	int			l;
-	int			p;
-	int			chunk;
+	long int		min;
+	long int		max;
+	long int		n_chunk;
+	long int		l_min;
+	long int		l_max;
+	int				l;
+	int				p;
+	int				chunk;
 };
 
 
@@ -81,7 +81,7 @@ void	medium_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data, struct s_me
 void	chunk(t_nlist **st_a, struct s_data *data, struct s_medium *medium);
 void	create_chunk(t_nlist **st_a, struct s_medium *medium);
 void	give_chunk(t_nlist **st_a, struct s_medium *medium);
-int		chunk_present(t_nlist **st_a, int i);
+int		chunk_present(t_nlist **st_a, long int i);
 int		chunk_checker_max_strict(t_nlist **st_b, int actual_chunk, int max_value);
 int		chunk_checker_min_strict(t_nlist **st_a, int actual_chunk, int min_value);
 void	complex_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data);

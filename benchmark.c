@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   benchmark.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/13 13:58:14 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/14 16:26:26 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,10 @@ void	first_numbers(t_nlist **sorted)
 			y += ft_numlen(voyager->nb) + 1;
 			if (y < 55)
 			{
-				ft_printf_err("%d-", voyager->nb);
+				if (voyager->nb >= 0)
+					ft_printf_err("%d-", voyager->nb);
+				else
+					ft_printf_err("(%d)-", voyager->nb);
 				voyager = voyager->next;
 			}
 		}

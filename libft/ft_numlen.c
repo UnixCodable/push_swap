@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_numlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordanave <lbordanave@student.42.fr>      +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 02:41:29 by lbordanave        #+#    #+#             */
-/*   Updated: 2025/12/25 03:01:07 by lbordanave       ###   ########.fr       */
+/*   Updated: 2026/01/14 16:15:37 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 

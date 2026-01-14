@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:10:37 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 17:23:31 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 15:42:09 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	chunk(t_nlist **st_a, struct s_data *data, struct s_medium *medium)
 	create_chunk(st_a, medium);
 }
 
-int	chunk_present(t_nlist **st_a, int i)
+int	chunk_present(t_nlist **st_a, long int i)
 {
 	t_nlist	*voyager;
 

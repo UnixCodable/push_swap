@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/13 18:10:43 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 16:31:07 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ int	error_handler(char **args, struct s_data *data)
 		else
 			return (0);
 	}
-	return (opt_off);
+	return (opt_off + 2);
 }
 
 int	main(int ac, char **av)
@@ -110,12 +110,13 @@ int	main(int ac, char **av)
 	struct s_medium	medium;
 
 	av++;
+	(void)ac;
 	data = (struct s_data){0};
 	medium = (struct s_medium){0};
 	if (error_handler(av, &data) < 2)
 		return (write(2, "Error\n", 6), 0);
-	else if (error_handler(av, &data) < 4)
-		return (ft_printf_err("%d\n", ft_atoi(av[ac - 2])), 0);
+	else if (error_handler(av, &data) < 6)
+		return (0);
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
 	compute_disorder(st_a, &data);

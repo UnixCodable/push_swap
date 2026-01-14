@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/11 14:37:24 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 17:26:14 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 14:24:24 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 void	organize_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 			struct s_medium *medium)
 {
-	int		i;
-	t_nlist *voyager;
+	long int	i;
+	t_nlist 	*voyager;
 
 	(void) (*st_a);
 	(void) (*st_b);
@@ -55,7 +55,7 @@ void	organize_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data,
 	}
 }
 
-void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, int i)
+void	simple_alg_chunk(t_nlist **st_a, t_nlist **st_b, struct s_data *data, long int i)
 {
 	t_nlist	*voyager;
 
