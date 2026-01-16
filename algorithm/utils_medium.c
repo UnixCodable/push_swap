@@ -1,128 +1,118 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   utils_medium.c                                     :+:      :+:    :+:   */
+/*   utils_m.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 13:10:37 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 17:18:07 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/14 18:19:27 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 #include <stdio.h>
 
-void	give_chunk(t_nlist **st_a, struct s_medium *medium)
+void	give_chunk(t_n **st_a, struct s_m *med)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = (*st_a);
-	while (medium->l_max < medium->max)
+	j = (*st_a);
+	while (med->l_max < med->max)
 	{
-		medium->l_min = medium->l_max + 1;
-		medium->l_max = medium->l_min + medium->l;
-		medium->chunk += 1;
-		// ft_printf("\nl_min = %d\n", medium->l_min);
-		// ft_printf("\nl_max = %d\n", medium->l_max);
-		// ft_printf("\nlargeur = %d\n", medium->l);
-		// ft_printf("\nnombre de chunk  = %d\n", medium->n_chunk);
-		voyager = (*st_a);
-		while (voyager)
+		med->l_min = med->l_max + 1;
+		med->l_max = med->l_min + med->l;
+		med->chunk += 1;
+		j = (*st_a);
+		while (j)
 		{
-			if (voyager->nb >= medium->l_min && voyager->nb <= medium->l_max)
-				voyager->chunk = medium->chunk;
-			voyager = voyager->next;
+			if (j->nb >= med->l_min && j->nb <= med->l_max)
+				j->chunk = med->chunk;
+			j = j->next;
 		}
 	}
 }
 
-void	create_chunk(t_nlist **st_a, struct s_medium *medium)
+void	create_chunk(t_n **st_a, struct s_m *med)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = (*st_a);
-	medium->l = (medium->max - medium->min + 1) / medium->n_chunk;
-	medium->l_max = medium->min + medium->l;
-	medium->l_min = medium->l_max - medium->l;
-	medium->chunk = 1;
-	// ft_printf("\nl_min = %d\n", medium->l_min);
-	// ft_printf("\nl_max = %d\n", medium->l_max);
-	// ft_printf("\nlargeur = %d\n", medium->l);
-	while (voyager != NULL)
+	j = (*st_a);
+	med->l = (med->max - med->min + 1) / med->n_chunk;
+	med->l_max = med->min + med->l;
+	med->l_min = med->l_max - med->l;
+	med->chunk = 1;
+	while (j != NULL)
 	{
-		if (voyager->nb >= medium->l_min && voyager->nb <= medium->l_max)
-			voyager->chunk = medium->chunk;
-		voyager = voyager->next;
+		if (j->nb >= med->l_min && j->nb <= med->l_max)
+			j->chunk = med->chunk;
+		j = j->next;
 	}
-	give_chunk(st_a, medium);
+	give_chunk(st_a, med);
 }
 
-void	chunk(t_nlist **st_a, struct s_data *data, struct s_medium *medium)
+void	chunk(t_n **st_a, struct s_d *data, struct s_m *med)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = (*st_a);
-	medium->min = (*st_a)->nb;
-	medium->max = (*st_a)->nb;
-	while (voyager != NULL)
+	j = (*st_a);
+	med->min = (*st_a)->nb;
+	med->max = (*st_a)->nb;
+	while (j != NULL)
 	{
-		if (voyager->nb < medium->min)
-			medium->min = voyager->nb;
-		if (voyager->nb > medium->max)
-			medium->max = voyager->nb;
-		voyager = voyager->next;
+		if (j->nb < med->min)
+			med->min = j->nb;
+		if (j->nb > med->max)
+			med->max = j->nb;
+		j = j->next;
 	}
-	// ft_printf("\nmin = %d\n", medium->min);
-	// ft_printf("\nmax = %d\n", medium->max);
-	while (medium->n_chunk * medium->n_chunk <= data->number_count)
+	while (med->n_chunk * med->n_chunk <= data->number_count)
 	{
-		if (medium->n_chunk * medium->n_chunk == data->number_count)
+		if (med->n_chunk * med->n_chunk == data->number_count)
 			break ;
-		medium->n_chunk += 1;
+		med->n_chunk += 1;
 	}
-	// ft_printf("\nnombre de chunk  = %d\n", medium->n_chunk);
-	create_chunk(st_a, medium);
+	create_chunk(st_a, med);
 }
 
-int	chunk_present(t_nlist **st_a, int i)
+int	chunk_present(t_n **st_a, long int i)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = (*st_a);
-	while (voyager != NULL)
+	j = (*st_a);
+	while (j != NULL)
 	{
-		if (voyager->chunk == i)
+		if (j->chunk == i)
 			return (1);
-		voyager = voyager->next;
+		j = j->next;
 	}
 	return (0);
 }
 
-int	chunk_checker_min_strict(t_nlist **stack, int actual_chunk, int min_value)
+int	chunk_checker_min_strict(t_n **stack, int actual_chunk, int min_value)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = *stack;
-	while (voyager)
+	j = *stack;
+	while (j)
 	{
-		if (voyager->nb < min_value && voyager->chunk == actual_chunk)
+		if (j->nb < min_value && j->chunk == actual_chunk)
 			return (0);
-		voyager = voyager->next;
+		j = j->next;
 	}
 	return (1);
 }
 
-int	chunk_checker_max_strict(t_nlist **st_b, int actual_chunk, int max_value)
+int	chunk_checker_max_strict(t_n **st_b, int actual_chunk, int max_value)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = *st_b;
-	while (voyager)
+	j = *st_b;
+	while (j)
 	{
-		if (voyager->nb > max_value && voyager->chunk == actual_chunk)
+		if (j->nb > max_value && j->chunk == actual_chunk)
 			return (0);
-		voyager = voyager->next;
+		j = j->next;
 	}
 	return (1);
 }

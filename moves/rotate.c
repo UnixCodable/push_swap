@@ -6,17 +6,17 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:25 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/07 15:55:10 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ra(t_nlist **st_a, struct s_data *data, int to_print)
+void	ra(t_n **st_a, struct s_d *data, int to_print)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = *st_a;
+	j = *st_a;
 	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("ra\n");
@@ -25,21 +25,21 @@ void	ra(t_nlist **st_a, struct s_data *data, int to_print)
 	}
 	if (!(*st_a)->next)
 		return ;
-	while (voyager->next != NULL)
-		voyager = voyager->next;
-	(*st_a)->previous = voyager;
+	while (j->next != NULL)
+		j = j->next;
+	(*st_a)->previous = j;
 	(*st_a)->next->previous = NULL;
 	(*st_a)->next = NULL;
-	voyager->next = *st_a;
+	j->next = *st_a;
 	while ((*st_a)->previous != NULL)
 		(*st_a) = (*st_a)->previous;
 }
 
-void	rb(t_nlist **st_b, struct s_data *data, int to_print)
+void	rb(t_n **st_b, struct s_d *data, int to_print)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = *st_b;
+	j = *st_b;
 	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
 	{
 		ft_printf("rb\n");
@@ -48,17 +48,17 @@ void	rb(t_nlist **st_b, struct s_data *data, int to_print)
 	}
 	if (!(*st_b)->next)
 		return ;
-	while (voyager->next != NULL)
-		voyager = voyager->next;
-	(*st_b)->previous = voyager;
+	while (j->next != NULL)
+		j = j->next;
+	(*st_b)->previous = j;
 	(*st_b)->next->previous = NULL;
 	(*st_b)->next = NULL;
-	voyager->next = *st_b;
+	j->next = *st_b;
 	while ((*st_b)->previous != NULL)
 		(*st_b) = (*st_b)->previous;
 }
 
-void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	rr(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	if (!data->low_disorder && !data->med_disorder)
 	{
@@ -70,4 +70,4 @@ void	rr(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
 	rb(st_b, data, 0);
 }
 
-// N = 
+// N =

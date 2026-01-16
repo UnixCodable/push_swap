@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/06 16:11:04 by lbordana          #+#    #+#             */
-/*   Updated: 2025/11/13 16:26:44 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,11 @@
 
 void	ft_lstadd_back(t_list **lst, t_list *new)
 {
-	t_list	*voyager;
+	t_list	*j;
 
 	if (!new || !lst)
 		return ;
-	voyager = *lst;
+	j = *lst;
 	if (*lst == NULL)
 	{
 		(*lst) = new;
@@ -26,9 +26,9 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 	}
 	if (new != NULL)
 	{
-		while (voyager->next != NULL)
-			voyager = voyager->next;
-		voyager->next = new;
+		while (j->next != NULL)
+			j = j->next;
+		j->next = new;
 	}
 }
 

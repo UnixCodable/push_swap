@@ -3,37 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:05 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/12 20:04:20 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-int	counting_steps(t_nlist **st_a, t_nlist **st_b)
+int	counting_steps(t_n **st_a, t_n **st_b)
 {
 	int		steps_front;
 	int		steps_back;
-	t_nlist	*voyager;
+	t_n	*j;
 
-	voyager = *st_a;
+	j = *st_a;
 	steps_back = 0;
 	steps_front = 0;
-	while (voyager && voyager->nb > voyager->next->nb)
+	while (j && j->nb > j->next->nb)
 	{
-		voyager = voyager->next;
+		j = j->next;
 		steps_back++;
 	}
-	while (voyager && (*st_b)->nb > voyager->nb)
+	while (j && (*st_b)->nb > j->nb)
 	{
-		voyager = voyager->next;
+		j = j->next;
 		steps_back++;
 	}
-	while (voyager != NULL)
+	while (j != NULL)
 	{
-		voyager = voyager->next;
+		j = j->next;
 		steps_front++;
 	}
 	if (steps_back >= steps_front)
@@ -41,7 +41,7 @@ int	counting_steps(t_nlist **st_a, t_nlist **st_b)
 	return (0);
 }
 
-void	simple_alg(t_nlist **st_a, t_nlist **st_b, struct s_data *data)
+void	simple_alg(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	(void)st_b;
 	while ((*st_a)->next != NULL)

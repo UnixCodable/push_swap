@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:22:47 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/13 18:19:14 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/16 13:21:43 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,6 @@
 # define CHECKER_H
 # include <stdarg.h>
 # include "libft/libft.h"
-
+# include "push_swap.h"
 
 #endif

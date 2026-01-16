@@ -3,34 +3,37 @@
 /*                                                        :::      ::::::::   */
 /*   benchmark.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/13 13:58:14 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	first_numbers(t_nlist **sorted)
+void	first_numbers(t_n **sorted)
 {
-	t_nlist	*voyager;
+	t_n	*j;
 	int		x;
 	int		y;
 
 	x = 11;
-	voyager = *sorted;
+	j = *sorted;
 	while (x != 20)
 	{
 		y = 28;
 		ft_printf_err(POS, x, y);
-		while (y < 52 && voyager)
+		while (y < 52 && j)
 		{
-			y += ft_numlen(voyager->nb) + 1;
+			y += ft_numlen(j->nb) + 1;
 			if (y < 55)
 			{
-				ft_printf_err("%d-", voyager->nb);
-				voyager = voyager->next;
+				if (j->nb >= 0)
+					ft_printf_err("%d-", j->nb);
+				else
+					ft_printf_err("(%d)-", j->nb);
+				j = j->next;
 			}
 		}
 		x++;
@@ -66,12 +69,12 @@ void	pos_framing(void)
 	ft_printf_err(POS" DETAIL "POS" FIRST SORTED ", 9, 65, 9, 34);
 }
 
-void	strategy_definition(struct s_data *data)
+void	strategy_definition(struct s_d *data)
 {
 	if (data->force_simple == 1)
 		ft_printf_err(POS"[Strategy] :"POS"Simple / O(n²)", 17, 3, 18, 3);
-	else if (data->force_medium == 1)
-		ft_printf_err(POS"[Strategy] :"POS"Medium / O(n√n)", 17, 3, 18, 3);
+	else if (data->force_med == 1)
+		ft_printf_err(POS"[Strategy] :"POS"med / O(n√n)", 17, 3, 18, 3);
 	else if (data->force_complex == 1)
 		ft_printf_err(POS"[Strategy] :"POS"Complex / O(n log n)", 17, 3, 18, 3);
 	else if (data->disorder < 0.2)
@@ -83,7 +86,7 @@ void	strategy_definition(struct s_data *data)
 			3, 18, 3);
 }
 
-void	data_place(struct s_data *data)
+void	data_place(struct s_d *data)
 {
 	int	disorder;
 
@@ -109,7 +112,7 @@ and lbordana, from 42 Mulhouse.", 22, 12);
 	ft_printf_err(POS"\n", 23, 80);
 }
 
-void	compute_benchmark(struct s_data *data, t_nlist **sorted)
+void	compute_benchmark(struct s_d *data, t_n **sorted)
 {
 	if (data->benchmark == 0)
 		return ;
