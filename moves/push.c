@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:20 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/16 18:27:42 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	pa(t_n **st_a, t_n **st_b, struct s_d *data)
 {
-	if (!data->low_disorder && !data->med_disorder)
+	if (!data->low_disorder && !data->med_disorder && !data->checker)
 	{
 		data->pa_count++;
 		data->total_count++;
@@ -42,7 +42,7 @@ void	pa(t_n **st_a, t_n **st_b, struct s_d *data)
 
 void	pb(t_n **st_a, t_n **st_b, struct s_d *data)
 {
-	if (!data->low_disorder && !data->med_disorder)
+	if (!data->low_disorder && !data->med_disorder && !data->checker)
 	{
 		data->pb_count++;
 		data->total_count++;

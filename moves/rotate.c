@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   rotate.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:25 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/16 18:28:51 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ra(t_n **st_a, struct s_d *data, int to_print)
 	t_n	*j;
 
 	j = *st_a;
-	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
+	if (to_print == 1 && !data->low_disorder && !data->med_disorder && !data->checker)
 	{
 		ft_printf("ra\n");
 		data->ra_count++;
@@ -40,7 +40,7 @@ void	rb(t_n **st_b, struct s_d *data, int to_print)
 	t_n	*j;
 
 	j = *st_b;
-	if (to_print == 1 && !data->low_disorder && !data->med_disorder)
+	if (to_print == 1 && !data->low_disorder && !data->med_disorder && !data->checker)
 	{
 		ft_printf("rb\n");
 		data->rb_count++;
@@ -60,7 +60,7 @@ void	rb(t_n **st_b, struct s_d *data, int to_print)
 
 void	rr(t_n **st_a, t_n **st_b, struct s_d *data)
 {
-	if (!data->low_disorder && !data->med_disorder)
+	if (!data->low_disorder && !data->med_disorder && !data->checker)
 	{
 		data->rr_count++;
 		data->total_count++;
