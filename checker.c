@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:21:13 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/17 15:37:44 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:19:13 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,6 @@ void	reproduce_mvm(t_n **st_a, t_n **st_b, struct s_d *data)
 	mvm = get_next_line(0);
 	while (mvm)
 	{
-		printf("%s\n", mvm);
 		make_move(mvm, st_a, st_b, data);
 		free(mvm);
 		mvm = get_next_line(0);
@@ -107,7 +106,7 @@ int	main(int ac, char **av)
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
 	reproduce_mvm(&st_a, &st_b, &data);
-	if (compute_disorder(st_a, &data) == 0.00)
+	if (st_a && compute_disorder(st_a, &data) == 0.00)
 		return (write(1, "OK\n", 3));
 	else
 		return (write(1, "KO\n", 3));

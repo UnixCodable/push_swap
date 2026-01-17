@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:25 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/17 15:39:22 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/17 16:17:31 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	ra(t_n **st_a, struct s_d *data, int to_print)
 		data->ra_count++;
 		data->total_count++;
 	}
-	if (!(st_a) || !(*st_a)->next)
+	if (!(*st_a) || !(*st_a)->next)
 		return ;
 	while (j->next != NULL)
 		j = j->next;
@@ -46,7 +46,7 @@ void	rb(t_n **st_b, struct s_d *data, int to_print)
 		data->rb_count++;
 		data->total_count++;
 	}
-	if (!(st_b) || !(*st_b)->next)
+	if (!(*st_b) || !(*st_b)->next)
 		return ;
 	while (j->next != NULL)
 		j = j->next;
