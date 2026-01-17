@@ -103,16 +103,16 @@ int	chunk_checker_min_strict(t_n **stack, int actual_chunk, int min_value)
 	return (1);
 }
 
-int	chunk_checker_max_strict(t_n **st_b, int actual_chunk, int max_value)
-{
-	t_n	*j;
+// int	chunk_checker_max_strict(t_n **st_b, int actual_chunk, int max_value)
+// {
+// 	t_n	*j;
 
-	j = *st_b;
-	while (j)
-	{
-		if (j->nb > max_value && j->chunk == actual_chunk)
-			return (0);
-		j = j->next;
-	}
-	return (1);
-}
+// 	j = *st_b;
+// 	while (j)
+// 	{
+// 		if (j->nb > max_value && j->chunk == actual_chunk)
+// 			return (0);
+// 		j = j->next;
+// 	}
+// 	return (1);
+// }

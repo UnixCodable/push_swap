@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/17 13:53:19 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:57:51 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,6 @@ struct s_m
 	int				chunk;
 };
 
-
 t_n		*ft_numlst_new(int nbr);
 void	sa(t_n **st_a, struct s_d *data, int to_print);
 void	sb(t_n **st_b, struct s_d *data, int to_print);
@@ -85,6 +84,7 @@ void	give_chunk(t_n **st_a, struct s_m *med);
 int		chunk_present(t_n **st_a, long int i);
 int		chunk_checker_max_strict(t_n **st_b, int actual_chunk, int max_value);
 int		chunk_checker_min_strict(t_n **st_a, int actual_chunk, int min_value);
+void	push_chunk(long int i, t_n **st_a, t_n **st_b, struct s_d *data);
 void	complex_alg(t_n **st_a, t_n **st_b, struct s_d *data);
 int		min_finder(t_n **st_a);
 int		chunk_checker_min(t_n **st_a, int actual_chunk, int min_value);

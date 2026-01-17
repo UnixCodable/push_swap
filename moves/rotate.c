@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 15:13:25 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/17 16:17:31 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/17 18:05:35 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	ra(t_n **st_a, struct s_d *data, int to_print)
 	t_n	*j;
 
 	j = *st_a;
-	if (to_print == 1 && !data->low_disorder && !data->med_disorder && !data->checker)
+	if (to_print == 1 && !data->low_disorder && !data->med_disorder
+		&& !data->checker)
 	{
 		ft_printf("ra\n");
 		data->ra_count++;
@@ -40,7 +41,8 @@ void	rb(t_n **st_b, struct s_d *data, int to_print)
 	t_n	*j;
 
 	j = *st_b;
-	if (to_print == 1 && !data->low_disorder && !data->med_disorder && !data->checker)
+	if (to_print == 1 && !data->low_disorder && !data->med_disorder
+		&& !data->checker)
 	{
 		ft_printf("rb\n");
 		data->rb_count++;

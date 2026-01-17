@@ -13,33 +13,34 @@
 #include "../push_swap.h"
 #include <stdio.h>
 
-void	organize_chunk(t_n **st_a, t_n **st_b, struct s_d *data, struct s_m *med)
+void	push_chunk(long int i, t_n **st_a, t_n **st_b, struct s_d *data)
+{
+	while (chunk_present(st_a, i) == 1 || chunk_present(st_a, i + 1) == 1)
+	{
+		if ((*st_a)->chunk == i)
+			pb(st_a, st_b, data);
+		else if ((*st_a)->chunk == (i + 1))
+		{
+			pb(st_a, st_b, data);
+			if (!(*st_a) || (*st_a)->chunk == i || (*st_a)->chunk == i + 1)
+				rb(st_b, data, 1);
+			else
+				rr(st_a, st_b, data);
+		}
+		else
+			ra(st_a, data, 1);
+	}
+}
+
+void	arrange_chunk(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	long int	i;
 	t_n			*j;
 
-	(void) (*st_a);
-	(void) (*st_b);
-	(void) data;
-	(void) med;
 	i = 1;
 	while ((*st_a) != NULL)
 	{
-		while (chunk_present(st_a, i) == 1 || chunk_present(st_a, i + 1) == 1)
-		{
-			if ((*st_a)->chunk == i)
-				pb(st_a, st_b, data);
-			else if ((*st_a)->chunk == (i + 1))
-			{
-				pb(st_a, st_b, data);
-				if (!(*st_a) || (*st_a)->chunk == i || (*st_a)->chunk == i + 1)
-					rb(st_b, data, 1);
-				else
-					rr(st_a, st_b, data);
-			}
-			else
-				ra(st_a, data, 1);
-		}
+		push_chunk(i, st_a, st_b, data);
 		j = *st_b;
 		while (j && j->chunk != i)
 			j = j->next;
@@ -50,6 +51,21 @@ void	organize_chunk(t_n **st_a, t_n **st_b, struct s_d *data, struct s_m *med)
 		while ((*st_b)->nb != j->nb)
 			rrb(st_b, data, 1);
 		i += 2;
+	}
+}
+
+void	place_chunk(t_n *j, t_n **st_a, t_n **st_b, struct s_d *data)
+{
+	while (((*st_a) && (*st_a)->chunk == (*st_b)->chunk) || ((*st_a)
+			&& (*st_a)->chunk != -1))
+	{
+		while ((*st_b)->nb > (*st_a)->nb)
+			rb(st_b, data, 1);
+		pb(st_a, st_b, data);
+		if ((*st_a) && (*st_a)->nb < (*st_b)->nb)
+			continue ;
+		while ((*st_a) && (*st_b) && (*st_b)->nb < (*st_a)->nb && j->next)
+			rrb(st_b, data, 1);
 	}
 }
 
@@ -69,16 +85,7 @@ void	simple_alg_chunk(t_n **st_a, t_n **st_b, struct s_d *data, long int i)
 	j = *st_b;
 	while (j->next != NULL)
 		j = j->next;
-	while (((*st_a) && (*st_a)->chunk == (*st_b)->chunk) || ((*st_a) && (*st_a)->chunk != -1))
-	{
-		while ((*st_b)->nb > (*st_a)->nb)
-			rb(st_b, data, 1);
-		pb(st_a, st_b, data);
-		if ((*st_a) && (*st_a)->nb < (*st_b)->nb)
-			continue ;
-		while ((*st_a) && (*st_b) && (*st_b)->nb < (*st_a)->nb && j->next)
-			rrb(st_b, data, 1);
-	}
+	place_chunk(j, st_a, st_b, data);
 	while (chunk_checker_max_strict(st_b, i, (*st_b)->chunk) != 1 && j->next)
 		rrb(st_b, data, 1);
 	while ((*st_b) && (*st_b)->chunk == i)
@@ -94,6 +101,6 @@ void	simple_alg_chunk(t_n **st_a, t_n **st_b, struct s_d *data, long int i)
 void	med_alg(t_n **st_a, t_n **st_b, struct s_d *data, struct s_m *med)
 {
 	chunk(st_a, data, med);
-	organize_chunk(st_a, st_b, data, med);
+	arrange_chunk(st_a, st_b, data);
 	simple_alg_chunk(st_a, st_b, data, med->n_chunk);
 }

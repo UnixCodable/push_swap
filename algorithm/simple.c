@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   simple.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 04:17:05 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/17 18:04:16 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	counting_steps(t_n **st_a, t_n **st_b)
 {
-	int		steps_front;
-	int		steps_back;
+	int	steps_front;
+	int	steps_back;
 	t_n	*j;
 
 	j = *st_a;
@@ -41,9 +41,24 @@ int	counting_steps(t_n **st_a, t_n **st_b)
 	return (0);
 }
 
+void	sens_rotate(t_n **st_a, t_n **st_b, struct s_d *data)
+{
+	if (counting_steps(st_a, st_b) == 1)
+		while ((*st_a)->nb != min_finder(st_a))
+			ra(st_a, data, 1);
+	else
+	{
+		while ((*st_a)->nb > (*st_b)->nb)
+		{
+			if ((*st_b)->nb < (*st_a)->nb && min_finder(st_a) == (*st_a)->nb)
+				break ;
+			rra(st_a, data, 1);
+		}
+	}
+}
+
 void	simple_alg(t_n **st_a, t_n **st_b, struct s_d *data)
 {
-	(void)st_b;
 	while ((*st_a)->next != NULL)
 	{
 		if (chunk_checker_max_strict(st_a, 0, (*st_a)->nb) == 1)
@@ -64,16 +79,7 @@ void	simple_alg(t_n **st_a, t_n **st_b, struct s_d *data)
 		}
 		if ((*st_b) && (*st_a)->nb < (*st_b)->nb)
 			continue ;
-		if (counting_steps(st_a, st_b) == 1)
-			while ((*st_a)->nb != min_finder(st_a))
-				ra(st_a, data, 1);
-		else
-			while ((*st_a)->nb > (*st_b)->nb)
-			{
-				if ((*st_b)->nb < (*st_a)->nb && min_finder(st_a) == (*st_a)->nb)
-					break ;
-				rra(st_a, data, 1);
-			}
+		sens_rotate(st_a, st_b, data);
 	}
 	return ;
 }

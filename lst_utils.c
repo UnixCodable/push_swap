@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_utils.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/22 02:35:23 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/14 18:22:22 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:57:30 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ t_n	*create_st_a(char **args, struct s_d *data)
 	t_n	*nbrs;
 	t_n	*prev;
 	t_n	*first;
-	int		i;
+	int	i;
 
 	i = 1;
 	while (!ft_isnumber(*args))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   benchmark.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
+/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/24 13:41:52 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/17 17:55:11 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	first_numbers(t_n **sorted)
 {
-	t_n	*j;
+	t_n		*j;
 	int		x;
 	int		y;
 
