@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 07:12:03 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/16 18:29:50 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/17 13:53:19 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,8 +47,8 @@ struct s_d
 	int		low_disorder;
 	int		med_disorder;
 	int		number_count;
-	int		checker;
 	int		benchmark;
+	int		checker;
 	double	disorder;
 };
 

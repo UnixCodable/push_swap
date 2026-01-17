@@ -6,7 +6,7 @@
 #    By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2026/01/16 17:02:21 by aeuvrard         ###   ########.fr        #
+#    Updated: 2026/01/17 15:41:48 by aeuvrard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,7 +14,7 @@
 NAME = push_swap
 NAME_BONUS = checker
 CC = cc
-CFLAGS = -Wall -Wextra -Werror -g3
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 FILES = push_swap.c lst_utils.c benchmark.c push.c swap.c rotate.c\
 		reverse_rotate.c simple.c medium.c complex.c adaptive.c utils_medium.c\
 		utils_complex.c

@@ -6,7 +6,7 @@
 /*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:21:13 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/16 18:32:45 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/17 15:37:44 by aeuvrard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,21 +51,21 @@ int	error_handler(char **args)
 
 void	make_move(char *mvm, t_n **st_a, t_n **st_b, struct s_d *data)
 {
-	if (mvm[0] == 'p' && mvm[1] == 'a')
+	if (mvm[0] == 'p' && mvm[1] == 'a' && mvm[2] == '\n')
 		pa(st_a, st_b, data);
-	else if (mvm[0] == 'p' && mvm[1] == 'b' && !mvm[2])
+	else if (mvm[0] == 'p' && mvm[1] == 'b' && mvm[2] == '\n')
 		pb(st_a, st_b, data);
-	else if (mvm[0] == 's' && mvm[1] == 'a' && !mvm[2])
+	else if (mvm[0] == 's' && mvm[1] == 'a' && mvm[2] == '\n')
 		sa(st_a, data, 0);
-	else if (mvm[0] == 's' && mvm[1] == 'b' && !mvm[2])
+	else if (mvm[0] == 's' && mvm[1] == 'b' && mvm[2] == '\n')
 		sb(st_b, data, 0);
-	else if (mvm[0] == 's' && mvm[1] == 's' && !mvm[2])
+	else if (mvm[0] == 's' && mvm[1] == 's' && mvm[2] == '\n')
 		ss(st_a, st_b, data);
-	else if (mvm[0] == 'r' && mvm[1] == 'a' && !mvm[2])
+	else if (mvm[0] == 'r' && mvm[1] == 'a' && mvm[2] == '\n')
 		ra(st_a, data, 0);
-	else if (mvm[0] == 'r' && mvm[1] == 'b' && !mvm[2])
+	else if (mvm[0] == 'r' && mvm[1] == 'b' && mvm[2] == '\n')
 		rb(st_b, data, 0);
-	else if (mvm[0] == 'r' && mvm[1] == 'r' && !mvm[2])
+	else if (mvm[0] == 'r' && mvm[1] == 'r' && mvm[2] == '\n')
 		rr(st_a, st_b, data);
 	else if (mvm[0] == 'r' && mvm[1] == 'r' && mvm[2] == 'a')
 		rra(st_a, data, 0);
@@ -81,9 +81,11 @@ void	reproduce_mvm(t_n **st_a, t_n **st_b, struct s_d *data)
 {
 	char	*mvm;
 
+	data->checker = 1;
 	mvm = get_next_line(0);
 	while (mvm)
 	{
+		printf("%s\n", mvm);
 		make_move(mvm, st_a, st_b, data);
 		free(mvm);
 		mvm = get_next_line(0);
@@ -100,7 +102,6 @@ int	main(int ac, char **av)
 	(void) ac;
 	av++;
 	data = (struct s_d){0};
-	data.checker = 1;
 	if (error_handler(av) == 0)
 		return (write(2, "Error\n", 6), 0);
 	st_a = create_st_a(av, &data);
