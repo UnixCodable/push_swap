@@ -6,7 +6,7 @@
 #    By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2026/01/20 14:50:04 by lbordana         ###   ########.fr        #
+#    Updated: 2026/01/20 16:51:28 by lbordana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -112,7 +112,7 @@ fclean:
 	rm -rf checker
 	rm -rf push_swap
 	@make fclean -C libft > /dev/null
-	printf "\n$(RED_BCK)Deleted objects files and archive.$(NORMAL)\n\n"
+	printf "\n$(RED_BCK)Deleted objects files and program.$(NORMAL)\n\n"
 
 re: fclean all
 

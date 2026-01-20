@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   checker.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:21:13 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/17 16:19:13 by aeuvrard         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:35:28 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,15 +98,16 @@ int	main(int ac, char **av)
 	t_n				*st_b;
 	struct s_d		data;
 
-	(void) ac;
 	av++;
 	data = (struct s_d){0};
+	if (ac < 2)
+		return (0);
 	if (error_handler(av) == 0)
 		return (write(2, "Error\n", 6), 0);
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
 	reproduce_mvm(&st_a, &st_b, &data);
-	if (st_a && compute_disorder(st_a, &data) == 0.00)
+	if ((st_a && !compute_disorder(st_a, &data)) || (st_a && !st_a->next && !st_b))
 		return (write(1, "OK\n", 3));
 	else
 		return (write(1, "KO\n", 3));

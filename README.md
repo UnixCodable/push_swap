@@ -45,7 +45,7 @@ Here are the instructions for running the program.
 On a terminal, navigate to the Push_Swap folder. Then, to run the program, you can execute these commands :
 ```bash
 make
-./push_swap --simple --bench &(shuf -i 0-1000 -n 500)
+./push_swap --simple --bench $(shuf -i 0-1000 -n 500)
 
 or
 

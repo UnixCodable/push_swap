@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/20 02:25:40 by lbordana          #+#    #+#             */
-/*   Updated: 2026/01/14 19:03:32 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:08:08 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int	main(int ac, char **av)
 		return (0);
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
-	compute_disorder(st_a, &data);
+	if (compute_disorder(st_a, &data) == 0)
+		return (0);
 	init_sort(&st_a, &st_b, &data, &med);
 	compute_benchmark(&data, &st_a);
 	ft_nlstclear(&st_a);
