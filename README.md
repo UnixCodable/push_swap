@@ -45,11 +45,30 @@ Here are the instructions for running the program.
 On a terminal, navigate to the Push_Swap folder. Then, to run the program, you can execute these commands:
 ```bash
 make
-./push_swap --simple --bench &(shuf --100 -n --500)
+./push_swap --simple --bench &(shuf -i 0-1000 -n 500)
+
+or
+
+make
+ARG=($(shuf -i 0-1000 -n 500)); ./push_swap --simple --bench $ARG
+
+or
+
+make
+ARG=($(seq -500 500 | shuf -n 500)); ./push_swap --simple --bench $ARG
 ```
-In this example, the program will use the simple algorithm, print the benchmark, and take a list of 100 numbers between 0 and 500.
-To use the other algorithms, simply change the name of the algorithm. If you want the program to adapt according to the disorder rate, you must choose the adaptive algorithm.
+In this example, the program will use the simple algorithm, print the benchmark, and take a list of 500 numbers between 0 and 1000.
+To use the other algorithms, simply change the name of the algorithm. If you want the program to adapt according to the disorder rate, you must choose the adaptive algorithm or enter no algorithm.
+
 If you do not enter the arguments correctly, the program will not run and an error message will appear.
+To use the checker (bonus), you must use the following commands :
+
+```bash
+make
+make bonus
+ARG=($(shuf -i 0-1000 -n 500)); ./push_swap --simple $ARG | ./checker $ARG
+```
+
 To create our program, we consulted several resources.
 
 
@@ -57,10 +76,16 @@ To create our program, we consulted several resources.
 
 
 #### <span style="color:#DAB1DA">References</span>
-Each of these resources helped us understand algorithmic logic, particularly   how to determine its level of complexity.
-
-“List of links”
-
+Each of these resources helped us understand algorithmic logic, particularly how to determine its level of complexity.
+ \
+[Wikipedia - Sorting Algorithm](https://en.wikipedia.org/wiki/Sorting_algorithm) \
+[Wikipedia - Algorithm Complexity](https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes) \
+\
+Youtube video as : \
+[Bro Code](https://www.youtube.com/watch?v=Vtckgz38QHs) \
+[KC Ang](https://www.youtube.com/watch?v=MZaf_9IZCrc) \
+Plus a lot of algorithm visualizer to understand how they are made \
+ \
 In addition to the websites consulted, we relied on AI within a strict framework.
 
 #### <span style="color:#DAB1DA">IA utilisation</span>
@@ -89,3 +114,16 @@ As Quicksort was considered as the most efficient algorithm, used in multiple kn
 
 ##### <span style="color:lightpink">Alternative</span>
 It was simply designed based on the disorder rate. We followed the instructions for the exercise, i.e., choosing the simple algorithm for a disorder rate below 0.2%, the medium algorithm for a disorder rate between 0.2% and 0.5%, and the complex algorithm for a disorder rate above 0.5%.
+
+### <span style="color:orange">Contributions</span>
+
+Movements - aeuvrard & lbordana \
+Simple Algorithm - aeuvrard & lbordana \
+Medium Algorithm - aeuvrard \
+Adaptive Algorithm - aeuvrard \
+Checker - aeuvrard \
+README - aeuvrard \
+Complex Algorithm - lbordana \
+Benchmark - lbordana \
+Makefile - lbordana \
+Parsing and initialization - lbordana \
