@@ -3,15 +3,15 @@
 ###  <span style="color:orange">Description</span>
 
 #### <span style="color:#DAB1DA">Project presentation</span>
-Push-Swap is an exercise that allows us to explore the concept of algorithms.
-We can already propose a definition of an algorithm: a description of a sequence of steps that allows us to obtain a result from elements provided as input.
-We use them every day, for example when following a recipe. This concept is particularly important in our field, since coding is essentially the creation of algorithms.
-This project addresses the concept of algorithm complexity. Indeed, a problem can be solved in different ways; complexity calculation is based on two concepts: time and space.
-For example, let's say we want to get from point A to point B. We might take several side streets because we don't like the noise on the main road or because we need to stop at a friend's house before reaching our destination. Or we may choose to take the main avenue because we have an appointment at point B and don't want to be late, or because we are already tired and don't want to travel any further than necessary.
+Push-Swap is an exercise that allows us to explore the concept of algorithms. \
+We can already propose a definition of an algorithm: a description of a sequence of steps that allows us to obtain a result from elements provided as input. \
+We use them every day, for example when following a recipe. This concept is particularly important in our field, since coding is essentially the creation of algorithms. \
+This project addresses the concept of algorithm complexity. Indeed, a problem can be solved in different ways; complexity calculation is based on two concepts: time and space. \
+For example, let's say we want to get from point A to point B. We might take several side streets because we don't like the noise on the main road or because we need to stop at a friend's house before reaching our destination. Or we may choose to take the main avenue because we have an appointment at point B and don't want to be late, or because we are already tired and don't want to travel any further than necessary. \
 If we choose the first route, it will take us longer and we will travel further than if we choose the second route. The choice of route will depend on our objectives. This brings us to the goal of this project.
 
 #### <span style="color:#DAB1DA">Goal</span>
-The ultimate goal of this exercise is to sort a list of numbers given as arguments in ascending order.
+The ultimate goal of this exercise is to sort a list of numbers given as arguments in ascending order. \
 There are two constraints. The first is a limit of two stacks, A and B, and the second is a limit on the number of moves that can be made to sort this list:
 <ul>
     <li> Push to the top of stack A/B.</li>
@@ -42,7 +42,7 @@ Once the program is complete, you will see a benchmark that displays several pie
 Here are the instructions for running the program.
 
 ### <span style="color:orange">Instruction</span>
-On a terminal, navigate to the Push_Swap folder. Then, to run the program, you can execute these commands:
+On a terminal, navigate to the Push_Swap folder. Then, to run the program, you can execute these commands :
 ```bash
 make
 ./push_swap --simple --bench &(shuf -i 0-1000 -n 500)
@@ -57,10 +57,10 @@ or
 make
 ARG=($(seq -500 500 | shuf -n 500)); ./push_swap --simple --bench $ARG
 ```
-In this example, the program will use the simple algorithm, print the benchmark, and take a list of 500 numbers between 0 and 1000.
+In this example, the program will use the simple algorithm, print the benchmark, and take a list of 500 numbers between 0 and 1000. \
 To use the other algorithms, simply change the name of the algorithm. If you want the program to adapt according to the disorder rate, you must choose the adaptive algorithm or enter no algorithm.
-
-If you do not enter the arguments correctly, the program will not run and an error message will appear.
+\
+If you do not enter the arguments correctly, the program will not run and an error message will appear. \
 To use the checker (bonus), you must use the following commands :
 
 ```bash
@@ -80,16 +80,19 @@ Each of these resources helped us understand algorithmic logic, particularly how
  \
 [Wikipedia - Sorting Algorithm](https://en.wikipedia.org/wiki/Sorting_algorithm) \
 [Wikipedia - Algorithm Complexity](https://fr.wikipedia.org/wiki/Analyse_de_la_complexit%C3%A9_des_algorithmes) \
+[Je suis un dev](https://www.jesuisundev.com/comprendre-les-algorithmes-de-tri-en-7-minutes/) \
 \
 Youtube video as : \
 [Bro Code](https://www.youtube.com/watch?v=Vtckgz38QHs) \
 [KC Ang](https://www.youtube.com/watch?v=MZaf_9IZCrc) \
+[CodersLegacy](https://www.youtube.com/watch?v=RENzmNgIZ4A) \
+[Algorithms Conquered](https://www.youtube.com/watch?v=TlZt6Y6St6I) \
 Plus a lot of algorithm visualizer to understand how they are made \
  \
 In addition to the websites consulted, we relied on AI within a strict framework.
 
 #### <span style="color:#DAB1DA">IA utilisation</span>
-As mentioned above, its use was strictly limited. First, we always prioritized our own research and discussions with our peers before resorting to it. In addition, we used it as a “teacher” to better understand certain concepts or how certain algorithms work, without ever asking it for code.
+As mentioned above, its use was strictly limited. First, we always prioritized our own research and discussions with our peers before resorting to it. In addition, we used it as a “teacher” to better understand certain concepts or how certain algorithms work, without ever asking it for code. \
 In the next section, you will find our arguments for choosing each algorithm.
 
 
@@ -126,4 +129,4 @@ README - aeuvrard \
 Complex Algorithm - lbordana \
 Benchmark - lbordana \
 Makefile - lbordana \
-Parsing and initialization - lbordana \
+Parsing and initialization - lbordana
