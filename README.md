@@ -3,7 +3,7 @@
 ###  <span style="color:orange">Description</span>
 
 #### <span style="color:#DAB1DA">Project presentation</span>
-Push-Swap is an exercise that allows us to explore the concept of algorithms. 
+Push-Swap is an exercise that allows us to explore the concept of algorithms.
 We can already propose a definition of an algorithm: a description of a sequence of steps that allows us to obtain a result from elements provided as input.
 We use them every day, for example when following a recipe. This concept is particularly important in our field, since coding is essentially the creation of algorithms.
 This project addresses the concept of algorithm complexity. Indeed, a problem can be solved in different ways; complexity calculation is based on two concepts: time and space.
@@ -12,31 +12,31 @@ If we choose the first route, it will take us longer and we will travel further 
 
 #### <span style="color:#DAB1DA">Goal</span>
 The ultimate goal of this exercise is to sort a list of numbers given as arguments in ascending order.
-There are two constraints. The first is a limit of two stacks, A and B, and the second is a limit on the number of moves that can be made to sort this list:  
+There are two constraints. The first is a limit of two stacks, A and B, and the second is a limit on the number of moves that can be made to sort this list:
 <ul>
-    <li> Push to the top of stack A/B.</li>  
-	<li> Rotate the first element of A/B to the end of the list</li>  
-    <li> Swap the first two elements of list A/B</li>  
-    <li> Perform one of these actions in both stacks at the same time</li>  
+    <li> Push to the top of stack A/B.</li>
+	<li> Rotate the first element of A/B to the end of the list</li>
+    <li> Swap the first two elements of list A/B</li>
+    <li> Perform one of these actions in both stacks at the same time</li>
 </ul>
 
 In order to achieve this goal, the exercise requires the use of a different algorithm depending on the disorder observed in the list of numbers. To clarify, here is an overview of our project.
 
 #### <span style="color:#DAB1DA">Overview</span>
-To sort the list given as an argument, we have developed four algorithms:  
+To sort the list given as an argument, we have developed four algorithms:
 <ul>
-   <li> Simple: difficulty O(n2)</li>  
-   <li> Medium: difficulty O(n√n)</li>  
-   <li> Advanced in O(n log n)</li>  
-   <li> Adaptive: chooses the most suitable algorithm based on the disorder of the list</li>  
-</ul>  
+   <li> Simple: difficulty O(n2)</li>
+   <li> Medium: difficulty O(n√n)</li>
+   <li> Advanced in O(n log n)</li>
+   <li> Adaptive: chooses the most suitable algorithm based on the disorder of the list</li>
+</ul>
 
-Once the program is complete, you will see a benchmark that displays several pieces of information:  
+Once the program is complete, you will see a benchmark that displays several pieces of information:
 <ul>
-    <li> the number of operations performed</li>  
-    <li> the algorithm used and its complexity</li>  
-    <li> the number of operations performed</li>  
-    <li> details of the number of operations for each movement</li>  
+    <li> the number of operations performed</li>
+    <li> the algorithm used and its complexity</li>
+    <li> the number of operations performed</li>
+    <li> details of the number of operations for each movement</li>
 </ul>
 
 Here are the instructions for running the program.
@@ -68,16 +68,24 @@ As mentioned above, its use was strictly limited. First, we always prioritized o
 In the next section, you will find our arguments for choosing each algorithm.
 
 
-### <span style="color:orange">Aditional section</span>
+### <span style="color:orange">Additional section</span>
 
 #### <span style="color:#DAB1DA">Algorithms choices</span>
 
 ##### <span style="color:lightpink">Simple</span>
+As we first made a bubblesort algorithm to handle this one, it was a disaster at 20% disorder. So, we decided to go with the insertion sort, as it was more optimizable.
+
+<span style="color:grey"><i>Average : 4500 movements / 500 numbers / 20% disorder</i></span>
 
 ##### <span style="color:lightpink">Medium</span>
 We chose Range based because it was the simplest to implement given the constraints of the exercise. Thanks to the root of n, it is possible to construct intervals in which we classify integers by sorting each interval starting with the largest integers.
 
+<span style="color:grey"><i>Average : 6500 movements / 500 numbers / 40% disorder</i></span>
+
 ##### <span style="color:lightpink">Complex</span>
+As Quicksort was considered as the most efficient algorithm, used in multiple known website as sorting algorithm, we decided to try implementing it. If not based on a left / middle / right value, we thought of a new way to do it, based on the BEST pivot. How are we doing that ? Simply by finding the median value of the chunk before using it.
+
+<span style="color:grey"><i>Average : 5000 movements / 500 numbers / 52% disorder</i></span>
 
 ##### <span style="color:lightpink">Alternative</span>
 It was simply designed based on the disorder rate. We followed the instructions for the exercise, i.e., choosing the simple algorithm for a disorder rate below 0.2%, the medium algorithm for a disorder rate between 0.2% and 0.5%, and the complex algorithm for a disorder rate above 0.5%.
