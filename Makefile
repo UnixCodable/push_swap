@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: aeuvrard <aeuvrard@student.42.fr>          +#+  +:+       +#+         #
+#    By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2026/01/17 17:02:00 by aeuvrard         ###   ########.fr        #
+#    Updated: 2026/01/20 13:36:34 by lbordana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
