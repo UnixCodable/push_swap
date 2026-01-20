@@ -6,7 +6,7 @@
 #    By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/12/22 13:25:21 by lbordana          #+#    #+#              #
-#    Updated: 2026/01/20 14:48:23 by lbordana         ###   ########.fr        #
+#    Updated: 2026/01/20 14:50:04 by lbordana         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -62,6 +62,7 @@ bonus: $(NAME_BONUS)
 
 $(NAME_BONUS): $(OBJDIR_BONUS) $(OBONUS_FILES) $(LIBFT)
 	$(CC) $(CFLAGS) -o $(NAME_BONUS) $(OBONUS_FILES) $(LIBFT)
+	printf "\n\n"
 
 $(OBJDIR_BONUS)%.o: get_next_line/%.c | $(OBJDIR_BONUS)
 	$(CC) $(CFLAGS) -o $@ -c $<
