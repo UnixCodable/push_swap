@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 17:21:13 by aeuvrard          #+#    #+#             */
-/*   Updated: 2026/01/20 17:35:28 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/20 17:45:35 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,8 @@ int	main(int ac, char **av)
 	st_a = create_st_a(av, &data);
 	st_b = NULL;
 	reproduce_mvm(&st_a, &st_b, &data);
-	if ((st_a && !compute_disorder(st_a, &data)) || (st_a && !st_a->next && !st_b))
+	if ((st_a && !compute_disorder(st_a, &data) && !st_b)
+		|| (st_a && !st_a->next && !st_b))
 		return (write(1, "OK\n", 3));
 	else
 		return (write(1, "KO\n", 3));
