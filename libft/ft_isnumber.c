@@ -6,7 +6,7 @@
 /*   By: lbordana <lbordana@student.42mulhouse.f    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/25 02:41:29 by lbordanave        #+#    #+#             */
-/*   Updated: 2026/01/14 16:20:54 by lbordana         ###   ########.fr       */
+/*   Updated: 2026/01/22 12:54:24 by lbordana         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_isnumber(char *str)
 	int_checker = 0;
 	if (!str)
 		return (0);
-	if (str[i] == '-' || str[i] == '+')
+	if ((str[i] == '-' || str[i] == '+') && str[i + 1] != '\0')
 		i++;
 	while (str[i] != 0)
 	{
